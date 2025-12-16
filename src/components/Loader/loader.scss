@@ -1,0 +1,80 @@
+@use '@/app/styles/Settings' as settings;
+
+.loader {
+  --loader-size: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &.loader--full {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    @include settings.flex(center, center);
+    width: 100vw;
+    height: 100vh;
+    background: rgba(settings.$gray-900-alt, 0.16);
+    backdrop-filter: blur(8px);
+  }
+
+  &__box {
+    @include settings.flex(center, center);
+    padding: 6px;
+    border-radius: 9999px;
+    background: transparent;
+    box-shadow: 0 2px 8px rgba(settings.$black, 0.06);
+  }
+
+  &__spinner {
+    @include settings.square(calc(var(--loader-size) * 0.5));
+    border-radius: 50%;
+    border: 3px solid rgba(settings.$white, 0.2);
+    border-top-color: settings.$white;
+    animation: loader-spin 0.8s linear infinite;
+
+    &--xs {
+      @include settings.square(16px);
+      border-width: 2px;
+    }
+
+    &--sm {
+      @include settings.square(20px);
+      border-width: 2px;
+    }
+
+    &--md {
+      @include settings.square(32px);
+      border-width: 2px;
+    }
+
+    &--lg {
+      @include settings.square(48px);
+      border-width: 3px;
+    }
+
+    &--full {
+      @include settings.square(48px);
+      border-width: 4px;
+    }
+  }
+
+  &.loader--dark {
+    .loader__spinner {
+      border-color: rgba(settings.$white, 0.2);
+      border-top-color: settings.$white;
+    }
+  }
+
+  &.loader--light {
+    .loader__spinner {
+      border-color: rgba(settings.$gray-900-alt, 0.2);
+      border-top-color: settings.$gray-900-alt;
+    }
+  }
+}
+
+@keyframes loader-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

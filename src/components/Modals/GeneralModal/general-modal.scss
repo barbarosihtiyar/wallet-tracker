@@ -1,0 +1,42 @@
+@use '@/app/styles/Settings' as settings;
+
+.ant-modal {
+  max-height: 1000px;
+  overflow: auto;
+
+  &-body {
+    .modal__body {
+      @include settings.flex(center, center, column);
+      gap: 12px;
+
+      &__text {
+        @include settings.flex(center, center, column);
+        gap: 24px;
+        max-width: 100%;
+        overflow: auto;
+
+        &--title {
+          @include settings.label(lg);
+        }
+
+        &--message {
+          @include settings.paragraph(sm);
+          max-width: 100%;
+        }
+      }
+    }
+  }
+
+  .ant-modal-footer {
+    margin-top: 16px;
+
+    .action-group {
+      @include settings.flex(center, center);
+    }
+  }
+
+  .ant-modal-mask {
+    backdrop-filter: blur(12px) !important;
+    background-color: rgba(0, 0, 0, 0.45) !important;
+  }
+}

@@ -1,0 +1,49 @@
+@use '@/app/styles/Settings' as settings;
+
+.checkbox {
+  .ant-checkbox-wrapper {
+    @include settings.flex(flex-start, flex-start);
+
+    .ant-checkbox {
+      &-checked {
+        .ant-checkbox-inner {
+          background-color: settings.$gray-900-alt !important;
+          border-color: settings.$gray-700 !important;
+        }
+        &::after {
+          border: none;
+        }
+      }
+
+      .ant-checkbox-inner {
+        border-color: settings.$gray-900-alt;
+      }
+
+      + span {
+        padding-inline-start: 8px;
+      }
+    }
+
+    .checkbox__label {
+      @include settings.paragraph(sm);
+      color: settings.$gray-900-alt;
+      strong {
+        font-weight: 500;
+        text-decoration-line: underline;
+      }
+    }
+  }
+
+  &--v2 {
+    .ant-checkbox-inner {
+      border-radius: 100%;
+    }
+  }
+
+  &--disabled {
+    .ant-checkbox-inner {
+      background: settings.$gray-300;
+      border-color: settings.$gray-300 !important;
+    }
+  }
+}

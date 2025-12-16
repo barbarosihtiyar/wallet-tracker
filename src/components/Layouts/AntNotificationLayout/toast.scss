@@ -1,0 +1,84 @@
+@use '@/app/styles/Settings' as settings;
+
+.toast {
+  width: 350px !important;
+  padding: 12px !important;
+  display: flex;
+
+  .ant-notification-notice-content {
+    @include settings.flex(center, center, row, inline-flex);
+    width: 100%;
+
+    .ant-notification-notice-with-icon {
+      @include settings.flex(center, flex-start);
+      width: 100%;
+
+      .ant-notification-notice-message {
+        @include settings.margin-logical(0, 0, 0, 8px);
+      }
+
+      .ant-notification-notice-icon {
+        position: relative;
+        padding: 6px;
+
+        .icon-pack-success {
+          color: settings.$green-600;
+        }
+        .icon-pack-danger {
+          color: settings.$red-600;
+        }
+        .icon-pack-warning {
+          color: settings.$amber-500;
+        }
+        .icon-pack-information {
+          color: settings.$gray-650;
+        }
+      }
+
+      .ant-notification-notice-description {
+        display: none;
+      }
+    }
+  }
+
+  .ant-notification-notice-close {
+    @include settings.square(32px);
+    position: relative;
+    top: 0;
+    inset-inline-end: 0;
+  }
+}
+
+.main {
+  position: absolute;
+  content: '';
+  @include settings.widthHeight(4px, 32px);
+  inset-inline-start: 0;
+  top: 16px;
+  border-radius: 0 2px 4px 0;
+}
+
+.toastSuccess {
+  &::after {
+    @extend .main;
+    background: settings.$green-600;
+  }
+}
+.toastDanger {
+  &::after {
+    @extend .main;
+    background: settings.$red-600;
+  }
+}
+.toastWarning {
+  &::after {
+    @extend .main;
+    background: settings.$ember-500;
+  }
+}
+.toastInformation {
+  &::after {
+    @extend .main;
+    background: settings.$gray-650;
+  }
+}

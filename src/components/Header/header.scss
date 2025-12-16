@@ -1,0 +1,14 @@
+@use '@/app/styles/Settings' as settings;
+
+.header {
+  @include settings.flex(center, space-between);
+  gap: 16px;
+  padding: 8px 0;
+
+  &__brand {
+    @include settings.paragraph(md);
+    font-weight: 700;
+    color: settings.$blue-950;
+    letter-spacing: 0.01em;
+  }
+}

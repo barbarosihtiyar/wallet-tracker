@@ -1,0 +1,238 @@
+{
+  "dashboard": {
+    "title": {
+      "eyebrow": "Fintech ops",
+      "main": "Client wallet control center",
+      "sub": "Monitor balances, enforce wallet limits, and review transaction risk without leaving a single workspace.",
+      "badge": "Retry & cancel ready",
+      "retries": "{{count}} retry attempts on failed requests",
+      "cancellation": "cancellation via AbortController"
+    },
+    "summary": {
+      "totalBalance": "Total wallet balance",
+      "activeWallets": "Active wallets",
+      "pendingTx": "Pending transactions"
+    },
+    "filters": {
+      "search": "Search",
+      "searchPlaceholder": "Name, email, wallet id",
+      "statusLabel": "Wallet status",
+      "kycStatusLabel": "KYC status",
+      "isActiveLabel": "Customer status",
+      "reset": "Reset filters",
+      "apply": "Apply filters",
+      "status": {
+        "all": "All statuses",
+        "active": "Active",
+        "restricted": "Restricted",
+        "suspended": "Suspended"
+      },
+      "kycStatus": {
+        "all": "All",
+        "UNKNOWN": "Unknown",
+        "UNVERIFIED": "Unverified",
+        "VERIFIED": "Verified",
+        "CONTRACTED": "Contracted"
+      },
+      "isActive": {
+        "all": "All",
+        "active": "Active",
+        "inactive": "Inactive"
+      }
+    },
+    "forms": {
+      "customer": {
+        "eyebrow": "Onboard customer",
+        "title": "Create customer wallet",
+        "description": "Capture identity and baseline limits to provision a working wallet instantly.",
+        "realtime": "Validates instantly",
+        "sections": {
+          "address": "Address information",
+          "wallet": "Wallet & limits"
+        },
+        "fields": {
+      "name": "Full name",
+      "email": "Email",
+      "phone": "Phone",
+      "dateOfBirth": "Date of birth",
+      "nationalId": "National ID",
+      "country": "Country",
+      "city": "City",
+      "postalCode": "Postal code",
+      "line1": "Address line",
+      "availableLimit": "Spending limit",
+      "dailyLimit": "Daily limit",
+      "currency": "Currency"
+    },
+    "placeholders": {
+      "name": "Jane Doe",
+      "email": "ops@client.com",
+      "phone": "+90 5xx xxx xx xx",
+      "dateOfBirth": "YYYY-MM-DD",
+      "nationalId": "11-digit ID",
+      "country": "Country",
+      "city": "City",
+      "postalCode": "Postal code",
+      "line1": "Street, building, number",
+      "limit": "20000",
+      "dailyLimit": "5000",
+      "currency": "Select currency"
+    },
+        "submit": "Create customer",
+        "submitting": "Creating..."
+      },
+      "limit": {
+        "eyebrow": "Adjust guardrails",
+        "title": "Wallet limits",
+        "description": "Update daily and available limits while preventing duplicate submissions.",
+        "fields": {
+          "availableLimit": "Available limit",
+          "dailyLimit": "Daily limit"
+        },
+        "placeholders": {
+          "availableLimit": "Enter available limit",
+          "dailyLimit": "Enter daily limit"
+        },
+        "submit": "Update limits",
+        "submitting": "Updating..."
+      }
+    },
+    "customers": {
+      "title": "Customer wallets",
+      "subtitle": "Sortable, filterable view of customer balances and limits."
+    },
+    "transactions": {
+      "title": "Recent transactions",
+      "subtitle": "Live feed of credits and debits for the selected customer."
+    },
+    "transactionFilters": {
+      "title": "Recent transactions",
+      "subtitle": "Filter credit/debit activity by direction, type, currency and date range.",
+      "transferDirectionLabel": "Transfer direction",
+      "typeLabel": "Transaction type",
+      "currencyLabel": "Currency",
+      "fromLabel": "From date",
+      "toLabel": "To date",
+      "currencyPlaceholder": "e.g., USD, EUR, TRY",
+      "fromPlaceholder": "Select start date",
+      "toPlaceholder": "Select end date",
+      "reset": "Reset filters",
+      "apply": "Apply filters",
+      "transferDirection": {
+        "all": "All",
+        "INCOMING": "Incoming",
+        "OUTGOING": "Outgoing"
+      },
+      "type": {
+        "all": "All",
+        "DEBIT": "Debit",
+        "CREDIT": "Credit"
+      }
+    },
+    "actions": {
+      "back": "Back to home"
+    },
+    "table": {
+      "customer": "Customer info",
+      "contactInfo": "Contact info",
+      "balance": "Balance",
+      "walletNumber": "Wallet no: {{value}}",
+      "identity": "Identity info",
+      "address": "Address info",
+      "availableLimit": "Available limit {{value}}",
+      "risk": "Risk",
+      "status": "Status",
+      "updated": "Created/updated info",
+      "createdAt": "Created {{value}}",
+      "txnDate": "Date",
+      "amount": "Amount",
+      "channel": "Channel",
+      "counterparty": "Counterparty",
+      "description": "Description",
+      "na": "—",
+      "empty": "No customers yet",
+      "emptyTransactions": "No transactions available",
+      "txnStatus": "Transaction status"
+    },
+    "risk": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High",
+      "unknown": "Unknown"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "restricted": "Restricted",
+      "suspended": "Suspended",
+      "unknown": "Unknown"
+    },
+    "txnStatus": {
+      "pending": "Pending",
+      "completed": "Completed",
+      "failed": "Failed",
+      "reversed": "Reversed",
+      "incoming": "Incoming",
+      "outgoing": "Outgoing",
+      "unknown": "Unknown"
+    },
+    "errors": {
+      "customers": "Unable to load customers",
+      "transactions": "Unable to load transactions",
+      "createCustomer": "Unable to create customer",
+      "updateLimit": "Unable to update limits"
+    },
+    "toasts": {
+      "customerCreated": {
+        "title": "Customer created",
+        "message": "Wallet provisioned and added to the table."
+      },
+      "limitsUpdated": {
+        "title": "Limits updated",
+        "message": "Wallet guardrails saved successfully."
+      }
+    }
+  },
+  "general": {
+    "error": {
+      "title": "Something went wrong",
+      "desc": "We could not complete your request. Please try again.",
+      "unauthorized": "Your session has expired. Please sign in again.",
+      "500": {
+        "title": "Service unavailable",
+        "description": "The service is temporarily unavailable. Please retry in a moment."
+      }
+    },
+    "fallback": "Showing cached data while we reconnect."
+  },
+  "ui": {
+    "button": {
+      "close": "Close"
+    },
+    "sidebar": {
+      "dashboard": "Dashboard",
+      "customers": "Customers",
+      "wallets": "Wallets",
+      "transactions": "Transactions",
+      "reports": "Reports",
+      "footer": {
+        "settings": "Settings",
+        "audit": "Audit logs",
+        "alerts": "Alerts"
+      }
+    },
+    "pagination": {
+      "showTotal": "<span>{{currentItem}}</span>-<span>{{onPage}}</span> of <span>{{totalCards}}</span>"
+    }
+  },
+  "validation": {
+    "required": "This field is required.",
+    "minChars": "Minimum {{count}} characters required.",
+    "email": "Enter a valid email address.",
+    "minLimit": "Limit must be at least 250.",
+    "minDailyLimit": "Daily limit must be at least 100.",
+    "maxLimit": "Limit cannot exceed {{value}}.",
+    "availableVsDaily": "Available limit should be greater than or equal to the daily limit.",
+    "dailyVsAvailable": "Daily limit cannot exceed the available limit."
+  }
+}

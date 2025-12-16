@@ -1,0 +1,165 @@
+@use 'sass:map';
+@use 'sass:list';
+
+@mixin type($size, $weight: 400, $lh: null, $ls: null, $tt: null) {
+  font-size: $size;
+  font-weight: $weight;
+
+  @if $lh != null {
+    line-height: $lh;
+  }
+  @if $ls != null {
+    letter-spacing: $ls;
+  }
+  @if $tt != null {
+    text-transform: $tt;
+  }
+}
+
+$display: (
+  2xl: (
+    48px,
+    400,
+    56px,
+  ),
+  xl: (
+    40px,
+    400,
+    48px,
+  ),
+  lg: (
+    32px,
+    400,
+    40px,
+  ),
+  md: (
+    24px,
+    400,
+    32px,
+  ),
+  sm: (
+    20px,
+    400,
+    28px,
+  ),
+  xs: (
+    18px,
+    400,
+    24px,
+  ),
+  2xs: (
+    16px,
+    400,
+    24px,
+  ),
+  3xs: (
+    14px,
+    400,
+    20px,
+  ),
+);
+
+$label: (
+  xl: (
+    24px,
+    500,
+    24px,
+    0.18px,
+  ),
+  lg: (
+    18px,
+    500,
+    24px,
+    0.18px,
+  ),
+  md: (
+    16px,
+    500,
+    24px,
+    0.32px,
+  ),
+  sm: (
+    14px,
+    500,
+    20px,
+    0.28px,
+  ),
+  xs: (
+    12px,
+    500,
+    16px,
+    0.36px,
+  ),
+);
+
+$paragraph: (
+  xxl: (
+    24px,
+    400,
+    28px,
+    0.18px,
+  ),
+  xl: (
+    20px,
+    400,
+    28px,
+    0.18px,
+  ),
+  md: (
+    16px,
+    400,
+    24px,
+    0.32px,
+  ),
+  sm: (
+    14px,
+    400,
+    24px,
+    0.28px,
+  ),
+  xs: (
+    12px,
+    400,
+    20px,
+    0.36px,
+  ),
+  xxs: (
+    10px,
+    400,
+    16px,
+    0.4px,
+  ),
+);
+
+@mixin display($key, $weight: null) {
+  $v: map.get($display, $key);
+  @include type(
+    list.nth($v, 1),
+    if($weight != null, $weight, list.nth($v, 2)),
+    list.nth($v, 3)
+  );
+}
+
+@mixin label($key) {
+  $v: map.get($label, $key);
+  @include type(
+    list.nth($v, 1),
+    list.nth($v, 2),
+    list.nth($v, 3),
+    list.nth($v, 4)
+  );
+}
+
+@mixin paragraph($key) {
+  $v: map.get($paragraph, $key);
+  @include type(
+    list.nth($v, 1),
+    list.nth($v, 2),
+    list.nth($v, 3),
+    list.nth($v, 4)
+  );
+}
+
+@mixin heading-subheading {
+  @include type(12px, 500, 16px, 0.6px, uppercase);
+}

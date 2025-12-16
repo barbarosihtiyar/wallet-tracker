@@ -1,0 +1,99 @@
+@use '@/app/styles/Settings' as settings;
+
+.pagination-wrapper {
+  .ant-spin-container {
+    text-align: end;
+  }
+
+  .ant-pagination {
+    display: inline-flex;
+
+    > li {
+      border-radius: 0;
+      border-color: settings.$gray-300;
+      border-inline-end: none;
+
+      &.ant-pagination-prev {
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;
+
+        > button {
+          border-top-left-radius: 6px;
+          border-bottom-left-radius: 6px;
+          border-inline-end: none;
+        }
+      }
+
+      &.ant-pagination-next {
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+
+        > button {
+          border-top-right-radius: 6px;
+          border-bottom-right-radius: 6px;
+        }
+      }
+
+      > a {
+        color: settings.$gray-700;
+        font-size: 14px;
+        font-weight: 400;
+        letter-spacing: 0.28px;
+      }
+
+      &.ant-pagination-item-active {
+        background: settings.$gray-200-alt;
+        border-color: settings.$gray-300;
+
+        > a {
+          color: settings.$gray-900-alt;
+        }
+      }
+
+      &:not(:first-child) {
+        &:hover {
+          background: settings.$gray-200-alt;
+          border-color: settings.$gray-300;
+
+          a,
+          button {
+            color: settings.$gray-700;
+            border-color: settings.$gray-300;
+          }
+        }
+      }
+    }
+
+    &-item {
+      margin-inline-end: 0;
+
+      &-ellipsis {
+        border: solid settings.$gray-300;
+        border-width: 1px 0 1px 1px;
+      }
+    }
+  }
+
+  .ant-pagination-prev,
+  .ant-pagination-jump-prev,
+  .ant-pagination-jump-next {
+    margin-inline-end: 0;
+  }
+
+  .ant-pagination-disabled .ant-pagination-item-link,
+  .ant-pagination-disabled:hover .ant-pagination-item-link {
+    border-color: settings.$gray-300;
+  }
+
+  .ant-pagination-prev .ant-pagination-item-link,
+  .ant-pagination-next .ant-pagination-item-link {
+    border-radius: 0;
+    border-color: settings.$gray-300;
+  }
+
+  .ant-pagination-prev:hover .ant-pagination-item-link,
+  .ant-pagination-next:hover .ant-pagination-item-link {
+    color: settings.$gray-700;
+    border-color: settings.$gray-300;
+  }
+}

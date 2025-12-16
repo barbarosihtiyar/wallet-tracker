@@ -1,0 +1,117 @@
+@use '@/app/styles/Settings' as settings;
+
+.sidebar__nav {
+  overflow: hidden;
+  padding-block: 0;
+  padding-inline: 16px;
+  @include settings.flex(stretch, flex-start, column);
+  gap: 4px;
+  flex: 1;
+  overflow-y: auto;
+
+  .sidebar--collapsed & {
+    display: none;
+  }
+
+  &-item {
+    @include settings.flex(center, flex-start);
+    gap: 8px;
+    height: 24px;
+    border-radius: 8px;
+    color: settings.$slate-600;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+
+    &__wrapper {
+      margin-block-end: 24px;
+      height: 24px;
+
+      @media screen and (max-height: 750px) {
+        margin-block-end: 12px;
+      }
+    }
+
+    &--active {
+      .sidebar__nav-icon {
+        color: settings.$white;
+      }
+      .sidebar__nav-label {
+        color: settings.$black;
+        @include settings.type(14px, 600);
+      }
+    }
+
+    &--disabled {
+      cursor: pointer;
+      opacity: 0.5;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+
+  &-subitem {
+    &__wrapper {
+      margin-block-start: 12px;
+      padding-inline-start: 14px;
+      position: relative;
+      @include settings.flex(stretch, flex-start, column);
+      gap: 10px;
+
+      &::after {
+        content: '';
+        position: absolute;
+        inset-inline-start: 0;
+        top: 0;
+        width: 1px;
+        height: 100%;
+        background-color: settings.$gray-100;
+        inset-inline-start: 5px;
+      }
+    }
+  }
+
+  &-sub-subitem {
+    &__wrapper {
+      margin-block-start: 12px;
+      margin-inline-start: 8px;
+      padding-inline-start: 8px;
+      position: relative;
+      @include settings.flex(stretch, flex-start, column);
+      gap: 10px;
+
+      &::before {
+        content: '';
+        position: absolute;
+        inset-inline-start: 0;
+        top: 0;
+        width: 1px;
+        height: 100%;
+        background-color: settings.$blue-light;
+        inset-inline-start: 0px;
+      }
+    }
+  }
+
+  &-icon {
+    @include settings.square(16px);
+    @include settings.flex(center, center);
+    font-size: 18px;
+    flex-shrink: 0;
+    transition: color 0.2s ease;
+    color: settings.$gray-900;
+  }
+
+  &-label {
+    @include settings.paragraph(xs);
+    transition: opacity 0.1s ease 0.5s;
+
+    .sidebar--collapsed & {
+      opacity: 0;
+      width: 0;
+      overflow: hidden;
+      transition: opacity 0.1s ease;
+    }
+  }
+}

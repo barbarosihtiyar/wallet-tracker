@@ -1,0 +1,110 @@
+@use '@/app/styles/Settings' as settings;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html,
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  color: settings.$black;
+  background-color: settings.$gray-50;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  outline: none;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: settings.$black;
+}
+
+li {
+  list-style: none;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.ant-form-item {
+  margin-bottom: 0 !important;
+}
+
+.ant-select,
+.ant-input,
+.ant-btn {
+  font-family: 'Gilroy', sans-serif !important;
+}
+
+.ant-select-selection-item,
+.ant-select-dropdown .ant-select-item {
+  font-family: 'Gilroy', sans-serif !important;
+}
+
+* {
+  font-family: 'Gilroy', sans-serif !important;
+}
+
+.ant-select-selection-search {
+  padding: 0 !important;
+}
+
+.ant-picker {
+  background-color: transparent !important;
+}
+
+//TODO
+.ant-form-item-explain-error {
+  font-size: 12px;
+  height: 0;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px settings.$white inset !important;
+  box-shadow: 0 0 0 30px settings.$white inset !important;
+  background-color: transparent !important;
+  transition: background-color 5000s ease-in-out 0s;
+}

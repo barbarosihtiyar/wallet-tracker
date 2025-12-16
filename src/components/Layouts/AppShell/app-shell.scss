@@ -1,0 +1,100 @@
+@use '@/app/styles/Settings' as settings;
+
+.layout {
+  --rail: 209px;
+  --gap: 0px;
+
+  min-height: 100vh;
+  column-gap: var(--gap);
+  background: settings.$white;
+  color: settings.$blue-950;
+  @include settings.paragraph(md);
+  @include settings.flex($align: stretch, $justify: flex-start);
+  transition: all 0.1 cubic-bezier(0.4, 0, 0.2, 1);
+
+  &--collapsed {
+    --rail: 80px;
+    --gap: 0px;
+  }
+
+  &__rail {
+    flex: 0 0 var(--rail);
+    width: var(--rail);
+    position: relative;
+    transition:
+      flex 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+      width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &__right {
+    flex: 1 1 auto;
+    min-width: 0;
+    @include settings.flex(
+      $align: stretch,
+      $justify: flex-start,
+      $direction: column
+    );
+  }
+
+  &__headerbar {
+    position: relative;
+    z-index: 5;
+    margin-top: 38px;
+    padding-bottom: 4px;
+    padding-inline-end: 25px;
+    padding-inline-start: 25px;
+    @include settings.flex($align: center, $justify: space-between);
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      height: 1px;
+      background: settings.$gray-100;
+      transition: left 0.3s ease;
+      left: 0;
+      height: 1px;
+      width: 100%;
+    }
+  }
+
+  &--collapsed &__headerbar::after {
+    inset-inline-start: var(--rail);
+
+    &-box {
+      @include settings.flex(
+        $align: center,
+        $justify: flex-start,
+        $display: inline-flex
+      );
+      gap: 12px;
+      background: settings.$white;
+      border: 1px solid settings.$gray-300;
+      border-radius: 8px;
+      padding-block: 8px;
+      padding-inline: 12px;
+    }
+
+    &-item {
+      color: settings.$blue-900;
+      @include settings.paragraph(sm);
+    }
+  }
+
+  &__content {
+    background: settings.$white;
+    flex: 1 1 auto;
+    @include settings.padding-logical(106px, 0, 0, 0px);
+    padding-inline: 8px;
+  }
+
+  &--collapsed {
+    .layout__nav-label {
+      display: none;
+    }
+
+    .layout__headerbar::after {
+      inset-inline-start: 0;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+@use '@/app/styles/Settings' as settings;
+
+.back-link {
+  @include settings.flex(center, flex-start);
+  gap: 8px;
+  cursor: pointer;
+
+  span {
+    @include settings.label(lg);
+    color: settings.$black;
+  }
+}

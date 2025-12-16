@@ -1,0 +1,68 @@
+@use '@/app/styles/Settings' as settings;
+
+.avatar {
+  --size: 40px;
+  --font: 14px;
+
+  inline-size: var(--size);
+  block-size: var(--size);
+  border-radius: 999px;
+  background: settings.$blue-100;
+  color: settings.$blue-950;
+  @include settings.flex(center, center, row, inline-flex);
+
+  user-select: none;
+  overflow: hidden;
+
+  &.is-clickable {
+    cursor: pointer;
+    transition:
+      transform 160ms ease,
+      box-shadow 160ms ease;
+    &:hover {
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+    }
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+
+  &--sm {
+    --size: 20px;
+    --font: 10px;
+  }
+  &--md {
+    --size: 25px;
+    --font: 12px;
+  }
+  &--lg {
+    --size: 30px;
+    --font: 18px;
+  }
+}
+
+.avatar__image,
+.avatar__placeholder {
+  inline-size: 100%;
+  block-size: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.avatar__image img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.avatar__placeholder {
+  @include settings.paragraph(xs);
+  text-transform: uppercase;
+
+  i,
+  svg {
+    font-size: calc(var(--font) + 4px);
+    line-height: 1;
+  }
+}

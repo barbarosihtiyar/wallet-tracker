@@ -1,0 +1,26 @@
+@use '@/app/styles/Settings' as settings;
+
+.formatted-number {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0;
+
+  &__integer {
+    color: settings.$gray-900;
+  }
+
+  &__separator {
+    color: settings.$gray-900;
+  }
+
+  &__decimal {
+    font-weight: 400;
+    color: settings.$gray-900;
+  }
+
+  &__currency {
+    color: settings.$gray-900;
+    margin-left: 4px;
+    text-transform: capitalize;
+  }
+}

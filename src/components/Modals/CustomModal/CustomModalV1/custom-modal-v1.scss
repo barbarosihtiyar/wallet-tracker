@@ -1,0 +1,36 @@
+@use '@/app/styles/Settings' as settings;
+
+.custom-modals-v2 {
+  width: auto !important;
+
+  .ant-modal-content {
+    min-height: 185px;
+    min-width: 540px;
+    @include settings.flex(center, flex-end, column);
+    padding: 24px;
+
+    .ant-modal-footer {
+      border: 0 !important;
+      margin-top: 24px;
+
+      .action-group {
+        @include settings.flex(center, center);
+      }
+    }
+  }
+  .ant-modal-close {
+    @include settings.square(32px);
+    top: 20px;
+    inset-inline-end: 20px;
+    border-radius: 50%;
+  }
+
+  .ant-modal-body {
+    @include settings.label(md);
+    text-align: center;
+
+    .modal__body {
+      padding: 0 !important;
+    }
+  }
+}

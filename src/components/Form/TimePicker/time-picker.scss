@@ -1,0 +1,34 @@
+@use '@/app/styles/Settings' as settings;
+
+.time-picker {
+  width: 100%;
+  height: 40px;
+
+  &.ant-picker {
+    border: 1px solid settings.$gray-100;
+    border-radius: 4px;
+    @include settings.padding-logical(8px, 12px, 8px, 12px);
+
+    &:hover {
+      border-color: settings.$blue-ant;
+    }
+
+    &:focus-within {
+      border-color: settings.$blue-ant;
+      box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+    }
+
+    .ant-picker-input > input {
+      @include settings.paragraph(sm);
+      color: settings.$black;
+
+      &::placeholder {
+        color: settings.$gray-900;
+      }
+    }
+
+    .ant-picker-suffix {
+      display: none;
+    }
+  }
+}

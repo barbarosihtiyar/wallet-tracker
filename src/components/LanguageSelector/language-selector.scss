@@ -1,0 +1,80 @@
+@use '@/app/styles/Settings' as settings;
+
+.language {
+  position: relative;
+  display: inline-block;
+  font-family: inherit;
+  @include settings.paragraph(md);
+
+  &__trigger {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    border: 1px solid settings.$gray-100;
+    border-radius: 4px;
+    background-color: settings.$white;
+    cursor: pointer;
+    @include settings.widthHeight(90px, 26px);
+  }
+
+  &__icon {
+    display: inline-grid;
+    place-items: center;
+    width: 14px;
+
+    svg {
+      display: block;
+    }
+  }
+
+  &__label {
+    white-space: nowrap;
+    @include settings.label(xs);
+  }
+
+  &__chevron {
+    margin-inline-start: 4px;
+    display: inline-grid;
+    place-items: center;
+    width: 18px;
+    height: 18px;
+
+    svg {
+      display: block;
+    }
+  }
+
+  &__menu {
+    position: absolute;
+    inset-inline-end: 0;
+    top: calc(100% + 8px);
+    min-width: 160px;
+    padding: 6px;
+    border-radius: 10px;
+    background: settings.$white;
+    border: 1px solid settings.$gray-225;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    z-index: 40;
+  }
+
+  &__item {
+    width: 100%;
+    text-align: start;
+    border: 0;
+    background: transparent;
+    @include settings.paragraph(sm);
+    border-radius: 8px;
+    padding-block: 8px;
+    padding-inline: 10px;
+    cursor: pointer;
+
+    &:hover {
+      background: settings.$slate-100;
+    }
+
+    &.is-active {
+      background: settings.$slate-200;
+      font-weight: 600;
+    }
+  }
+}

@@ -1,0 +1,54 @@
+//example important for mixins usage
+
+@mixin square($value, $isImportant: false) {
+  width: $value#{if($isImportant, ' !important', '')};
+  height: $value#{if($isImportant, ' !important', '')};
+}
+
+@mixin widthHeight($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+@mixin ellipsis($width: null) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  @if $width != null {
+    max-width: $width;
+  }
+}
+
+@mixin ellipsis-lines($lines: 2) {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines;
+  line-clamp: $lines;
+}
+
+@mixin position-center {
+  position: absolute;
+  top: 50%;
+  inset-inline-start: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin before($display: block, $position: absolute, $content: '') {
+  &::before {
+    content: $content;
+    display: $display;
+    position: $position;
+    @content;
+  }
+}
+
+@mixin after($display: block, $position: absolute, $content: '') {
+  &::after {
+    content: $content;
+    display: $display;
+    position: $position;
+    @content;
+  }
+}

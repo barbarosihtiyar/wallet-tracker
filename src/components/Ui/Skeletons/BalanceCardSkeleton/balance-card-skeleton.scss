@@ -1,0 +1,65 @@
+@use '@/app/styles/Settings' as settings;
+
+.balance-card-skeleton {
+  border: 1px solid settings.$gray-100;
+  padding: 16px 10px;
+  border-radius: 6px;
+
+  &__header {
+    @extend .shadow;
+    border: 1px solid settings.$gray-100;
+    border-radius: 8px;
+    padding: 8px 16px;
+    background-color: settings.$white;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  &__line {
+    height: 14px !important;
+    border-radius: 6px !important;
+
+    &--label {
+      width: 40%;
+    }
+
+    &--muted {
+      width: 30%;
+    }
+  }
+
+  &__amount {
+    height: 28px !important;
+    border-radius: 8px !important;
+    width: 75%;
+
+    &--lg {
+      @include settings.padding-logical(4px, 0, 4px, 0);
+      height: 32px !important;
+    }
+
+    &--sm {
+      width: 55%;
+    }
+  }
+
+  &__divider {
+    height: 1px;
+    background-color: settings.$gray-200;
+    width: 100%;
+  }
+
+  &__section {
+    margin-top: 16px;
+  }
+
+  &__field {
+    height: 44px !important;
+    border-radius: 8px !important;
+
+    &--amount {
+      height: 52px !important;
+    }
+  }
+}

@@ -1,0 +1,217 @@
+@use '@/app/styles/Settings' as settings;
+
+.button {
+  @include settings.widthHeight(max-content, 35px);
+  position: relative;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 8px;
+  border: none;
+  min-width: 80px;
+  @include settings.flex(center, center);
+  gap: 4px;
+  padding: 8px 16px;
+
+  &.full {
+    width: 100%;
+  }
+
+  i {
+    &::before {
+      @include settings.display(md);
+    }
+  }
+
+  span {
+    @include settings.label(md);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .text--hidden {
+    visibility: hidden;
+  }
+
+  &--loading {
+    .loader {
+      position: absolute;
+      inset: 0;
+      margin: auto;
+    }
+  }
+
+  &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &--basic {
+    @include settings.paragraph(xs);
+    background-color: settings.$blue-900;
+    color: settings.$white;
+
+    span {
+      @include settings.paragraph(xs);
+    }
+
+    @include settings.phone-xs {
+      @include settings.display(3xs);
+    }
+  }
+
+  &--transparent {
+    background-color: transparent;
+    color: settings.$black;
+  }
+
+  &--dark {
+    background-color: settings.$gray-900-alt !important;
+    color: settings.$white;
+
+    i {
+      color: settings.$white !important;
+    }
+  }
+
+  &--lightBlueV1 {
+    @include settings.paragraph(xs);
+    background-color: settings.$blue-100;
+    color: settings.$blue-950;
+    border: 1px solid settings.$blue-light;
+
+    span {
+      @include settings.paragraph(xs);
+    }
+
+    @include settings.phone-xs {
+      font-size: 14px;
+    }
+  }
+
+  &--lightBlueV2 {
+    @include settings.paragraph(xs);
+    background-color: settings.$blue-200;
+    color: settings.$gray-800;
+
+    span {
+      @include settings.paragraph(xs);
+    }
+
+    @include settings.phone-xs {
+      font-size: 14px;
+    }
+  }
+
+  &--lightBlueV3 {
+    @include settings.paragraph(xs);
+    background-color: transparent;
+    border: 1px solid settings.$blue-900;
+    color: settings.$gray-800;
+
+    span {
+      @include settings.paragraph(xs);
+    }
+
+    @include settings.phone-xs {
+      font-size: 14px;
+    }
+  }
+
+  &--lightDark {
+    background-color: transparent;
+    border: 1px solid settings.$blue-900;
+    color: settings.$gray-900;
+
+    @include settings.paragraph(xs);
+
+    span {
+      @include settings.paragraph(xs);
+    }
+
+    @include settings.phone-xs {
+      font-size: 14px;
+    }
+  }
+
+  &--lightRedBorder {
+    border: 1px solid rgba(237, 28, 36, 1);
+    background-color: transparent;
+
+    @include settings.paragraph(xs);
+    color: settings.$black;
+
+    span {
+      @include settings.paragraph(xs);
+    }
+
+    @include settings.phone-xs {
+      font-size: 14px;
+    }
+  }
+
+  &--left-icon {
+    @include settings.flex(center, center);
+    min-width: 106px;
+    @include settings.padding-logical(8px, 16px, 8px, 8px);
+
+    .icon {
+      i {
+        @include settings.display(md);
+      }
+    }
+
+    .text {
+      @include settings.label(sm);
+      text-align: center;
+      font-style: normal;
+      line-height: 16px;
+    }
+  }
+
+  &--only-icon {
+    @include settings.square(40px);
+    min-width: initial;
+    border-radius: 96px;
+    padding: 8px;
+    @include settings.flex(center, center);
+    border: 1px solid settings.$gray-300;
+    background: settings.$white;
+
+    &.button--small {
+      @include settings.square(32px);
+    }
+
+    i {
+      font-size: 24px;
+    }
+  }
+
+  &--like-disabled {
+    background-color: settings.$gray-200-alt;
+    border: none;
+    color: settings.$gray-700;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+
+    .text {
+      color: settings.$gray-700 !important;
+    }
+  }
+
+  &--nav {
+    @include settings.flex(center, flex-start);
+    border-radius: 96px;
+    @include settings.padding-logical(4px, 16px, 4px, 8px);
+    font-size: 14px;
+    min-width: 90px;
+    height: 32px;
+
+    .icon {
+      font-size: 24px;
+      margin-inline-end: 4px;
+    }
+  }
+}

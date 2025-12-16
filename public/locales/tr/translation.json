@@ -1,0 +1,238 @@
+{
+  "dashboard": {
+    "title": {
+      "eyebrow": "Fintek operasyon",
+      "main": "Cüzdan kontrol merkezi",
+      "sub": "Bakiyeleri izle, limitleri uygula ve riskli hareketleri tek ekranda yönet.",
+      "badge": "Retry + iptal aktif",
+      "retries": "Başarısız çağrılarda {{count}} tekrar deneme",
+      "cancellation": "AbortController ile iptal"
+    },
+    "summary": {
+      "totalBalance": "Toplam cüzdan bakiyesi",
+      "activeWallets": "Aktif cüzdan",
+      "pendingTx": "Bekleyen işlem"
+    },
+    "filters": {
+      "search": "Ara",
+      "searchPlaceholder": "İsim, e-posta, cüzdan no",
+      "statusLabel": "Cüzdan durumu",
+      "kycStatusLabel": "KYC durumu",
+      "isActiveLabel": "Müşteri durumu",
+      "reset": "Filtreleri temizle",
+      "apply": "Filtreleri uygula",
+      "status": {
+        "all": "Tümü",
+        "active": "Aktif",
+        "restricted": "Kısıtlı",
+        "suspended": "Askıda"
+      },
+      "kycStatus": {
+        "all": "Tümü",
+        "UNKNOWN": "Bilinmiyor",
+        "UNVERIFIED": "Doğrulanmamış",
+        "VERIFIED": "Doğrulanmış",
+        "CONTRACTED": "Sözleşmeli"
+      },
+      "isActive": {
+        "all": "Tümü",
+        "active": "Aktif",
+        "inactive": "Pasif"
+      }
+    },
+    "forms": {
+      "customer": {
+        "eyebrow": "Müşteri oluştur",
+      "title": "Cüzdan açılışı",
+      "description": "Kimlik bilgisi ve başlangıç limitleriyle saniyeler içinde başlatın.",
+        "realtime": "Anlık doğrulama",
+        "sections": {
+          "address": "Adres bilgileri",
+          "wallet": "Cüzdan ve limitler"
+        },
+        "fields": {
+      "name": "Ad Soyad",
+      "email": "E-posta",
+      "phone": "Telefon",
+      "dateOfBirth": "Doğum tarihi",
+      "nationalId": "TC Kimlik No",
+      "country": "Ülke",
+      "city": "Şehir",
+      "postalCode": "Posta kodu",
+      "line1": "Adres satırı",
+      "availableLimit": "Harcanabilir limit",
+      "dailyLimit": "Günlük limit",
+      "currency": "Para birimi"
+    },
+    "placeholders": {
+      "name": "Örn. Ayşe Yılmaz",
+      "email": "ops@musteri.com",
+      "phone": "+90 5xx xxx xx xx",
+      "dateOfBirth": "YYYY-AA-GG",
+      "nationalId": "11 haneli kimlik",
+      "country": "Ülke",
+      "city": "Şehir",
+      "postalCode": "Posta kodu",
+      "line1": "Cadde, bina, numara",
+      "limit": "20000",
+      "dailyLimit": "5000",
+      "currency": "Para birimi seçin"
+    },
+        "submit": "Müşteri oluştur",
+        "submitting": "Oluşturuluyor..."
+      },
+      "limit": {
+        "eyebrow": "Kilitleri ayarla",
+        "title": "Cüzdan limitleri",
+        "description": "Günlük ve harcanabilir limitleri güvenle güncelleyin.",
+        "fields": {
+          "availableLimit": "Harcanabilir limit",
+          "dailyLimit": "Günlük limit"
+        },
+        "placeholders": {
+          "availableLimit": "Limit girin",
+          "dailyLimit": "Günlük limit girin"
+        },
+        "submit": "Limitleri güncelle",
+        "submitting": "Güncelleniyor..."
+      }
+    },
+    "customers": {
+      "title": "Müşteri cüzdanları",
+      "subtitle": "Sıralanabilir ve filtrelenebilir cüzdan listesi."
+    },
+    "transactions": {
+      "title": "Son işlemler",
+      "subtitle": "Seçili müşteri için kredi/debit hareket akışı."
+    },
+    "transactionFilters": {
+      "title": "Son işlemler",
+      "subtitle": "Seçili müşteri için kredi/debit hareket akışı.",
+      "transferDirectionLabel": "Transfer yönü",
+      "typeLabel": "İşlem tipi",
+      "currencyLabel": "Para birimi",
+      "fromLabel": "Başlangıç tarihi",
+      "toLabel": "Bitiş tarihi",
+      "currencyPlaceholder": "Örn: USD, EUR, TRY",
+      "fromPlaceholder": "Başlangıç tarihini seçin",
+      "toPlaceholder": "Bitiş tarihini seçin",
+      "reset": "Filtreleri temizle",
+      "apply": "Filtreleri uygula",
+      "transferDirection": {
+        "all": "Tümü",
+        "INCOMING": "Gelen",
+        "OUTGOING": "Giden"
+      },
+      "type": {
+        "all": "Tümü",
+        "DEBIT": "Borç",
+        "CREDIT": "Alacak"
+      }
+    },
+    "actions": {
+      "back": "Ana sayfaya dön"
+    },
+    "table": {
+      "customer": "Müşteri bilgileri",
+      "contactInfo": "İletişim bilgileri",
+      "balance": "Bakiye",
+      "walletNumber": "Cüzdan no: {{value}}",
+      "identity": "Kimlik bilgileri",
+      "address": "Adres bilgileri",
+      "availableLimit": "Kalan limit {{value}}",
+      "risk": "Risk",
+      "status": "Durum",
+      "updated": "Oluşturma/Güncelleme bilgisi",
+      "createdAt": "Oluşturma {{value}}",
+      "txnDate": "Tarih",
+      "amount": "Tutar",
+      "channel": "Kanal",
+      "counterparty": "Muhatap",
+      "description": "Açıklama",
+      "na": "—",
+      "empty": "Henüz müşteri yok",
+      "emptyTransactions": "İşlem bulunamadı",
+      "txnStatus": "İşlem durumu"
+    },
+    "risk": {
+      "low": "Düşük",
+      "medium": "Orta",
+      "high": "Yüksek",
+      "unknown": "Bilinmiyor"
+    },
+    "status": {
+      "active": "Aktif",
+      "inactive": "Pasif",
+      "restricted": "Kısıtlı",
+      "suspended": "Askıda",
+      "unknown": "Bilinmiyor"
+    },
+    "txnStatus": {
+      "pending": "Bekliyor",
+      "completed": "Tamamlandı",
+      "failed": "Hatalı",
+      "reversed": "İade",
+      "incoming": "Gelen",
+      "outgoing": "Giden",
+      "unknown": "Bilinmiyor"
+    },
+    "errors": {
+      "customers": "Müşteri listesi yüklenemedi",
+      "transactions": "İşlem listesi yüklenemedi",
+      "createCustomer": "Müşteri oluşturulamadı",
+      "updateLimit": "Limit güncellenemedi"
+    },
+    "toasts": {
+      "customerCreated": {
+        "title": "Müşteri oluşturuldu",
+        "message": "Cüzdan tabloya eklendi."
+      },
+      "limitsUpdated": {
+        "title": "Limitler güncellendi",
+        "message": "Cüzdan limitleri kaydedildi."
+      }
+    }
+  },
+  "general": {
+    "error": {
+      "title": "Bir şey ters gitti",
+      "desc": "İsteğinizi tamamlayamadık. Lütfen tekrar deneyin.",
+      "unauthorized": "Oturumunuzun süresi doldu. Lütfen yeniden giriş yapın.",
+      "500": {
+        "title": "Servis kullanılamıyor",
+        "description": "Servis şu anda yanıt vermiyor. Lütfen kısa süre sonra tekrar deneyin."
+      }
+    },
+    "fallback": "Yeniden bağlanırken önbellekteki veriler gösteriliyor."
+  },
+  "ui": {
+    "button": {
+      "close": "Kapat"
+    },
+    "sidebar": {
+      "dashboard": "Panel",
+      "customers": "Müşteriler",
+      "wallets": "Cüzdanlar",
+      "transactions": "Hareketler",
+      "reports": "Raporlar",
+      "footer": {
+        "settings": "Ayarlar",
+        "audit": "Kayıtlar",
+        "alerts": "Uyarılar"
+      }
+    },
+    "pagination": {
+      "showTotal": "<span>{{currentItem}}</span>-<span>{{onPage}}</span> / <span>{{totalCards}}</span>"
+    }
+  },
+  "validation": {
+    "required": "Bu alan zorunludur.",
+    "minChars": "En az {{count}} karakter girin.",
+    "email": "Geçerli bir e-posta adresi girin.",
+    "minLimit": "Limit en az 250 olmalıdır.",
+    "minDailyLimit": "Günlük limit en az 100 olmalıdır.",
+    "maxLimit": "Limit {{value}} değerini aşamaz.",
+    "availableVsDaily": "Harcanabilir limit günlük limitten büyük veya eşit olmalıdır.",
+    "dailyVsAvailable": "Günlük limit, harcanabilir limiti aşamaz."
+  }
+}

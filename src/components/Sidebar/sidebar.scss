@@ -1,0 +1,101 @@
+@use '@/app/styles/Settings' as settings;
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 209px;
+  background: settings.$white;
+  @include settings.flex(stretch, flex-start, column);
+  transition: width 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+  border-inline-end: 1px solid settings.$gray-100;
+  overflow: visible;
+
+  &--collapsed {
+    width: 80px;
+
+    .sidebar__footer__wrapper {
+      @include settings.flex(center, center);
+    }
+
+    &::after {
+      inset-inline-end: 141px;
+    }
+  }
+
+  &__header {
+    @include settings.flex(flex-start, flex-start);
+    gap: 12px;
+    @include settings.margin-logical(50px, 0, 45px, 16px);
+
+    @media screen and (max-height: 750px) {
+      @include settings.margin-logical(25px, 0, 28px, 16px);
+    }
+  }
+
+  &__logo {
+    @include settings.flex(center, flex-start);
+    gap: 12px;
+
+    i {
+      @include settings.square(32px);
+      color: settings.$white;
+      border-radius: 6px;
+      @include settings.flex(center, center);
+      font-size: 16px;
+    }
+
+    &-text {
+      font-weight: 700;
+      font-size: 18px;
+      color: settings.$blue-950;
+      white-space: nowrap;
+      opacity: 1;
+      transition: opacity 0.15s ease 0.5s;
+
+      .sidebar--collapsed & {
+        opacity: 0;
+        width: 0;
+        overflow: hidden;
+        transition: opacity 0.1s ease;
+      }
+    }
+  }
+
+  &__toggle {
+    @include settings.square(20px);
+    @include settings.flex(center, center);
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  &__nav {
+    transition: opacity 0.2s ease-in-out;
+    overflow: hidden;
+
+    .sidebar--collapsed & {
+      opacity: 1;
+    }
+  }
+
+  .version {
+    span {
+      margin-right: 4px;
+    }
+    position: absolute;
+    bottom: 3px;
+    right: 20px;
+    opacity: 1;
+    transition: opacity 0.15s ease 0.5s;
+
+    .sidebar--collapsed & {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.1s ease;
+    }
+  }
+}

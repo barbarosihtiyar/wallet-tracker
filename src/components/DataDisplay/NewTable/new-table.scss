@@ -1,0 +1,346 @@
+@use '@/app/styles/Settings' as settings;
+
+.ant-table-wrapper {
+  @include settings.padding-logical(16px, 10px, 16px, 10px);
+  border: 1px solid settings.$gray-100;
+  border-radius: 6px;
+}
+
+.ant-table-container table > thead > tr:first-child th:last-child {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.ant-table-wrapper
+  .ant-table-container
+  table
+  > thead
+  > tr:first-child
+  > *:last-child {
+  border-start-end-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background: transparent;
+}
+
+.ant-table-container table > thead > tr:first-child th:first-child {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.ant-table-wrapper .ant-table-thead > tr > th {
+  background: transparent;
+  color: settings.$gray-500;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 15px;
+  letter-spacing: 0.6px;
+  padding-block: 8px;
+  padding-inline: 12px;
+  max-width: 288px;
+}
+
+.ant-table-tbody > tr > td {
+  @include settings.paragraph(xs);
+  color: settings.$gray-900;
+  padding-block: 16px;
+  padding-inline: 12px;
+  border: none;
+}
+
+.ant-table-tbody > tr.ant-table-row:hover > td,
+.ant-table-tbody > tr > td.ant-table-cell-row-hover {
+  background: none;
+
+  &:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+
+  &:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+}
+
+.ant-table-wrapper .ant-table-tbody > tr > td {
+  border-bottom: none;
+}
+
+.ant-table-wrapper .ant-table-expanded-row-fixed {
+  @include settings.padding-logical(12px, 0, 0, 0);
+}
+
+.ant-table-wrapper .ant-table-thead ::before {
+  display: none;
+}
+
+.new-table {
+  $table: &;
+  position: relative;
+
+  .empty {
+    &--v2 {
+      padding-block-start: 8px;
+    }
+  }
+
+  .table--empty {
+    .ant-table-thead > tr > th {
+      background: settings.$gray-200-alt;
+
+      &:before {
+        display: none;
+      }
+    }
+
+    .ant-table-tbody > tr > td {
+      padding: 16px;
+    }
+
+    .ant-table .ant-table-expanded-row-fixed {
+      padding: 0;
+    }
+
+    .ant-table-wrapper .ant-table-thead > tr > th,
+    .ant-table-wrapper .ant-table-thead > tr > td {
+      color: settings.$gray-400;
+    }
+
+    .ant-table-wrapper
+      .ant-table-container
+      table
+      > thead
+      > tr:first-child
+      > *:last-child {
+      background: settings.$gray-200-alt;
+    }
+  }
+
+  .table-element {
+    cursor: pointer;
+  }
+
+  &__head {
+    margin-block-end: 24px;
+
+    &__actions {
+      @include settings.flex(center, space-between);
+
+      .button {
+        &.active {
+          background: settings.$gray-200-alt;
+        }
+      }
+
+      .filter-close {
+        border: none;
+      }
+    }
+
+    &__filter {
+      margin-block-start: 25px;
+
+      .filter-actions__two {
+        display: flex;
+        width: 100%;
+        justify-content: flex-end;
+        margin-block-start: 32px;
+        gap: 12px;
+
+        .button {
+          @include settings.label(sm);
+          min-width: 114px;
+          width: 114px;
+          white-space: nowrap;
+          text-align: center;
+        }
+      }
+
+      .form__inputs {
+        @include settings.flex(flex-end, flex-start);
+        flex-wrap: wrap;
+        row-gap: 16px;
+        column-gap: 32px;
+
+        .ant-form-item {
+          margin-block-end: 0;
+        }
+
+        > * {
+          max-width: calc(100% / 4 - 32px);
+          width: 100%;
+        }
+
+        .ant-form-item {
+          width: 100%;
+          min-width: 240px;
+        }
+
+        .filter-actions {
+          @include settings.flex(flex-end, flex-start);
+          height: 68px;
+
+          .button {
+            margin: 0;
+            width: 114px;
+            min-width: 114px;
+          }
+        }
+      }
+    }
+  }
+
+  .ant-table-row {
+    cursor: pointer;
+
+    &:hover {
+      background-color: settings.$gray-200-alt;
+
+      .hover-button {
+        visibility: visible;
+      }
+
+      .link-type__icon--without-border {
+        background: settings.$white;
+        box-shadow: 0 2px 4px 0 rgba(settings.$gray-700, 0.12);
+      }
+    }
+
+    .hover-button {
+      @include settings.flex(center, center);
+      visibility: hidden;
+      background: settings.$white;
+      box-shadow: 0 2px 4px 0 rgba(settings.$gray-700, 0.12);
+      align-content: center;
+      border-radius: 96px;
+      gap: 4px;
+
+      i {
+        font-size: 24px;
+        font-weight: 400;
+      }
+    }
+  }
+
+  .copy-link {
+    max-width: 130px;
+  }
+
+  .payment-method {
+    @include settings.flex(center, flex-start);
+
+    figure {
+      margin-inline-end: 8px;
+    }
+  }
+
+  .flex-center-start {
+    @include settings.flex(center, flex-start);
+
+    > * {
+      &:first-child {
+        margin-inline-end: 12px;
+      }
+    }
+  }
+
+  .td--category {
+    .button {
+      @include settings.square(32px);
+      background: settings.$white;
+      pointer-events: none;
+
+      i {
+        font-size: 10px;
+    color: settings.$green-600;
+      }
+    }
+  }
+
+  .new-table__head__actions {
+    button {
+      i.icon-pack-close {
+        font-size: 24px !important;
+      }
+    }
+
+    .input__content__left-icon:before {
+      display: none;
+    }
+
+    .input__content .input:focus {
+      border: none;
+    }
+
+    div.input__content::after {
+      display: none;
+    }
+  }
+
+  .ant-pagination {
+    @include settings.flex(center, flex-end);
+    position: relative;
+    width: 100%;
+    margin-block-start: 12px;
+
+    @include settings.phone-xs {
+      padding-block-start: 30px;
+      justify-content: center;
+    }
+
+    .ant-pagination-total-text {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      inset-inline-start: 0;
+
+      @include settings.phone-xs {
+        top: 0;
+        transform: translateX(-50%);
+        inset-inline-start: 50%;
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    &__wrapper {
+      display: flex;
+
+      @include settings.phone-xs {
+        display: block;
+      }
+
+      .highlighted {
+        font-weight: 500;
+        padding-inline: 2px;
+      }
+    }
+  }
+
+  .filter__actions {
+    @include settings.flex(center, flex-end);
+    align-self: flex-end;
+
+    button {
+      min-width: auto;
+      padding: 0;
+
+      + button {
+        margin-inline-start: 10px;
+      }
+    }
+  }
+}
+
+.ant-pagination-options {
+  display: none !important;
+}
+
+.ant-table-measure-row {
+  display: none;
+}
+
+.ant-pagination {
+  @include settings.flex(center, flex-end);
+  margin-block-start: 12px;
+}

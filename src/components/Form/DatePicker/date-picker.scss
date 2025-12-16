@@ -1,0 +1,122 @@
+@use '@/app/styles/Settings' as settings;
+
+.ant-picker {
+  $ant-picker: &;
+
+  &-panel {
+    border: none;
+  }
+
+  &-disabled {
+    background: settings.$gray-200-alt !important;
+  }
+
+  &-cell {
+    &-disabled {
+      @include settings.label(sm);
+      color: settings.$gray-400-alt;
+      text-align: center;
+      font-style: normal;
+      background: none;
+
+      &:before {
+        display: none;
+      }
+    }
+  }
+
+  &-date-panel {
+    width: 294px !important;
+
+    #{$ant-picker}-content {
+      width: 100%;
+
+      th {
+        @include settings.label(xs);
+        color: settings.$gray-700;
+        text-align: center;
+        font-style: normal;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  &-dropdown {
+    #{$ant-picker}-header {
+      @include settings.flex(center, center);
+      padding-block: 8px;
+      padding-inline: 16px;
+      box-sizing: border-box;
+
+      > button {
+        @include settings.flex(center, center);
+        @include settings.square(24px);
+        border-radius: 54px;
+        border: 1px solid settings.$gray-300;
+        background: settings.$white;
+        box-shadow: 0 2px 4px 0 rgba(settings.$gray-700, 0.12);
+
+        & + button {
+          margin-inline-start: 6px;
+        }
+      }
+
+      button {
+        @include settings.label(sm);
+        color: settings.$gray-900-alt;
+        text-align: center;
+        font-style: normal;
+      }
+
+      > div {
+        margin-block: 0;
+        margin-inline: auto;
+        width: 100%;
+
+        > button {
+          min-width: 50px;
+          border-radius: 54px;
+          line-height: 32px;
+          border: 1px solid settings.$gray-300;
+          background: settings.$white;
+          box-shadow: 0 2px 4px 0 rgba(settings.$gray-700, 0.12);
+        }
+      }
+    }
+
+    #{$ant-picker}-footer {
+      border: none;
+
+      > a {
+        display: none;
+      }
+    }
+  }
+
+  &-input {
+    input {
+      &::placeholder {
+        @include settings.paragraph(xs);
+        color: settings.$gray-400-alt;
+      }
+    }
+
+    .ant-picker-suffix {
+      font-size: 16px !important;
+
+      svg {
+        fill: black;
+      }
+    }
+  }
+
+  &-focused {
+    border: 1px solid settings.$black !important;
+  }
+
+  &::before,
+  &::after {
+    border: 0 !important;
+    outline: 0 !important;
+  }
+}

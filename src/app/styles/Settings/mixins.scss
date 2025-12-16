@@ -1,0 +1,24 @@
+@use 'colors';
+@use 'screens';
+@use 'typography';
+
+@mixin flex($align: center, $justify: center, $direction: row, $display: flex) {
+  display: $display;
+  align-items: $align;
+  justify-content: $justify;
+  flex-direction: $direction;
+}
+
+@mixin margin-logical($top, $end, $bottom, $start) {
+  margin-block-start: $top;
+  margin-inline-end: $end;
+  margin-block-end: $bottom;
+  margin-inline-start: $start;
+}
+
+@mixin padding-logical($top, $end, $bottom, $start) {
+  padding-block-start: $top;
+  padding-inline-end: $end;
+  padding-block-end: $bottom;
+  padding-inline-start: $start;
+}
