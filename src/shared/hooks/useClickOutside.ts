@@ -1,4 +1,4 @@
-import { useEffect, RefObject } from 'react';
+import { useEffect, RefObject } from "react";
 
 /**
  * Hook to detect clicks outside of specified element(s)
@@ -9,7 +9,7 @@ import { useEffect, RefObject } from 'react';
 export const useClickOutside = (
   refs: RefObject<HTMLElement> | RefObject<HTMLElement>[],
   handler: () => void,
-  additionalSelectors?: string[]
+  additionalSelectors?: string[],
 ) => {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -17,11 +17,11 @@ export const useClickOutside = (
       const refsArray = Array.isArray(refs) ? refs : [refs];
 
       const isInsideRefs = refsArray.some(
-        ref => ref.current && ref.current.contains(target)
+        (ref) => ref.current && ref.current.contains(target),
       );
 
-      const isInsideAdditional = additionalSelectors?.some(selector =>
-        target.closest(selector)
+      const isInsideAdditional = additionalSelectors?.some((selector) =>
+        target.closest(selector),
       );
 
       if (!isInsideRefs && !isInsideAdditional) {
@@ -29,7 +29,7 @@ export const useClickOutside = (
       }
     };
 
-    document.addEventListener('click', handleClickOutside);
-    return () => document.removeEventListener('click', handleClickOutside);
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
   }, [refs, handler, additionalSelectors]);
 };

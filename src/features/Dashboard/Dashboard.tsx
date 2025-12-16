@@ -1,31 +1,31 @@
-import './dashboard.scss';
+import "./dashboard.scss";
 
-import React, { useEffect, useMemo, useState } from 'react';
-import { Card, Modal } from 'antd';
-import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useMemo, useState } from "react";
+import { Card, Modal } from "antd";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
-import CustomerForm from './components/CustomerForm';
-import CustomerTable from './components/CustomerTable';
-import Filters from './components/Filters';
+import CustomerForm from "./components/CustomerForm";
+import CustomerTable from "./components/CustomerTable";
+import Filters from "./components/Filters";
 
-import { ToastFunction } from '@/components';
-import { useAppDispatch, useAppSelector } from '@/shared/hooks';
-import { notifyError } from '@/shared/lib';
-import { CreateCustomerPayload, Customer } from '@/shared/types/api';
+import { ToastFunction } from "@/components";
+import { useAppDispatch, useAppSelector } from "@/shared/hooks";
+import { notifyError } from "@/shared/lib";
+import { CreateCustomerPayload, Customer } from "@/shared/types/api";
 import {
   resetFilters,
   setFilters,
   setSelectedCustomerId,
-} from '@/redux/slices/Dashboard/slice';
-import { useQueryClient } from '@tanstack/react-query';
+} from "@/redux/slices/Dashboard/slice";
+import { useQueryClient } from "@tanstack/react-query";
 import {
   useCreateCustomerMutation,
   useCustomersQuery,
   useDeleteCustomerMutation,
   useUpdateCustomerMutation,
-} from './api';
-import { Config } from '@/app/router/config';
+} from "./api";
+import { Config } from "@/app/router/config";
 
 const Dashboard: React.FC = () => {
   const { t } = useTranslation();
@@ -33,7 +33,7 @@ const Dashboard: React.FC = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { filters, selectedCustomerId } = useAppSelector(
-    state => state.dashboard
+    (state) => state.dashboard,
   );
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [editingCustomer, setEditingCustomer] = useState<Customer | null>(null);
@@ -43,8 +43,9 @@ const Dashboard: React.FC = () => {
   const selectedCustomer = useMemo(() => {
     if (!customersQuery.data?.items?.length) return undefined;
     return (
-      customersQuery.data.items.find(item => item.id === selectedCustomerId) ||
-      customersQuery.data.items[0]
+      customersQuery.data.items.find(
+        (item) => item.id === selectedCustomerId,
+      ) || customersQuery.data.items[0]
     );
   }, [customersQuery.data, selectedCustomerId]);
 
@@ -57,34 +58,34 @@ const Dashboard: React.FC = () => {
   const createCustomerMutation = useCreateCustomerMutation({
     onSuccess: () => {
       ToastFunction(
-        t('dashboard.toasts.customerCreated.title'),
-        t('dashboard.toasts.customerCreated.message'),
-        'success'
+        t("dashboard.toasts.customerCreated.title"),
+        t("dashboard.toasts.customerCreated.message"),
+        "success",
       );
-      queryClient.invalidateQueries({ queryKey: ['customers'] });
+      queryClient.invalidateQueries({ queryKey: ["customers"] });
     },
   });
 
   const updateCustomerMutation = useUpdateCustomerMutation({
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['customers'] });
+      queryClient.invalidateQueries({ queryKey: ["customers"] });
       setIsEditOpen(false);
       setEditingCustomer(null);
       ToastFunction(
-        t('dashboard.toasts.customerCreated.title'),
-        t('dashboard.toasts.customerCreated.message'),
-        'success'
+        t("dashboard.toasts.customerCreated.title"),
+        t("dashboard.toasts.customerCreated.message"),
+        "success",
       );
     },
   });
 
   const deleteCustomerMutation = useDeleteCustomerMutation({
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['customers'] });
+      queryClient.invalidateQueries({ queryKey: ["customers"] });
       ToastFunction(
-        t('dashboard.toasts.limitsUpdated.title'),
-        t('dashboard.toasts.limitsUpdated.message'),
-        'success'
+        t("dashboard.toasts.limitsUpdated.title"),
+        t("dashboard.toasts.limitsUpdated.message"),
+        "success",
       );
     },
   });
@@ -95,8 +96,8 @@ const Dashboard: React.FC = () => {
     } catch (error) {
       notifyError(
         error,
-        'general.error.title',
-        'dashboard.errors.createCustomer'
+        "general.error.title",
+        "dashboard.errors.createCustomer",
       );
     }
   };
@@ -108,15 +109,15 @@ const Dashboard: React.FC = () => {
         id: editingCustomer.id,
         payload: {
           ...values,
-          kycStatus: editingCustomer.kycStatus || 'UNKNOWN',
+          kycStatus: editingCustomer.kycStatus || "UNKNOWN",
           isActive: editingCustomer.isActive ?? true,
         },
       });
     } catch (error) {
       notifyError(
         error,
-        'general.error.title',
-        'dashboard.errors.createCustomer'
+        "general.error.title",
+        "dashboard.errors.createCustomer",
       );
     }
   };
@@ -127,8 +128,8 @@ const Dashboard: React.FC = () => {
     } catch (error) {
       notifyError(
         error,
-        'general.error.title',
-        'dashboard.errors.createCustomer'
+        "general.error.title",
+        "dashboard.errors.createCustomer",
       );
     }
   };
@@ -138,17 +139,17 @@ const Dashboard: React.FC = () => {
       <div className="dashboard__content">
         <div className="dashboard__hero">
           <div>
-            <p className="dashboard__eyebrow">{t('dashboard.title.eyebrow')}</p>
-            <h1 className="dashboard__title">{t('dashboard.title.main')}</h1>
-            <p className="dashboard__subtitle">{t('dashboard.title.sub')}</p>
+            <p className="dashboard__eyebrow">{t("dashboard.title.eyebrow")}</p>
+            <h1 className="dashboard__title">{t("dashboard.title.main")}</h1>
+            <p className="dashboard__subtitle">{t("dashboard.title.sub")}</p>
           </div>
           <div className="dashboard__hero-meta">
             <span className="dashboard__badge">
-              {t('dashboard.title.badge')}
+              {t("dashboard.title.badge")}
             </span>
             <p className="dashboard__meta">
-              {t('dashboard.title.retries', { count: 2 })}{' '}
-              <span>{t('dashboard.title.cancellation')}</span>
+              {t("dashboard.title.retries", { count: 2 })}{" "}
+              <span>{t("dashboard.title.cancellation")}</span>
             </p>
           </div>
         </div>
@@ -157,28 +158,28 @@ const Dashboard: React.FC = () => {
           <Card className="dashboard__panel dashboard__panel--wide">
             <div className="dashboard__panel-header">
               <div>
-                <h2>{t('dashboard.customers.title')}</h2>
-                <p>{t('dashboard.customers.subtitle')}</p>
+                <h2>{t("dashboard.customers.title")}</h2>
+                <p>{t("dashboard.customers.subtitle")}</p>
               </div>
             </div>
 
             <Filters
               filters={filters}
-              onChange={next => dispatch(setFilters(next))}
+              onChange={(next) => dispatch(setFilters(next))}
               onReset={() => dispatch(resetFilters())}
             />
 
             <CustomerTable
               data={customersQuery.data}
               loading={customersQuery.isFetching}
-              onRowSelect={record => {
+              onRowSelect={(record) => {
                 dispatch(setSelectedCustomerId(record.id));
                 navigate(
-                  `${Config.CUSTOMER_DETAIL.replace(':customerId', record.id)}`
+                  `${Config.CUSTOMER_DETAIL.replace(":customerId", record.id)}`,
                 );
               }}
-              onPageChange={page => dispatch(setFilters({ page }))}
-              onEdit={record => {
+              onPageChange={(page) => dispatch(setFilters({ page }))}
+              onEdit={(record) => {
                 setEditingCustomer(record);
                 setIsEditOpen(true);
               }}
@@ -197,7 +198,7 @@ const Dashboard: React.FC = () => {
 
       <Modal
         open={isEditOpen}
-        title={t('dashboard.forms.customer.title')}
+        title={t("dashboard.forms.customer.title")}
         footer={null}
         onCancel={() => {
           setIsEditOpen(false);
@@ -212,18 +213,18 @@ const Dashboard: React.FC = () => {
             initialValues={{
               name: editingCustomer.name,
               email: editingCustomer.email,
-              phone: editingCustomer.phone || '',
-              dateOfBirth: editingCustomer.dateOfBirth || '',
+              phone: editingCustomer.phone || "",
+              dateOfBirth: editingCustomer.dateOfBirth || "",
               nationalId: editingCustomer.nationalId ?? 0,
               address: {
-                country: editingCustomer.address?.country || '',
-                city: editingCustomer.address?.city || '',
-                postalCode: editingCustomer.address?.postalCode || '',
-                line1: editingCustomer.address?.line1 || '',
+                country: editingCustomer.address?.country || "",
+                city: editingCustomer.address?.city || "",
+                postalCode: editingCustomer.address?.postalCode || "",
+                line1: editingCustomer.address?.line1 || "",
               },
               availableLimit: editingCustomer.wallet?.availableLimit,
               dailyLimit: editingCustomer.wallet?.dailyLimit,
-              currency: editingCustomer.wallet?.currency || 'TRY',
+              currency: editingCustomer.wallet?.currency || "TRY",
             }}
           />
         )}

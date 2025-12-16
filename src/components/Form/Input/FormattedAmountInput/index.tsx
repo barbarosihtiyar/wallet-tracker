@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import { Input } from '@/components';
-import { getFormattedAmountProps } from '@/shared/lib';
+import { Input } from "@/components";
+import { getFormattedAmountProps } from "@/shared/lib";
 
 type FormattedAmountInputProps = {
   value?: string;
@@ -18,29 +18,29 @@ type FormattedAmountInputProps = {
 const normalizeAmount = (
   event: React.ChangeEvent<HTMLInputElement>,
   maxLength?: number,
-  disableDecimal?: boolean
+  disableDecimal?: boolean,
 ) => {
-  const rawValue = event.target.value ?? '';
-  const sanitized = rawValue.replace(/[^\d.,]/g, '');
-  const [integerPartRaw = '', fractionalPart = ''] = sanitized.split(/[.,]/);
+  const rawValue = event.target.value ?? "";
+  const sanitized = rawValue.replace(/[^\d.,]/g, "");
+  const [integerPartRaw = "", fractionalPart = ""] = sanitized.split(/[.,]/);
 
   const limitedInteger = maxLength
     ? integerPartRaw.slice(0, maxLength)
     : integerPartRaw;
 
   if (disableDecimal) {
-    return limitedInteger || '';
+    return limitedInteger || "";
   }
 
   const normalized = fractionalPart
     ? `${limitedInteger}.${fractionalPart}`
     : limitedInteger;
 
-  return normalized || '';
+  return normalized || "";
 };
 
 const FormattedAmountInput: React.FC<FormattedAmountInputProps> = ({
-  value = '',
+  value = "",
   onChange,
   placeholder,
   maxAmount,
@@ -54,7 +54,7 @@ const FormattedAmountInput: React.FC<FormattedAmountInputProps> = ({
 
   const parsedValue = Number(value);
   const hasValue =
-    value !== undefined && value !== null && String(value).trim() !== '';
+    value !== undefined && value !== null && String(value).trim() !== "";
   const isExceeded =
     maxAmount !== undefined &&
     hasValue &&
@@ -66,33 +66,33 @@ const FormattedAmountInput: React.FC<FormattedAmountInputProps> = ({
 
   const displayValue = isFocused
     ? String(value)
-    : getFormattedAmountProps(numericValue, false)?.value || '';
+    : getFormattedAmountProps(numericValue, false)?.value || "";
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div style={{ position: "relative" }}>
       <Input
         placeholder={placeholder}
         value={displayValue}
-        onChange={e => {
+        onChange={(e) => {
           const normalized = normalizeAmount(e, maxLength, disableDecimal);
           onChange?.(normalized);
         }}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         disabled={disabled}
-        status={isExceeded ? 'error' : undefined}
+        status={isExceeded ? "error" : undefined}
         allowClear={allowClear}
       />
       {isExceeded && (
         <span
           style={{
-            fontSize: '10px',
-            color: '#ED1C24',
-            position: 'absolute',
+            fontSize: "10px",
+            color: "#ED1C24",
+            position: "absolute",
             zIndex: 99,
-            lineHeight: '100%',
-            whiteSpace: 'nowrap',
-            bottom: '-12px',
+            lineHeight: "100%",
+            whiteSpace: "nowrap",
+            bottom: "-12px",
           }}
         >
           {errorMessage}

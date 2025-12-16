@@ -1,6 +1,6 @@
-import { type DatePickerProps } from 'antd';
-import localeEN from 'antd/es/date-picker/locale/en_US';
-import localeTR from 'antd/es/date-picker/locale/tr_TR';
+import { type DatePickerProps } from "antd";
+import localeEN from "antd/es/date-picker/locale/en_US";
+import localeTR from "antd/es/date-picker/locale/tr_TR";
 
 export type Props = DatePickerProps & {
   placeholder?: string;

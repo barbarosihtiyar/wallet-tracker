@@ -1,5 +1,5 @@
-@use 'sass:map';
-@use 'sass:list';
+@use "sass:map";
+@use "sass:list";
 
 @mixin type($size, $weight: 400, $lh: null, $ls: null, $tt: null) {
   font-size: $size;
@@ -133,11 +133,8 @@ $paragraph: (
 
 @mixin display($key, $weight: null) {
   $v: map.get($display, $key);
-  @include type(
-    list.nth($v, 1),
-    if($weight != null, $weight, list.nth($v, 2)),
-    list.nth($v, 3)
-  );
+  $final-weight: if($weight != null, $weight, list.nth($v, 2));
+  @include type(list.nth($v, 1), $final-weight, list.nth($v, 3));
 }
 
 @mixin label($key) {

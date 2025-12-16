@@ -1,16 +1,16 @@
-import './input.scss';
+import "./input.scss";
 
-import { Input as AntdInput } from 'antd';
-import type { InputProps as AntdInputProps, InputRef } from 'antd/es/input';
-import classNames from 'classnames';
-import React, { useEffect, useRef, useState } from 'react';
+import { Input as AntdInput } from "antd";
+import type { InputProps as AntdInputProps, InputRef } from "antd/es/input";
+import classNames from "classnames";
+import React, { useEffect, useRef, useState } from "react";
 
-import { ConditionalRender, Icon } from '@/components';
+import { ConditionalRender, Icon } from "@/components";
 
-import { Props } from './types';
+import { Props } from "./types";
 
 const Input: React.FC<Props> & { Special: React.FC<SpecialProps> } = ({
-  inputType = 'text',
+  inputType = "text",
   compType,
   borderType,
   compClassName,
@@ -33,21 +33,21 @@ const Input: React.FC<Props> & { Special: React.FC<SpecialProps> } = ({
   return (
     <div
       className={classNames(
-        'input',
+        "input",
         compClassName,
         className,
-        focus && 'focus',
+        focus && "focus",
         {
-          'input--icon-left': !!iconLeft,
-          'input--icon-right': !!iconRight,
-          'input--text': inputType === 'text',
-          'input--email': inputType === 'email',
-          'input--password': inputType === 'password',
-          'input--number': inputType === 'number',
-          'input--dark': compType === 'dark',
-          'input--light': compType === 'light',
-          'input--rounded': borderType === 'rounded',
-          'input--disabled': !!disabled,
+          "input--icon-left": !!iconLeft,
+          "input--icon-right": !!iconRight,
+          "input--text": inputType === "text",
+          "input--email": inputType === "email",
+          "input--password": inputType === "password",
+          "input--number": inputType === "number",
+          "input--dark": compType === "dark",
+          "input--light": compType === "light",
+          "input--rounded": borderType === "rounded",
+          "input--disabled": !!disabled,
         },
       )}
     >
@@ -57,7 +57,7 @@ const Input: React.FC<Props> & { Special: React.FC<SpecialProps> } = ({
 
       <div className="input__content">
         <ConditionalRender value={!!iconLeft || !!leftLabel}>
-          <div className={classNames('input__content__left', { separator })}>
+          <div className={classNames("input__content__left", { separator })}>
             <ConditionalRender value={!!iconLeft}>
               <div className="input__content__left--icon">
                 {iconLeft ? <Icon name={iconLeft} /> : null}
@@ -76,8 +76,8 @@ const Input: React.FC<Props> & { Special: React.FC<SpecialProps> } = ({
           onPressEnter={onPressEnter}
           disabled={disabled}
           allowClear={allowClear}
-          onKeyPress={e => {
-            if (inputType === 'number' && !/^\d$/.test(e.key)) {
+          onKeyPress={(e) => {
+            if (inputType === "number" && !/^\d$/.test(e.key)) {
               e.preventDefault();
             }
           }}
@@ -104,9 +104,9 @@ const Input: React.FC<Props> & { Special: React.FC<SpecialProps> } = ({
 
 /* -------- Special sub-component -------- */
 
-type SpecialProps = Omit<AntdInputProps, 'type' | 'value' | 'onChange'> & {
-  inputType: 'password' | 'search' | string;
-  compType?: 'dark' | 'light' | string;
+type SpecialProps = Omit<AntdInputProps, "type" | "value" | "onChange"> & {
+  inputType: "password" | "search" | string;
+  compType?: "dark" | "light" | string;
   disabled?: boolean;
   leftLabel?: React.ReactNode;
   iconLeft?: string;
@@ -137,15 +137,15 @@ const Special: React.FC<SpecialProps> = ({
   const [typeControl, setTypeControl] = useState(false);
   const [focus, setFocus] = useState(false);
 
-  const toggle = () => setTypeControl(v => !v);
-  const deleteSearchArea = () => onChange('');
+  const toggle = () => setTypeControl((v) => !v);
+  const deleteSearchArea = () => onChange("");
 
   useEffect(() => {
-    if (inputType === 'password') {
+    if (inputType === "password") {
       if (typeControl) {
-        if (element.current?.input) element.current.input.type = 'text';
+        if (element.current?.input) element.current.input.type = "text";
       } else {
-        if (element.current?.input) element.current.input.type = 'password';
+        if (element.current?.input) element.current.input.type = "password";
       }
     }
   }, [typeControl, inputType]);
@@ -153,17 +153,17 @@ const Special: React.FC<SpecialProps> = ({
   return (
     <div
       className={classNames(
-        'input',
-        'input--icon-left',
-        'input--icon-right',
-        focus && 'focus',
+        "input",
+        "input--icon-left",
+        "input--icon-right",
+        focus && "focus",
         className,
         {
-          'input--password': inputType === 'password',
-          'input--search': inputType === 'search',
-          'input--dark': compType === 'dark',
-          'input--light': compType === 'light',
-          'input--disabled': !!disabled,
+          "input--password": inputType === "password",
+          "input--search": inputType === "search",
+          "input--dark": compType === "dark",
+          "input--light": compType === "light",
+          "input--disabled": !!disabled,
         },
       )}
     >
@@ -171,15 +171,15 @@ const Special: React.FC<SpecialProps> = ({
 
       <div className="input__content">
         {!iconLeft && (
-          <div className={classNames('input__content__left', { separator })}>
+          <div className={classNames("input__content__left", { separator })}>
             <div className="input__content__left--icon">
               <Icon
                 name={
-                  inputType === 'password'
-                    ? 'lock-single-dot'
-                    : inputType === 'search'
-                      ? 'search'
-                      : ''
+                  inputType === "password"
+                    ? "lock-single-dot"
+                    : inputType === "search"
+                      ? "search"
+                      : ""
                 }
               />
             </div>
@@ -195,29 +195,29 @@ const Special: React.FC<SpecialProps> = ({
           disabled={disabled}
           allowClear={allowClear}
           value={initialValue ?? value}
-          onChange={e => onChange(e.target.value)}
+          onChange={(e) => onChange(e.target.value)}
           className={`input-${inputType}`}
           ref={element}
-          type={inputType === 'search' ? 'text' : inputType}
+          type={inputType === "search" ? "text" : inputType}
           autoComplete="off"
           {...props}
         />
 
-        {(inputType === 'password' || (inputType === 'search' && !!value)) && (
+        {(inputType === "password" || (inputType === "search" && !!value)) && (
           <button
             type="button"
             className="input__content__right-icon"
-            onClick={inputType === 'password' ? toggle : deleteSearchArea}
+            onClick={inputType === "password" ? toggle : deleteSearchArea}
           >
             <Icon
               name={
-                inputType === 'password' && !typeControl
-                  ? 'dont-show'
-                  : inputType === 'password' && typeControl
-                    ? 'eye-open'
-                    : inputType === 'search'
-                      ? 'close'
-                      : ''
+                inputType === "password" && !typeControl
+                  ? "dont-show"
+                  : inputType === "password" && typeControl
+                    ? "eye-open"
+                    : inputType === "search"
+                      ? "close"
+                      : ""
               }
             />
           </button>

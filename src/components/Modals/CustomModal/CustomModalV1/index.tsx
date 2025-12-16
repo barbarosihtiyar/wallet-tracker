@@ -1,20 +1,20 @@
-import './custom-modal-v1.scss';
+import "./custom-modal-v1.scss";
 
-import { Modal } from 'antd';
-import classNames from 'classnames';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { Modal } from "antd";
+import classNames from "classnames";
+import React from "react";
+import { useTranslation } from "react-i18next";
 
-import { Config } from '@/app/router/config';
-import { Button, ConditionalRender, Icon } from '@/components';
-import { Icons } from '@/shared/constants';
+import { Config } from "@/app/router/config";
+import { Button, ConditionalRender, Icon } from "@/components";
+import { Icons } from "@/shared/constants";
 
-import { CustomModalV1Props } from './types';
+import { CustomModalV1Props } from "./types";
 
 const CustomModalV1: React.FC<CustomModalV1Props> = ({
   showModal,
   buttonCount = 1,
-  oneButtonType = 'basic',
+  oneButtonType = "basic",
   maskClosable = true,
   children,
   customFooter,
@@ -27,11 +27,11 @@ const CustomModalV1: React.FC<CustomModalV1Props> = ({
   const { t } = useTranslation();
 
   const isHomePage = window.location.pathname === Config.HOMEPAGE;
-  const SESSION_KEY = 'hasShownRestrictedModal';
+  const SESSION_KEY = "hasShownRestrictedModal";
 
   const markModalAsShown = () => {
     if (isHomePage) {
-      sessionStorage.setItem(SESSION_KEY, 'true');
+      sessionStorage.setItem(SESSION_KEY, "true");
     }
   };
 
@@ -45,7 +45,7 @@ const CustomModalV1: React.FC<CustomModalV1Props> = ({
   return (
     <Modal
       open={showModal}
-      className={classNames('custom-modals-v2', className)}
+      className={classNames("custom-modals-v2", className)}
       closeIcon={<Icon name={Icons.CLOSE} />}
       centered
       maskClosable={maskClosable}
@@ -55,13 +55,13 @@ const CustomModalV1: React.FC<CustomModalV1Props> = ({
           <div className="action-group">
             <ConditionalRender value={buttonCount === 1}>
               <Button type={oneButtonType} onClick={closeModal}>
-                {t('ui.button.close')}
+                {t("ui.button.close")}
               </Button>
             </ConditionalRender>
           </div>
         )
       }
-      width={'450px'}
+      width={"450px"}
     >
       <div className="modal__body">
         <ConditionalRender value={icon || title}>

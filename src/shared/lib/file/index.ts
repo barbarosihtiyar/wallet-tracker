@@ -2,7 +2,7 @@ export const convertFileToBlob = async (file: File): Promise<Blob> => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = () => {
-      const base64Data = (reader.result as string).split(',')[1];
+      const base64Data = (reader.result as string).split(",")[1];
       const fileType = file.type;
 
       const byteCharacters = window.atob(base64Data);
@@ -22,7 +22,7 @@ export const convertFileToBlob = async (file: File): Promise<Blob> => {
 
 export const downloadBlobAsFile = (blob: Blob, filename: string): void => {
   const blobUrl = window.URL.createObjectURL(blob);
-  const link = document.createElement('a');
+  const link = document.createElement("a");
   link.href = blobUrl;
   link.download = filename;
   document.body.appendChild(link);

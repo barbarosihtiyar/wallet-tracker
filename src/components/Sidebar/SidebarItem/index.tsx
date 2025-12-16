@@ -1,13 +1,13 @@
-import './sidebar-item.scss';
+import "./sidebar-item.scss";
 
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
-import { ConditionalRender } from '@/components';
-import { handleDisabledClick } from '@/shared/lib';
+import { ConditionalRender } from "@/components";
+import { handleDisabledClick } from "@/shared/lib";
 
-import { SidebarItemProps } from './types';
+import { SidebarItemProps } from "./types";
 
 const SidebarItem: React.FC<SidebarItemProps> = ({
   name,
@@ -44,8 +44,8 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
         </span>
       ) : (
         <Link
-          to={link || ''}
-          className={`sidebar__nav-item ${isActive ? 'sidebar__nav-item--active' : ''}`}
+          to={link || ""}
+          className={`sidebar__nav-item ${isActive ? "sidebar__nav-item--active" : ""}`}
           onClick={handleClick}
         >
           {!collapsed && (

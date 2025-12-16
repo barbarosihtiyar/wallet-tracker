@@ -1,17 +1,17 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
+import React from "react";
+import { useTranslation } from "react-i18next";
 
-import { transactionColumns } from './table';
+import { transactionColumns } from "./table";
 
-import { NewTable } from '@/components';
-import { PaginatedResponse, Transaction } from '@/shared/types/api';
+import { NewTable } from "@/components";
+import { PaginatedResponse, Transaction } from "@/shared/types/api";
 
 type Props = {
   data?: PaginatedResponse<Transaction>;
   loading?: boolean;
   onSort?: (field: string) => void;
   sortBy?: string;
-  sortOrder?: 'asc' | 'desc';
+  sortOrder?: "asc" | "desc";
   currentPage?: number;
   onPageChange?: (page: number) => void;
 };
@@ -48,10 +48,10 @@ const TransactionsTable: React.FC<Props> = ({
         elementNumber={totalPages}
         filter={false}
         changeEmpty={!rows.length}
-        emptyText={t('dashboard.table.emptyTransactions')}
+        emptyText={t("dashboard.table.emptyTransactions")}
         emptyImg={null}
         rowKey="id"
-        scroll={{ x: 'max-content' }}
+        scroll={{ x: "max-content" }}
         setPageNumberOut={onPageChange}
       />
     </div>

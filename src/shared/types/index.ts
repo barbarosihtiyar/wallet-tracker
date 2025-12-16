@@ -1,2 +1,2 @@
-export * from './helper';
-export * from './HttpTypes';
+export * from "./helper";
+export * from "./HttpTypes";

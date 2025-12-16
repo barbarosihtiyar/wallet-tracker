@@ -1,16 +1,16 @@
-import type { InputProps as AntdInputProps } from 'antd/es/input';
+import type { InputProps as AntdInputProps } from "antd/es/input";
 
 export type CommonProps = {
   inputType?:
-    | 'text'
-    | 'email'
-    | 'password'
-    | 'number'
-    | 'card'
-    | 'search'
+    | "text"
+    | "email"
+    | "password"
+    | "number"
+    | "card"
+    | "search"
     | string;
-  compType?: 'dark' | 'light' | string;
-  borderType?: 'rounded' | string;
+  compType?: "dark" | "light" | string;
+  borderType?: "rounded" | string;
   compClassName?: string;
 
   label?: React.ReactNode;

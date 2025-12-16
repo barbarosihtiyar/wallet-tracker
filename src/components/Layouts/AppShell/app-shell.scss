@@ -1,4 +1,4 @@
-@use '@/app/styles/Settings' as settings;
+@use "@/app/styles/Settings" as settings;
 
 .layout {
   --rail: 209px;
@@ -46,7 +46,7 @@
     @include settings.flex($align: center, $justify: space-between);
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: 0;
       height: 1px;

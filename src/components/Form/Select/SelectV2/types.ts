@@ -1,4 +1,4 @@
-import { SelectProps } from 'antd';
+import { SelectProps } from "antd";
 
 export type DataItem = {
   value?: string | number;
@@ -19,7 +19,7 @@ export type SelectV3OnChange =
 
 export type SelectV3Props = Omit<
   SelectProps,
-  'options' | 'onChange' | 'value'
+  "options" | "onChange" | "value"
 > & {
   image?: boolean;
   data?: DataItem[];

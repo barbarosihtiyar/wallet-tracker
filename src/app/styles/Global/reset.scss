@@ -1,4 +1,4 @@
-@use '@/app/styles/Settings' as settings;
+@use "@/app/styles/Settings" as settings;
 
 *,
 *::before,
@@ -73,16 +73,16 @@ body {
 .ant-select,
 .ant-input,
 .ant-btn {
-  font-family: 'Gilroy', sans-serif !important;
+  font-family: "Gilroy", sans-serif !important;
 }
 
 .ant-select-selection-item,
 .ant-select-dropdown .ant-select-item {
-  font-family: 'Gilroy', sans-serif !important;
+  font-family: "Gilroy", sans-serif !important;
 }
 
 * {
-  font-family: 'Gilroy', sans-serif !important;
+  font-family: "Gilroy", sans-serif !important;
 }
 
 .ant-select-selection-search {

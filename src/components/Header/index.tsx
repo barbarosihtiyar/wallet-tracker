@@ -1,6 +1,6 @@
-import './header.scss';
+import "./header.scss";
 
-import { LanguageSelector } from '@/components';
+import { LanguageSelector } from "@/components";
 
 const Header = () => {
   return (

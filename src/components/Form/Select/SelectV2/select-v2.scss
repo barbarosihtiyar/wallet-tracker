@@ -1,4 +1,4 @@
-@use '@/app/styles/Settings' as settings;
+@use "@/app/styles/Settings" as settings;
 
 .select-v2 {
   position: relative;
@@ -193,7 +193,7 @@
 
     &:after {
       position: absolute;
-      content: '';
+      content: "";
       height: 20px;
       inset-inline-end: -5px;
       top: 2px;

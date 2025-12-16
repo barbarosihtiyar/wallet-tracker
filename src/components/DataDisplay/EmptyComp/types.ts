@@ -1,7 +1,7 @@
-import { HTMLAttributes, ReactNode } from 'react';
+import { HTMLAttributes, ReactNode } from "react";
 
 export type Props = {
   img?: ReactNode;
-  type?: 'v2';
+  type?: "v2";
   text?: string;
 } & HTMLAttributes<HTMLDivElement>;

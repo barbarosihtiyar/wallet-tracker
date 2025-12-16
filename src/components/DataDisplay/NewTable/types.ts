@@ -1,5 +1,5 @@
-import type { FormInstance, TableProps } from 'antd';
-import type { ReactElement } from 'react';
+import type { FormInstance, TableProps } from "antd";
+import type { ReactElement } from "react";
 
 export type OptionItem = { key: string; value: string | number };
 
@@ -9,7 +9,7 @@ export type FilterItem = {
   placeholder?: string;
   icon?: string;
   input?: {
-    type: 'textbox' | 'datepicker' | 'select';
+    type: "textbox" | "datepicker" | "select";
     options?: OptionItem[];
   };
 };
@@ -26,7 +26,7 @@ type UnknownRecord = Record<string, unknown>;
 export type TableFuncProps<RecordType extends UnknownRecord = UnknownRecord> = {
   changeEmpty?: boolean;
   form?: { getFieldsValue: () => UnknownRecord } | null;
-  column: TableProps<RecordType>['columns'];
+  column: TableProps<RecordType>["columns"];
   dataSource?: RecordType[];
   elementNumber?: number;
   totalNumber?: number;
@@ -39,8 +39,8 @@ export type TableFuncProps<RecordType extends UnknownRecord = UnknownRecord> = {
   pageSize?: number;
   sortableColumns?: string[];
   sortBy?: string;
-  sortOrder?: 'asc' | 'desc';
+  sortOrder?: "asc" | "desc";
   onSort?: (field: string) => void;
-} & Omit<TableProps<RecordType>, 'columns' | 'dataSource' | 'locale'>;
+} & Omit<TableProps<RecordType>, "columns" | "dataSource" | "locale">;
 
 export const EMPTY_DATA: never[] = [];

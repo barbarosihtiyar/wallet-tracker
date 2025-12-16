@@ -1,1 +1,1 @@
-export { dashboardApi as dashboardService } from '@/features/Dashboard/api/service';
+export { dashboardApi as dashboardService } from "@/features/Dashboard/api/service";

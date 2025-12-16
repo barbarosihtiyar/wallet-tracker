@@ -7,7 +7,7 @@ declare global {
 export const getCspNonce = (): string | undefined => {
   const metaNonce = document
     .querySelector('meta[name="csp-nonce"]')
-    ?.getAttribute('content');
+    ?.getAttribute("content");
 
   return metaNonce || window.__CSP_NONCE__;
 };

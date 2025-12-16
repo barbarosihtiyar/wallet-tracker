@@ -1,12 +1,12 @@
-import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import type { CustomersState, CustomerFilters } from './types';
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import type { CustomersState, CustomerFilters } from "./types";
 import {
   fetchCustomers,
   fetchCustomerById,
   createCustomer,
   updateCustomer,
   deleteCustomer,
-} from './actions';
+} from "./actions";
 
 const initialState: CustomersState = {
   customers: [],
@@ -14,9 +14,9 @@ const initialState: CustomersState = {
   filters: {
     page: 1,
     pageSize: 10,
-    search: '',
-    kycStatus: 'all',
-    isActive: 'all',
+    search: "",
+    kycStatus: "all",
+    isActive: "all",
   },
   pagination: {
     page: 1,
@@ -34,7 +34,7 @@ const initialState: CustomersState = {
 };
 
 const customersSlice = createSlice({
-  name: 'customers',
+  name: "customers",
   initialState,
   reducers: {
     setFilters: (state, action: PayloadAction<Partial<CustomerFilters>>) => {
@@ -49,7 +49,8 @@ const customersSlice = createSlice({
     },
     setCurrentCustomer: (state, action: PayloadAction<string | null>) => {
       if (action.payload) {
-        state.currentCustomer = state.customers.find(c => c.id === action.payload) || null;
+        state.currentCustomer =
+          state.customers.find((c) => c.id === action.payload) || null;
       } else {
         state.currentCustomer = null;
       }
@@ -114,7 +115,9 @@ const customersSlice = createSlice({
       })
       .addCase(updateCustomer.fulfilled, (state, action) => {
         state.loading.update = false;
-        const index = state.customers.findIndex(c => c.id === action.payload.id);
+        const index = state.customers.findIndex(
+          (c) => c.id === action.payload.id,
+        );
         if (index !== -1) {
           state.customers[index] = action.payload;
         }
@@ -134,7 +137,9 @@ const customersSlice = createSlice({
       })
       .addCase(deleteCustomer.fulfilled, (state, action) => {
         state.loading.delete = false;
-        state.customers = state.customers.filter(c => c.id !== action.payload);
+        state.customers = state.customers.filter(
+          (c) => c.id !== action.payload,
+        );
         if (state.currentCustomer?.id === action.payload) {
           state.currentCustomer = null;
         }
@@ -147,5 +152,6 @@ const customersSlice = createSlice({
   },
 });
 
-export const { setFilters, resetFilters, setCurrentCustomer, clearError } = customersSlice.actions;
+export const { setFilters, resetFilters, setCurrentCustomer, clearError } =
+  customersSlice.actions;
 export default customersSlice.reducer;

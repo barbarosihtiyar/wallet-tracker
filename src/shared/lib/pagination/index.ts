@@ -1,9 +1,9 @@
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs, { Dayjs } from "dayjs";
 
 export interface BuildQueryOptions {
   withPrefix?: boolean;
   skipEmptyString?: boolean;
-  arrayStyle?: 'repeat' | 'comma';
+  arrayStyle?: "repeat" | "comma";
   dateFormat?: string;
 }
 
@@ -36,8 +36,8 @@ const asStrings = (v: unknown, fmt: string): string[] => {
     return [v.format(fmt)];
   }
 
-  if (typeof v === 'boolean') {
-    return [v ? 'true' : 'false'];
+  if (typeof v === "boolean") {
+    return [v ? "true" : "false"];
   }
 
   return [String(v)];
@@ -45,13 +45,13 @@ const asStrings = (v: unknown, fmt: string): string[] => {
 
 export const buildPaginationQuery = (
   params: Record<string, unknown>,
-  opts: BuildQueryOptions = {}
+  opts: BuildQueryOptions = {},
 ): string => {
   const {
     withPrefix = true,
     skipEmptyString = true,
-    arrayStyle = 'repeat',
-    dateFormat = 'YYYY-MM-DD',
+    arrayStyle = "repeat",
+    dateFormat = "YYYY-MM-DD",
   } = opts;
 
   const sp = new URLSearchParams();
@@ -59,29 +59,29 @@ export const buildPaginationQuery = (
   Object.entries(params).forEach(([key, value]) => {
     if (Array.isArray(value)) {
       const items = value
-        .flatMap(v => asStrings(v, dateFormat))
-        .filter(s => !(skipEmptyString && s === ''));
+        .flatMap((v) => asStrings(v, dateFormat))
+        .filter((s) => !(skipEmptyString && s === ""));
       if (!items.length) return;
 
-      if (arrayStyle === 'comma') sp.append(key, items.join(','));
-      else items.forEach(s => sp.append(key, s));
+      if (arrayStyle === "comma") sp.append(key, items.join(","));
+      else items.forEach((s) => sp.append(key, s));
 
       return;
     }
 
-    asStrings(value, dateFormat).forEach(s => {
-      if (skipEmptyString && s === '') return;
+    asStrings(value, dateFormat).forEach((s) => {
+      if (skipEmptyString && s === "") return;
       sp.append(key, s);
     });
   });
 
   const qs = sp.toString();
-  return withPrefix ? (qs ? `?${qs}` : '') : qs;
+  return withPrefix ? (qs ? `?${qs}` : "") : qs;
 };
 
 export const normalizePaginated = <T>(
   payload: PaginatedLike<T>,
-  defaults: { page?: number; pageSize?: number } = {}
+  defaults: { page?: number; pageSize?: number } = {},
 ) => {
   const items =
     (Array.isArray((payload as any)?.items) && (payload as any).items) ||

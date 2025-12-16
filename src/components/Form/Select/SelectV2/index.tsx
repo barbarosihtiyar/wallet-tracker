@@ -1,13 +1,13 @@
-import './select-v2.scss';
+import "./select-v2.scss";
 
-import type { InputRef, SelectProps } from 'antd';
-import { Input, Select as AntSelect } from 'antd';
-import classNames from 'classnames';
-import React, { useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import type { InputRef, SelectProps } from "antd";
+import { Input, Select as AntSelect } from "antd";
+import classNames from "classnames";
+import React, { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
-import { ConditionalRender, Icon } from '@/components';
-import { Icons } from '@/shared/constants';
+import { ConditionalRender, Icon } from "@/components";
+import { Icons } from "@/shared/constants";
 
 type DataItem = {
   value?: string | number;
@@ -26,7 +26,7 @@ type SelectV2OnChange =
   | ((value: SelectPrimitive) => void)
   | ((value: SelectV2Value) => void);
 
-type Props = Omit<SelectProps, 'options' | 'onChange' | 'value'> & {
+type Props = Omit<SelectProps, "options" | "onChange" | "value"> & {
   image?: boolean;
   data?: DataItem[];
   prefixIcon?: React.ReactNode;
@@ -64,7 +64,7 @@ const SelectV2: React.FC<Props> = ({
   const [isSelected, setSelected] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [onFocus, setOnFocus] = useState(false);
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState("");
   const { t } = useTranslation();
 
   const selectRef = useRef<HTMLDivElement | null>(null);
@@ -74,7 +74,7 @@ const SelectV2: React.FC<Props> = ({
     (onChange as ((value: SelectV2Value) => void) | undefined)?.(val);
     setSelected(true);
     setIsOpen(false);
-    setSearchValue('');
+    setSearchValue("");
   };
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -82,17 +82,17 @@ const SelectV2: React.FC<Props> = ({
 
     const insideSelect = !!selectRef.current?.contains(target);
 
-    const insideDropdown = !!target.closest('.ant-select-dropdown');
+    const insideDropdown = !!target.closest(".ant-select-dropdown");
 
     if (!insideSelect && !insideDropdown) {
       setIsOpen(false);
-      setSearchValue('');
+      setSearchValue("");
     }
   };
 
   useEffect(() => {
-    document.addEventListener('click', handleClickOutside);
-    return () => document.removeEventListener('click', handleClickOutside);
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
   useEffect(() => {
@@ -103,12 +103,12 @@ const SelectV2: React.FC<Props> = ({
   }, [isOpen]);
 
   const normalizeText = (text: string) => {
-    return text.toLocaleLowerCase('tr');
+    return text.toLocaleLowerCase("tr");
   };
 
-  const filteredData = data?.filter(item => {
+  const filteredData = data?.filter((item) => {
     if (!searchValue) return true;
-    const itemLabel = normalizeText(String(item?.label || item?.name || ''));
+    const itemLabel = normalizeText(String(item?.label || item?.name || ""));
     const searchTerm = normalizeText(searchValue);
     return itemLabel.includes(searchTerm);
   });
@@ -116,17 +116,17 @@ const SelectV2: React.FC<Props> = ({
   return (
     <div
       ref={selectRef}
-      className={classNames('select-v2', onFocus && 'focus', className, {
-        'select-v2--image': image,
-        'select-v2--disabled': disabled,
+      className={classNames("select-v2", onFocus && "focus", className, {
+        "select-v2--image": image,
+        "select-v2--disabled": disabled,
       })}
-      onKeyDownCapture={e => {
+      onKeyDownCapture={(e) => {
         if (
-          (e.key === 'Backspace' || e.key === 'Delete') &&
-          props.mode === 'multiple'
+          (e.key === "Backspace" || e.key === "Delete") &&
+          props.mode === "multiple"
         ) {
           const target = e.target as HTMLElement;
-          if (target.closest('.select-v2__search')) {
+          if (target.closest(".select-v2__search")) {
             e.stopPropagation();
             e.nativeEvent?.stopImmediatePropagation?.();
           }
@@ -139,7 +139,7 @@ const SelectV2: React.FC<Props> = ({
 
       <div
         className="select-v2__trigger"
-        onMouseDown={e => {
+        onMouseDown={(e) => {
           if (disabled) return;
           e.preventDefault();
           setIsOpen(true);
@@ -158,35 +158,35 @@ const SelectV2: React.FC<Props> = ({
           onChange={onChangeFunc}
           value={value}
           disabled={disabled}
-          placeholder={placeholder || (t('ui.placeholder.select') as string)}
+          placeholder={placeholder || (t("ui.placeholder.select") as string)}
           maxTagCount="responsive"
-          notFoundContent={t('general.noData')}
+          notFoundContent={t("general.noData")}
           allowClear={allowClear}
-          onInputKeyDown={e => {
+          onInputKeyDown={(e) => {
             if (
-              (e.key === 'Backspace' || e.key === 'Delete') &&
-              props.mode === 'multiple'
+              (e.key === "Backspace" || e.key === "Delete") &&
+              props.mode === "multiple"
             ) {
               e.preventDefault();
               e.stopPropagation();
               e.nativeEvent?.stopImmediatePropagation?.();
             }
           }}
-          dropdownRender={menu => (
+          dropdownRender={(menu) => (
             <>
               <div className="select-v2__search">
                 <Icon name={Icons.SEARCH} />
                 <Input
                   ref={searchInputRef}
                   placeholder={
-                    searchPlaceholder || (t('ui.placeholder.search') as string)
+                    searchPlaceholder || (t("ui.placeholder.search") as string)
                   }
                   value={searchValue}
-                  onChange={e => setSearchValue(e.target.value)}
-                  onClick={e => e.stopPropagation()}
-                  onMouseDown={e => e.stopPropagation()}
-                  onKeyDown={e => {
-                    if (e.key === 'Backspace' || e.key === 'Delete') {
+                  onChange={(e) => setSearchValue(e.target.value)}
+                  onClick={(e) => e.stopPropagation()}
+                  onMouseDown={(e) => e.stopPropagation()}
+                  onKeyDown={(e) => {
+                    if (e.key === "Backspace" || e.key === "Delete") {
                       e.stopPropagation();
                       e.nativeEvent?.stopImmediatePropagation?.();
                     }
@@ -227,7 +227,7 @@ const SelectV2: React.FC<Props> = ({
       </div>
 
       <div
-        className={classNames('select-v2__arrow', {
+        className={classNames("select-v2__arrow", {
           selected: isSelected || !!value,
         })}
       >

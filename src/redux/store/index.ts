@@ -1,6 +1,12 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore } from "@reduxjs/toolkit";
 
-import { dashboard, notifications, customers, transactions, wallets } from '../slices';
+import {
+  dashboard,
+  notifications,
+  customers,
+  transactions,
+  wallets,
+} from "../slices";
 
 export const store = configureStore({
   reducer: {

@@ -1,6 +1,6 @@
-export type ButtonStyle = 'light' | 'dark' | string;
+export type ButtonStyle = "light" | "dark" | string;
 
-import React from 'react';
+import React from "react";
 
 export type CustomModalV1Props = {
   buttonCount?: number;

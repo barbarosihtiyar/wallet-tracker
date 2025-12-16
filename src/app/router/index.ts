@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
-import { CustomerDetailPage, HomePage, NotFound } from '@/pages';
+import { CustomerDetailPage, HomePage, NotFound } from "@/pages";
 
-import { Config } from './config';
+import { Config } from "./config";
 
 export interface RouteConfig {
   path: string;

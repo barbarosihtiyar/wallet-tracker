@@ -1,6 +1,6 @@
-@use 'colors';
-@use 'screens';
-@use 'typography';
+@use "colors";
+@use "screens";
+@use "typography";
 
 @mixin flex($align: center, $justify: center, $direction: row, $display: flex) {
   display: $display;

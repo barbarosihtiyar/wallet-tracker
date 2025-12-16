@@ -1,38 +1,38 @@
-import './general-modal.scss';
+import "./general-modal.scss";
 
-import { Modal } from 'antd';
-import classNames from 'classnames';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { Modal } from "antd";
+import classNames from "classnames";
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
 
-import { Config } from '@/app/router/config';
-import { Button, ConditionalRender, Icon } from '@/components';
-import { clearGeneralModal } from '@/redux/slices/Notifications/slice';
-import { RootState } from '@/redux/store';
-import { Icons } from '@/shared/constants';
-import { useAppSelector } from '@/shared/hooks';
+import { Config } from "@/app/router/config";
+import { Button, ConditionalRender, Icon } from "@/components";
+import { clearGeneralModal } from "@/redux/slices/Notifications/slice";
+import { RootState } from "@/redux/store";
+import { Icons } from "@/shared/constants";
+import { useAppSelector } from "@/shared/hooks";
 
-import { Props } from './types';
+import { Props } from "./types";
 
 const GeneralModal: React.FC<Props> = ({
   buttonCount = 1,
-  oneButtonType = 'light',
+  oneButtonType = "light",
   maskClosable = true,
 }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
   const { generalModal } = useAppSelector(
-    (state: RootState) => state.notifications
+    (state: RootState) => state.notifications,
   );
 
   const isHomePage = window.location.pathname === Config.HOMEPAGE;
-  const SESSION_KEY = 'hasShownRestrictedModal';
+  const SESSION_KEY = "hasShownRestrictedModal";
 
   const markModalAsShown = () => {
     if (isHomePage) {
-      sessionStorage.setItem(SESSION_KEY, 'true');
+      sessionStorage.setItem(SESSION_KEY, "true");
     }
   };
 
@@ -40,7 +40,7 @@ const GeneralModal: React.FC<Props> = ({
     const isNormalModal = !isHomePage || !generalModal.display;
     if (isNormalModal) return generalModal.display;
 
-    const hasBeenShown = sessionStorage.getItem(SESSION_KEY) === 'true';
+    const hasBeenShown = sessionStorage.getItem(SESSION_KEY) === "true";
     return !hasBeenShown;
   };
 
@@ -53,7 +53,7 @@ const GeneralModal: React.FC<Props> = ({
   return (
     <Modal
       open={shouldShowModal()}
-      className={classNames('general-modal')}
+      className={classNames("general-modal")}
       closeIcon={<Icon name={Icons.CLOSE} />}
       centered
       maskClosable={maskClosable}
@@ -62,12 +62,12 @@ const GeneralModal: React.FC<Props> = ({
         <div className="action-group">
           <ConditionalRender value={buttonCount === 1}>
             <Button type={oneButtonType} onClick={closeModal}>
-              {t('ui.button.close')}
+              {t("ui.button.close")}
             </Button>
           </ConditionalRender>
         </div>
       }
-      width={'400px'}
+      width={"400px"}
     >
       <div className="modal__body">
         <ConditionalRender value={generalModal?.type}>

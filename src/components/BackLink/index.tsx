@@ -1,17 +1,17 @@
-import './back-link.scss';
+import "./back-link.scss";
 
-import classNames from 'classnames';
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Link, useNavigate } from 'react-router-dom';
+import classNames from "classnames";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Link, useNavigate } from "react-router-dom";
 
-import { Config } from '@/app/router/config';
-import { Button, ConditionalRender, CustomModalV1, Icon } from '@/components';
-import { resetAllState } from '@/redux/common';
-import { Icons } from '@/shared/constants';
-import { useAppDispatch } from '@/shared/hooks';
+import { Config } from "@/app/router/config";
+import { Button, ConditionalRender, CustomModalV1, Icon } from "@/components";
+import { resetAllState } from "@/redux/common";
+import { Icons } from "@/shared/constants";
+import { useAppDispatch } from "@/shared/hooks";
 
-import { Props } from './types';
+import { Props } from "./types";
 
 const BackLink = ({
   text,
@@ -36,8 +36,8 @@ const BackLink = ({
     <>
       <ConditionalRender value={backLinkUrl}>
         <Link
-          to={backLinkUrl || ''}
-          className={classNames('back-link', className)}
+          to={backLinkUrl || ""}
+          className={classNames("back-link", className)}
           onClick={onClick}
           {...props}
         >
@@ -56,7 +56,7 @@ const BackLink = ({
       </ConditionalRender>
       <ConditionalRender value={!backLinkUrl}>
         <div
-          className={classNames('back-link', className)}
+          className={classNames("back-link", className)}
           onClick={onClick}
           {...props}
         >
@@ -68,7 +68,7 @@ const BackLink = ({
             <Icon
               name={Icons.CLOSE}
               size={11}
-              onClick={e => {
+              onClick={(e) => {
                 e.stopPropagation();
                 setShowModal(true);
               }}
@@ -81,13 +81,13 @@ const BackLink = ({
         onClose={() => setShowModal(false)}
         maskClosable={false}
         className="cancel-transaction-information-modal"
-        text={t('ui.modal.exitConfirm.title')}
+        text={t("ui.modal.exitConfirm.title")}
         customFooter={
           <div className="action-group">
             <Button type="lightRedBorder" onClick={() => setShowModal(false)}>
-              {t('ui.button.no')}
+              {t("ui.button.no")}
             </Button>
-            <Button onClick={handleConfirmExit}>{t('ui.button.yes')}</Button>
+            <Button onClick={handleConfirmExit}>{t("ui.button.yes")}</Button>
           </div>
         }
       />

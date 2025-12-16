@@ -1,6 +1,6 @@
-import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import type { TransactionsState, TransactionFilters } from './types';
-import { fetchTransactionsByCustomerId } from './actions';
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import type { TransactionsState, TransactionFilters } from "./types";
+import { fetchTransactionsByCustomerId } from "./actions";
 
 const initialState: TransactionsState = {
   transactions: [],
@@ -8,8 +8,8 @@ const initialState: TransactionsState = {
   filters: {
     page: 1,
     pageSize: 10,
-    type: 'all',
-    transferDirection: 'all',
+    type: "all",
+    transferDirection: "all",
   },
   pagination: {
     page: 1,
@@ -24,7 +24,7 @@ const initialState: TransactionsState = {
 };
 
 const transactionsSlice = createSlice({
-  name: 'transactions',
+  name: "transactions",
   initialState,
   reducers: {
     setFilters: (state, action: PayloadAction<Partial<TransactionFilters>>) => {
@@ -33,30 +33,30 @@ const transactionsSlice = createSlice({
         state.pagination.page = action.payload.page;
       }
     },
-    resetFilters: state => {
+    resetFilters: (state) => {
       state.filters = initialState.filters;
       state.pagination.page = 1;
     },
     setCurrentTransaction: (state, action: PayloadAction<string | null>) => {
       if (action.payload) {
         state.currentTransaction =
-          state.transactions.find(t => t.id === action.payload) || null;
+          state.transactions.find((t) => t.id === action.payload) || null;
       } else {
         state.currentTransaction = null;
       }
     },
-    clearError: state => {
+    clearError: (state) => {
       state.error = null;
     },
-    clearTransactions: state => {
+    clearTransactions: (state) => {
       state.transactions = [];
       state.currentTransaction = null;
       state.pagination = initialState.pagination;
     },
   },
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
-      .addCase(fetchTransactionsByCustomerId.pending, state => {
+      .addCase(fetchTransactionsByCustomerId.pending, (state) => {
         state.loading.list = true;
         state.error = null;
       })

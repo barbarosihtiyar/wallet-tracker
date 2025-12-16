@@ -1,3 +1,3 @@
-export { default as dashboard } from './slice';
-export * from './action';
-export * from './types';
+export { default as dashboard } from "./slice";
+export * from "./action";
+export * from "./types";

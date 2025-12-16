@@ -1,7 +1,7 @@
-import './balance-card-skeleton.scss';
+import "./balance-card-skeleton.scss";
 
-import { Skeleton } from 'antd';
-import React from 'react';
+import { Skeleton } from "antd";
+import React from "react";
 
 const BalanceCardSkeleton: React.FC = () => {
   return (

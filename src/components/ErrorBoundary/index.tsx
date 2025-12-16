@@ -1,10 +1,10 @@
-import './error-boundary.scss';
+import "./error-boundary.scss";
 
-import React, { ReactNode } from 'react';
-import { withTranslation, type WithTranslation } from 'react-i18next';
+import React, { ReactNode } from "react";
+import { withTranslation, type WithTranslation } from "react-i18next";
 
-import { Button, Icon } from '@/components';
-import { Icons } from '@/shared/constants';
+import { Button, Icon } from "@/components";
+import { Icons } from "@/shared/constants";
 
 interface ErrorBoundaryProps extends WithTranslation {
   children: ReactNode;
@@ -21,7 +21,7 @@ class ErrorBoundary extends React.Component<
 > {
   constructor(props: ErrorBoundaryProps) {
     super(props);
-    this.state = { hasError: false, errorMessage: '' };
+    this.state = { hasError: false, errorMessage: "" };
   }
 
   static getDerivedStateFromError(error: Error): ErrorBoundaryState {
@@ -30,7 +30,7 @@ class ErrorBoundary extends React.Component<
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     /* eslint-disable-next-line no-console */
-    console.error('CustomErrorBoundary caught an error:', error, errorInfo);
+    console.error("CustomErrorBoundary caught an error:", error, errorInfo);
   }
 
   render() {
@@ -41,13 +41,13 @@ class ErrorBoundary extends React.Component<
           <div className="error-boundary__icon">
             <Icon name={Icons.WARNING} size={32} />
           </div>
-          <h2 className="error-boundary__title">{t('general.error.title')}</h2>
+          <h2 className="error-boundary__title">{t("general.error.title")}</h2>
           <p className="error-boundary__desc">
-            {this.state.errorMessage || t('general.error.desc')}
+            {this.state.errorMessage || t("general.error.desc")}
           </p>
           <div className="error-boundary__actions">
             <Button type="dark" onClick={() => window.location.reload()}>
-              {t('ui.button.close')}
+              {t("ui.button.close")}
             </Button>
           </div>
         </div>

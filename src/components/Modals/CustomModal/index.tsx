@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import './custom-modal.scss';
-import { CustomModalProps } from './types';
-import { Button } from '@/components';
-import { Config } from '@/app/router/config';
+import React, { useEffect, useState } from "react";
+import "./custom-modal.scss";
+import { CustomModalProps } from "./types";
+import { Button } from "@/components";
+import { Config } from "@/app/router/config";
 
 /**
  * Unified Custom Modal component
@@ -19,7 +19,7 @@ const CustomModal: React.FC<CustomModalProps> = ({
   onClick,
   width = 400,
   showOnce = false,
-  sessionKey = 'hasShownModal',
+  sessionKey = "hasShownModal",
 }) => {
   const [open, setOpen] = useState(false);
 
@@ -41,7 +41,7 @@ const CustomModal: React.FC<CustomModalProps> = ({
 
   const handleClose = () => {
     if (showOnce && isHomePage) {
-      sessionStorage.setItem(sessionKey, 'true');
+      sessionStorage.setItem(sessionKey, "true");
     }
     setOpen(false);
     onClose?.();

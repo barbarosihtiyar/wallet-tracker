@@ -1,5 +1,5 @@
-import { useMemo } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useMemo } from "react";
+import { useLocation } from "react-router-dom";
 
 const useQueryParam = (key: string): string | null => {
   const { search } = useLocation();

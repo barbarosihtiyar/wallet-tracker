@@ -1,7 +1,7 @@
-import { showGeneralModal } from '@/redux/slices/Notifications/slice';
-import { store } from '@/redux/store';
+import { showGeneralModal } from "@/redux/slices/Notifications/slice";
+import { store } from "@/redux/store";
 
-type NotificationType = 'success' | 'error' | 'info' | 'warning' | string;
+type NotificationType = "success" | "error" | "info" | "warning" | string;
 
 const GeneralModalFunction = (
   type: NotificationType,

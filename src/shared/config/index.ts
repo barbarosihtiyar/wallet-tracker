@@ -1,1 +1,1 @@
-export { appConfig } from './env';
+export { appConfig } from "./env";

@@ -1,10 +1,10 @@
-import React, { useMemo } from 'react';
-import { Skeleton } from 'antd';
-import { useTranslation } from 'react-i18next';
+import React, { useMemo } from "react";
+import { Skeleton } from "antd";
+import { useTranslation } from "react-i18next";
 
-import { Icon } from '@/components';
-import { Icons } from '@/shared/constants';
-import { PaginatedResponse, Customer, Transaction } from '@/shared/types/api';
+import { Icon } from "@/components";
+import { Icons } from "@/shared/constants";
+import { PaginatedResponse, Customer, Transaction } from "@/shared/types/api";
 
 type Props = {
   customers?: PaginatedResponse<Customer>;
@@ -12,7 +12,11 @@ type Props = {
   loading?: boolean;
 };
 
-const SummaryCards: React.FC<Props> = ({ customers, transactions, loading }) => {
+const SummaryCards: React.FC<Props> = ({
+  customers,
+  transactions,
+  loading,
+}) => {
   const { t } = useTranslation();
 
   const summary = useMemo(() => {
@@ -22,11 +26,11 @@ const SummaryCards: React.FC<Props> = ({ customers, transactions, loading }) => 
     );
 
     const activeWallets = customers?.items?.filter(
-      item => item.wallet?.status === 'active',
+      (item) => item.wallet?.status === "active",
     ).length;
 
     const pendingTx = transactions?.items?.filter(
-      tx => tx.status === 'pending',
+      (tx) => tx.status === "pending",
     ).length;
 
     return {
@@ -38,31 +42,31 @@ const SummaryCards: React.FC<Props> = ({ customers, transactions, loading }) => 
 
   const cards = [
     {
-      title: t('dashboard.summary.totalBalance'),
+      title: t("dashboard.summary.totalBalance"),
       value: summary.totalBalance.toLocaleString(undefined, {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
       }),
       icon: <Icon name={Icons.WALLET} />,
-      accent: 'purple',
+      accent: "purple",
     },
     {
-      title: t('dashboard.summary.activeWallets'),
+      title: t("dashboard.summary.activeWallets"),
       value: summary.activeWallets,
       icon: <Icon name={Icons.SUCCESS} />,
-      accent: 'green',
+      accent: "green",
     },
     {
-      title: t('dashboard.summary.pendingTx'),
+      title: t("dashboard.summary.pendingTx"),
       value: summary.pendingTx,
       icon: <Icon name={Icons.NOTIFICATION} />,
-      accent: 'yellow',
+      accent: "yellow",
     },
   ];
 
   return (
     <div className="dashboard-summary">
-      {cards.map(card => (
+      {cards.map((card) => (
         <div
           key={card.title}
           className={`dashboard-summary__card dashboard-summary__card--${card.accent}`}

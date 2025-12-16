@@ -1,13 +1,13 @@
-import './select-v1.scss';
+import "./select-v1.scss";
 
-import type { SelectProps } from 'antd';
-import { Select as AntSelect } from 'antd';
-import classNames from 'classnames';
-import React, { useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import type { SelectProps } from "antd";
+import { Select as AntSelect } from "antd";
+import classNames from "classnames";
+import React, { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
-import { ConditionalRender, Icon } from '@/components';
-import { Icons } from '@/shared/constants';
+import { ConditionalRender, Icon } from "@/components";
+import { Icons } from "@/shared/constants";
 
 type DataItem = {
   value?: string | number;
@@ -19,7 +19,7 @@ type DataItem = {
   location?: string;
 };
 
-type Props = Omit<SelectProps, 'options' | 'onChange' | 'value'> & {
+type Props = Omit<SelectProps, "options" | "onChange" | "value"> & {
   image?: boolean;
   data?: DataItem[];
   prefixIcon?: React.ReactNode;
@@ -68,33 +68,33 @@ const SelectV1: React.FC<Props> = ({
   const handleClickOutside = (event: MouseEvent) => {
     const target = event.target as HTMLElement;
     const insideSelect = !!selectRef.current?.contains(target);
-    const insideDropdown = !!target.closest('.ant-select-dropdown');
+    const insideDropdown = !!target.closest(".ant-select-dropdown");
     if (!insideSelect && !insideDropdown) {
       setIsOpen(false);
     }
   };
 
   useEffect(() => {
-    document.addEventListener('click', handleClickOutside, true);
+    document.addEventListener("click", handleClickOutside, true);
     return () => {
-      document.removeEventListener('click', handleClickOutside, true);
+      document.removeEventListener("click", handleClickOutside, true);
     };
   }, []);
 
   return (
     <div
       ref={selectRef}
-      className={classNames('select', onFocus && 'focus', className, {
-        'select--image': image,
-        'select--disabled': disabled,
+      className={classNames("select", onFocus && "focus", className, {
+        "select--image": image,
+        "select--disabled": disabled,
       })}
-      onMouseDown={e => {
+      onMouseDown={(e) => {
         if (disabled) return;
         e.preventDefault();
         setIsOpen(true);
       }}
-      onKeyDown={e => {
-        if (e.key === 'Escape') setIsOpen(false);
+      onKeyDown={(e) => {
+        if (e.key === "Escape") setIsOpen(false);
       }}
     >
       {(label || name) && <label>{label || name}</label>}
@@ -111,7 +111,7 @@ const SelectV1: React.FC<Props> = ({
         onChange={onChangeFunc}
         value={value}
         disabled={disabled}
-        placeholder={placeholder || (t('ui.placeholder.select') as string)}
+        placeholder={placeholder || (t("ui.placeholder.select") as string)}
         allowClear={allowClear}
         {...props}
       >
@@ -152,7 +152,7 @@ const SelectV1: React.FC<Props> = ({
       </AntSelect>
 
       <div
-        className={classNames('select__arrow', {
+        className={classNames("select__arrow", {
           selected: isSelected || !!value,
         })}
       >

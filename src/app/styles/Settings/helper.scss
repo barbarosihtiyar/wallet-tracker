@@ -1,8 +1,13 @@
 //example important for mixins usage
 
 @mixin square($value, $isImportant: false) {
-  width: $value#{if($isImportant, ' !important', '')};
-  height: $value#{if($isImportant, ' !important', '')};
+  @if $isImportant {
+    width: $value !important;
+    height: $value !important;
+  } @else {
+    width: $value;
+    height: $value;
+  }
 }
 
 @mixin widthHeight($width, $height) {
@@ -35,7 +40,7 @@
   transform: translate(-50%, -50%);
 }
 
-@mixin before($display: block, $position: absolute, $content: '') {
+@mixin before($display: block, $position: absolute, $content: "") {
   &::before {
     content: $content;
     display: $display;
@@ -44,7 +49,7 @@
   }
 }
 
-@mixin after($display: block, $position: absolute, $content: '') {
+@mixin after($display: block, $position: absolute, $content: "") {
   &::after {
     content: $content;
     display: $display;

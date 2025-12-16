@@ -1,8 +1,8 @@
-import './pagination.scss';
+import "./pagination.scss";
 
-import React from 'react';
+import React from "react";
 
-import { Props } from './types';
+import { Props } from "./types";
 
 const PaginationWrapper: React.FC<Props> = ({ children }) => (
   <div className="pagination-wrapper">{children}</div>

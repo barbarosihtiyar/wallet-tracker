@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import { EnvironmentTypes } from '@/shared/constants';
+import { EnvironmentTypes } from "@/shared/constants";
 
-import { getAvailableIcons, getIconComponent } from './registry';
-import type { IconProps } from './types';
+import { getAvailableIcons, getIconComponent } from "./registry";
+import type { IconProps } from "./types";
 
 const Icon: React.FC<IconProps> = ({ name, size = 16, ...rest }) => {
   const Component = getIconComponent(name);
