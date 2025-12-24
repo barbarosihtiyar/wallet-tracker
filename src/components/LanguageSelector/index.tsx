@@ -1,15 +1,15 @@
-import "./language-selector.scss";
+import './language-selector.scss';
 
-import React, { useEffect, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
+import React, { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { Icon } from "@/components";
-import { Icons } from "@/shared/constants";
+import { Icon } from '@/components';
+import { Icons } from '@/shared/constants';
 import {
   setupLanguageDirection,
   type SupportedLanguage,
   supportedLanguages,
-} from "@/shared/i18n";
+} from '@/shared/i18n';
 
 const LanguageSelector: React.FC = () => {
   const { i18n } = useTranslation();
@@ -18,15 +18,15 @@ const LanguageSelector: React.FC = () => {
 
   const current =
     (Object.keys(supportedLanguages) as SupportedLanguage[]).find(
-      (c) => c === (i18n.language as SupportedLanguage),
+      c => c === (i18n.language as SupportedLanguage),
     ) ?? (Object.keys(supportedLanguages)[0] as SupportedLanguage);
 
   useEffect(() => {
     const handleOutside = (e: MouseEvent) => {
       if (!rootRef.current?.contains(e.target as Node)) setOpen(false);
     };
-    document.addEventListener("click", handleOutside);
-    return () => document.removeEventListener("click", handleOutside);
+    document.addEventListener('click', handleOutside);
+    return () => document.removeEventListener('click', handleOutside);
   }, []);
 
   const changeLang = (code: SupportedLanguage) => {
@@ -43,7 +43,7 @@ const LanguageSelector: React.FC = () => {
         className="language__trigger"
         aria-haspopup="listbox"
         aria-expanded={open}
-        onClick={() => setOpen((o) => !o)}
+        onClick={() => setOpen(o => !o)}
       >
         <Icon width={14} height={14} name={Icons.LANGUAGE} />
         <span className="language__label">{supportedLanguages[current]}</span>
@@ -60,7 +60,7 @@ const LanguageSelector: React.FC = () => {
                   type="button"
                   role="option"
                   aria-selected={active}
-                  className={`language__item ${active ? "is-active" : ""}`}
+                  className={`language__item ${active ? 'is-active' : ''}`}
                   onClick={() => changeLang(code as SupportedLanguage)}
                 >
                   {name}

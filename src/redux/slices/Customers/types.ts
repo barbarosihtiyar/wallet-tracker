@@ -14,7 +14,7 @@ export interface Customer {
   dateOfBirth: string;
   nationalId: number;
   address: Address;
-  kycStatus: "UNKNOWN" | "PENDING" | "APPROVED" | "REJECTED";
+  kycStatus: 'UNKNOWN' | 'PENDING' | 'APPROVED' | 'REJECTED';
   isActive: boolean;
   createdAt: string;
   updatedAt: string;
@@ -36,7 +36,7 @@ export interface UpdateCustomerPayload {
   dateOfBirth: string;
   nationalId: number;
   address: Address;
-  kycStatus: "UNKNOWN" | "PENDING" | "APPROVED" | "REJECTED";
+  kycStatus: 'UNKNOWN' | 'PENDING' | 'APPROVED' | 'REJECTED';
   isActive: boolean;
 }
 
@@ -44,8 +44,8 @@ export interface CustomerFilters {
   page?: number;
   pageSize?: number;
   search?: string;
-  kycStatus?: "UNKNOWN" | "PENDING" | "APPROVED" | "REJECTED" | "all";
-  isActive?: boolean | "all";
+  kycStatus?: 'UNKNOWN' | 'PENDING' | 'APPROVED' | 'REJECTED' | 'all';
+  isActive?: boolean | 'all';
 }
 
 export interface PaginatedCustomersResponse {

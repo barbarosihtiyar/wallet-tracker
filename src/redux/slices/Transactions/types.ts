@@ -1,12 +1,12 @@
 export interface Transaction {
   id: string;
   customerId: string;
-  type: "DEBIT" | "CREDIT";
+  type: 'DEBIT' | 'CREDIT';
   amount: number;
   currency: string;
   createdAt: string;
   description: string;
-  transferDirection: "INCOMING" | "OUTGOING";
+  transferDirection: 'INCOMING' | 'OUTGOING';
   merchantName?: string;
   receiverName?: string;
   receiverWalletNumber?: string;
@@ -15,8 +15,8 @@ export interface Transaction {
 export interface TransactionFilters {
   page?: number;
   pageSize?: number;
-  type?: "DEBIT" | "CREDIT" | "all";
-  transferDirection?: "INCOMING" | "OUTGOING" | "all";
+  type?: 'DEBIT' | 'CREDIT' | 'all';
+  transferDirection?: 'INCOMING' | 'OUTGOING' | 'all';
   dateFrom?: string;
   dateTo?: string;
   minAmount?: number;

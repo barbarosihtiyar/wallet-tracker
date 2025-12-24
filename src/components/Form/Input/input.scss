@@ -1,4 +1,4 @@
-@use "@/app/styles/Settings" as settings;
+@use '@/app/styles/Settings' as settings;
 
 .input {
   $input: &;
@@ -28,7 +28,7 @@
         margin-inline-end: 22px;
 
         &:before {
-          content: "";
+          content: '';
           position: absolute;
           top: 50%;
           inset-inline-end: -11px;
@@ -77,7 +77,7 @@
       }
     }
 
-    input[type="password"] {
+    input[type='password'] {
       letter-spacing: 6px;
       font-weight: 700;
 
@@ -88,7 +88,7 @@
       }
     }
 
-    input[type="number"] {
+    input[type='number'] {
       -moz-appearance: textfield;
     }
 
@@ -203,7 +203,7 @@
 
       &::before {
         @include settings.square(calc(100% + 6px));
-        content: "";
+        content: '';
         position: absolute;
         top: -3px;
         inset-inline-start: -3px;
@@ -221,7 +221,7 @@
 
       &::before {
         @include settings.square(calc(100% + 6px));
-        content: "";
+        content: '';
         position: absolute;
         top: -3px;
         inset-inline-start: -3px;
@@ -253,7 +253,7 @@
 
 .input--masked {
   .ant-input {
-    font-family: "NeueMontreal", sans-serif;
+    font-family: 'NeueMontreal', sans-serif;
   }
 }
 

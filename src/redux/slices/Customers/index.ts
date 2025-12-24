@@ -1,9 +1,9 @@
-export * from "./types";
-export * from "./actions";
-export { default as customersReducer } from "./slice";
+export * from './actions';
+export { default as customersReducer } from './slice';
 export {
-  setFilters,
+  clearError,
   resetFilters,
   setCurrentCustomer,
-  clearError,
-} from "./slice";
+  setFilters,
+} from './slice';
+export * from './types';

@@ -1,14 +1,14 @@
-import "./new-table.scss";
+import './new-table.scss';
 
-import { Pagination, Table } from "antd";
-import classNames from "classnames";
-import React, { useEffect, useMemo, useState } from "react";
-import { Trans, useTranslation } from "react-i18next";
+import { Pagination, Table } from 'antd';
+import classNames from 'classnames';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Trans, useTranslation } from 'react-i18next';
 
-import { EmptyComp, Icon } from "@/components";
-import { useAppDispatch } from "@/shared/hooks";
+import { EmptyComp, Icon } from '@/components';
+import { useAppDispatch } from '@/shared/hooks';
 
-import { TableFuncProps } from "./types";
+import { TableFuncProps } from './types';
 
 const TableFunc: React.FC<TableFuncProps> = ({
   changeEmpty = false,
@@ -25,13 +25,13 @@ const TableFunc: React.FC<TableFuncProps> = ({
   pageSize = 10,
   sortableColumns = [],
   sortBy,
-  sortOrder = "asc",
+  sortOrder = 'asc',
   onSort,
   ...props
 }) => {
   const dispatch = useAppDispatch();
   const initialPage =
-    typeof props.pagination === "object" && props.pagination?.current
+    typeof props.pagination === 'object' && props.pagination?.current
       ? props.pagination.current
       : 1;
   const [pageNumber, setPageNumber] = useState(initialPage);
@@ -39,20 +39,20 @@ const TableFunc: React.FC<TableFuncProps> = ({
   const EMPTY_DATA: never[] = [];
 
   useEffect(() => {
-    if (typeof props.pagination === "object" && props.pagination?.current) {
+    if (typeof props.pagination === 'object' && props.pagination?.current) {
       setPageNumber(props.pagination.current);
     }
   }, [props.pagination]);
 
   const enhancedColumns = useMemo(() => {
-    return column?.map((col) => {
+    return column?.map(col => {
       const fieldKey =
-        ("dataIndex" in col && (col as any).dataIndex) ||
-        ("key" in col && col.key) ||
-        "";
+        ('dataIndex' in col && (col as any).dataIndex) ||
+        ('key' in col && col.key) ||
+        '';
 
       if (
-        typeof fieldKey === "string" &&
+        typeof fieldKey === 'string' &&
         sortableColumns.includes(fieldKey) &&
         onSort
       ) {
@@ -88,7 +88,7 @@ const TableFunc: React.FC<TableFuncProps> = ({
     for (const key in values) {
       if (Object.prototype.hasOwnProperty.call(values, key)) {
         trimmedValues[key] =
-          typeof values[key] === "string" ? values[key].trim() : values[key];
+          typeof values[key] === 'string' ? values[key].trim() : values[key];
       }
     }
 
@@ -106,7 +106,7 @@ const TableFunc: React.FC<TableFuncProps> = ({
 
   return (
     <>
-      <div className={classNames("table ", { "table--empty": changeEmpty })}>
+      <div className={classNames('table ', { 'table--empty': changeEmpty })}>
         <Table
           {...props}
           locale={locale as unknown as Record<string, string>}
@@ -133,7 +133,7 @@ const TableFunc: React.FC<TableFuncProps> = ({
           showSizeChanger={false}
           showQuickJumper={false}
           defaultPageSize={pageSize}
-          onChange={(p) => {
+          onChange={p => {
             setPageNumber(p);
             onAction(form?.getFieldsValue?.() ?? {}, p);
           }}

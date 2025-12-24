@@ -1,6 +1,6 @@
-import type { SerializedError } from "@reduxjs/toolkit";
+import type { SerializedError } from '@reduxjs/toolkit';
 
-import i18n from "@/shared/i18n";
+import i18n from '@/shared/i18n';
 
 type RejectedAction = {
   payload?: unknown;
@@ -8,7 +8,7 @@ type RejectedAction = {
 };
 
 export const getErrorMessage = (action: RejectedAction): string => {
-  if (typeof action.payload === "string" && action.payload)
+  if (typeof action.payload === 'string' && action.payload)
     return action.payload;
-  return action.error?.message ?? i18n.t("general.error.desc");
+  return action.error?.message ?? i18n.t('general.error.desc');
 };

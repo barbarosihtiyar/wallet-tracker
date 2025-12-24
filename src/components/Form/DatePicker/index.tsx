@@ -1,11 +1,11 @@
-import "./date-picker.scss";
+import './date-picker.scss';
 
-import { DatePicker } from "antd";
-import dayjs, { Dayjs } from "dayjs";
-import customParseFormat from "dayjs/plugin/customParseFormat";
-import React, { useEffect, useRef, useState } from "react";
+import { DatePicker } from 'antd';
+import dayjs, { Dayjs } from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+import React, { useEffect, useRef, useState } from 'react';
 
-import { DatePickerLocale, LocaleKey, locales, Props } from "./types";
+import { DatePickerLocale, LocaleKey, locales, Props } from './types';
 
 dayjs.extend(customParseFormat);
 
@@ -17,8 +17,8 @@ const Datepicker: React.FC<Props> = ({
   ...props
 }) => {
   const getLocale = (): DatePickerLocale => {
-    if (typeof window === "undefined") return locales.en;
-    const raw = localStorage.getItem("i18nextLng") || "en";
+    if (typeof window === 'undefined') return locales.en;
+    const raw = localStorage.getItem('i18nextLng') || 'en';
     const key = raw.slice(0, 2).toLowerCase() as LocaleKey;
     return locales[key] ?? locales.en;
   };
@@ -27,7 +27,7 @@ const Datepicker: React.FC<Props> = ({
     getLocale(),
   );
 
-  const inputBufferRef = useRef<string>("");
+  const inputBufferRef = useRef<string>('');
 
   useEffect(() => {
     setLangLocale(getLocale());
@@ -42,25 +42,25 @@ const Datepicker: React.FC<Props> = ({
     }
 
     if (
-      key === "Tab" ||
-      key === "ArrowLeft" ||
-      key === "ArrowRight" ||
-      key === "Enter"
+      key === 'Tab' ||
+      key === 'ArrowLeft' ||
+      key === 'ArrowRight' ||
+      key === 'Enter'
     ) {
       return;
     }
 
-    if (key === "Backspace" || key === "Delete") {
+    if (key === 'Backspace' || key === 'Delete') {
       e.preventDefault();
 
-      const currentDigits = input.value.replace(/\D/g, "");
+      const currentDigits = input.value.replace(/\D/g, '');
 
-      if (key === "Backspace" && currentDigits.length > 0) {
+      if (key === 'Backspace' && currentDigits.length > 0) {
         const newDigits = currentDigits.slice(0, -1);
         inputBufferRef.current = newDigits;
 
         if (newDigits.length === 0) {
-          input.value = "";
+          input.value = '';
           return;
         }
 
@@ -68,7 +68,7 @@ const Datepicker: React.FC<Props> = ({
         const month = newDigits.slice(2, 4);
         const year = newDigits.slice(4, 8);
 
-        let formatted = "";
+        let formatted = '';
         if (newDigits.length <= 2) {
           formatted = day;
         } else if (newDigits.length <= 4) {
@@ -78,9 +78,9 @@ const Datepicker: React.FC<Props> = ({
         }
 
         input.value = formatted;
-      } else if (key === "Delete") {
-        inputBufferRef.current = "";
-        input.value = "";
+      } else if (key === 'Delete') {
+        inputBufferRef.current = '';
+        input.value = '';
       }
 
       return;
@@ -93,7 +93,7 @@ const Datepicker: React.FC<Props> = ({
 
     e.preventDefault();
 
-    const currentDigits = input.value.replace(/\D/g, "");
+    const currentDigits = input.value.replace(/\D/g, '');
 
     if (currentDigits.length >= 8) {
       return;
@@ -102,17 +102,17 @@ const Datepicker: React.FC<Props> = ({
     inputBufferRef.current = currentDigits + key;
     const digits = inputBufferRef.current;
 
-    let formatted = "";
+    let formatted = '';
     const day = digits.slice(0, 2);
     const month = digits.slice(2, 4);
     const year = digits.slice(4, 8);
 
     if (digits.length <= 2) {
       formatted = day;
-      if (digits.length === 2) formatted += "/";
+      if (digits.length === 2) formatted += '/';
     } else if (digits.length <= 4) {
       formatted = `${day}/${month}`;
-      if (digits.length === 4) formatted += "/";
+      if (digits.length === 4) formatted += '/';
     } else {
       formatted = `${day}/${month}/${year}`;
     }
@@ -120,22 +120,22 @@ const Datepicker: React.FC<Props> = ({
     input.value = formatted;
 
     if (digits.length === 8) {
-      const parsedDate = dayjs(formatted, "DD/MM/YYYY", true);
+      const parsedDate = dayjs(formatted, 'DD/MM/YYYY', true);
 
       if (parsedDate.isValid()) {
         const currentValue =
           value && !Array.isArray(value) ? dayjs(value) : null;
         const isDifferent =
-          !currentValue || !currentValue.isSame(parsedDate, "day");
+          !currentValue || !currentValue.isSame(parsedDate, 'day');
 
         if (onChange && isDifferent) {
           onChange(parsedDate, formatted);
         }
 
-        inputBufferRef.current = "";
+        inputBufferRef.current = '';
       } else {
-        inputBufferRef.current = "";
-        input.value = "";
+        inputBufferRef.current = '';
+        input.value = '';
       }
     }
   };
@@ -143,8 +143,8 @@ const Datepicker: React.FC<Props> = ({
   const handlePaste = (event: React.ClipboardEvent<HTMLInputElement>) => {
     event.preventDefault();
 
-    const pasted = event.clipboardData?.getData("text") ?? "";
-    const digits = pasted.replace(/\D/g, "").slice(0, 8);
+    const pasted = event.clipboardData?.getData('text') ?? '';
+    const digits = pasted.replace(/\D/g, '').slice(0, 8);
 
     if (digits.length !== 8) {
       return;
@@ -154,17 +154,17 @@ const Datepicker: React.FC<Props> = ({
     const month = digits.slice(2, 4);
     const year = digits.slice(4, 8);
     const formatted = `${day}/${month}/${year}`;
-    const parsedDate = dayjs(formatted, "DD/MM/YYYY", true);
+    const parsedDate = dayjs(formatted, 'DD/MM/YYYY', true);
 
     if (!parsedDate.isValid()) return;
 
     const input = event.target as HTMLInputElement;
     input.value = formatted;
-    inputBufferRef.current = "";
+    inputBufferRef.current = '';
 
     const currentValue = value && !Array.isArray(value) ? dayjs(value) : null;
     const isDifferent =
-      !currentValue || !currentValue.isSame(parsedDate, "day");
+      !currentValue || !currentValue.isSame(parsedDate, 'day');
 
     if (onChange && isDifferent) {
       onChange(parsedDate, formatted);
@@ -175,13 +175,13 @@ const Datepicker: React.FC<Props> = ({
     date: Dayjs | Dayjs[] | null,
     dateString: string | string[] | null,
   ) => {
-    inputBufferRef.current = "";
+    inputBufferRef.current = '';
     if (!date || Array.isArray(date)) return;
 
     if (onChange) {
       const str = Array.isArray(dateString)
-        ? dateString.join("/")
-        : (dateString ?? "");
+        ? dateString.join('/')
+        : (dateString ?? '');
       onChange(date, str);
     }
   };

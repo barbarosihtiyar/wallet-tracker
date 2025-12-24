@@ -1,12 +1,12 @@
-import "./avatar.scss";
+import './avatar.scss';
 
-import classNames from "classnames";
-import React from "react";
+import classNames from 'classnames';
+import React from 'react';
 
-import { Icon } from "@/components";
+import { Icon } from '@/components';
 
 interface AvatarProps {
-  size?: "sm" | "md" | "lg";
+  size?: 'sm' | 'md' | 'lg';
   firstName?: string;
   lastName?: string;
   image?: string;
@@ -14,7 +14,7 @@ interface AvatarProps {
 }
 
 const Avatar: React.FC<AvatarProps> = ({
-  size = "md",
+  size = 'md',
   firstName,
   lastName,
   image,
@@ -22,16 +22,16 @@ const Avatar: React.FC<AvatarProps> = ({
   ...props
 }) => {
   const placeholder =
-    (firstName?.[0]?.toUpperCase() || "") +
-    (lastName?.[0]?.toUpperCase() || "");
+    (firstName?.[0]?.toUpperCase() || '') +
+    (lastName?.[0]?.toUpperCase() || '');
 
   return (
     <div
-      className={classNames("avatar", {
-        "avatar--sm": size === "sm",
-        "avatar--md": size === "md",
-        "avatar--lg": size === "lg",
-        "is-clickable": !!onClick,
+      className={classNames('avatar', {
+        'avatar--sm': size === 'sm',
+        'avatar--md': size === 'md',
+        'avatar--lg': size === 'lg',
+        'is-clickable': !!onClick,
       })}
       onClick={onClick}
       {...props}

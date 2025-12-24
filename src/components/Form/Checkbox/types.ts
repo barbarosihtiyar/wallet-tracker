@@ -1,7 +1,7 @@
-import type { CheckboxProps } from "antd";
-import type { ReactNode } from "react";
+import type { CheckboxProps } from 'antd';
+import type { ReactNode } from 'react';
 
-export type Props = Omit<CheckboxProps, "children" | "onChange"> & {
+export type Props = Omit<CheckboxProps, 'children' | 'onChange'> & {
   text?: ReactNode;
-  onChange?: CheckboxProps["onChange"];
+  onChange?: CheckboxProps['onChange'];
 };

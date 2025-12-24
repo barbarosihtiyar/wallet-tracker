@@ -1,4 +1,4 @@
-import type { ComponentType, SVGProps } from "react";
+import type { ComponentType, SVGProps } from 'react';
 
 type IconComponent = ComponentType<SVGProps<SVGSVGElement>>;
 
@@ -7,16 +7,16 @@ type SvgModule = {
   ReactComponent?: IconComponent;
 };
 
-const modules = import.meta.glob<SvgModule>("@/assets/icons/*.svg", {
+const modules = import.meta.glob<SvgModule>('@/assets/icons/*.svg', {
   eager: true,
-  query: "?react",
+  query: '?react',
 });
 
 const iconRegistry: Record<string, IconComponent> = {};
 
 Object.entries(modules).forEach(([path, module]) => {
-  const fileName = path.split("/").pop() || "";
-  const iconName = fileName.replace(".svg", "");
+  const fileName = path.split('/').pop() || '';
+  const iconName = fileName.replace('.svg', '');
 
   const Component = module.default ?? module.ReactComponent;
 

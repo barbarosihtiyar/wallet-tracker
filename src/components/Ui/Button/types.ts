@@ -1,20 +1,20 @@
-import { ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode } from 'react';
 
 export type ButtonType =
-  | "basic"
-  | "light"
-  | "dark"
-  | "grey"
-  | "warning"
+  | 'basic'
+  | 'light'
+  | 'dark'
+  | 'grey'
+  | 'warning'
   | string;
-export type ButtonSize = "basic" | "small" | "big" | string;
-export type CompType = "button" | "nav" | "disabled" | string;
+export type ButtonSize = 'basic' | 'small' | 'big' | string;
+export type CompType = 'button' | 'nav' | 'disabled' | string;
 
 export type Props = Omit<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
-  "type"
+  'type'
 > & {
-  htmlType?: "button" | "submit" | "reset";
+  htmlType?: 'button' | 'submit' | 'reset';
   className?: string;
   iconLeft?: ReactElement;
   iconRight?: ReactElement;
@@ -25,5 +25,5 @@ export type Props = Omit<
   compType?: CompType;
   children?: ReactNode;
   isLoading?: boolean;
-  loaderTheme?: "light" | "dark";
+  loaderTheme?: 'light' | 'dark';
 };

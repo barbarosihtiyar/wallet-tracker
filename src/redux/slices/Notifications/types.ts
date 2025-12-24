@@ -1,8 +1,8 @@
 export type NotificationType =
-  | "success"
-  | "error"
-  | "info"
-  | "warning"
+  | 'success'
+  | 'error'
+  | 'info'
+  | 'warning'
   | string;
 
 export type NotificationItem = {

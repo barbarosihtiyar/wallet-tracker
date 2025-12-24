@@ -1,4 +1,4 @@
-@use "@/app/styles/Settings" as settings;
+@use '@/app/styles/Settings' as settings;
 
 .empty {
   position: relative;
@@ -38,7 +38,7 @@
       }
 
       &::before {
-        content: "";
+        content: '';
         position: absolute;
         @include settings.square(100%);
         top: 0;

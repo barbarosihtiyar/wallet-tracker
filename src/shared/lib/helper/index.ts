@@ -1,16 +1,16 @@
-import { TFunction } from "i18next";
-import type { RefObject } from "react";
+import { TFunction } from 'i18next';
+import type { RefObject } from 'react';
 
-import { ToastFunction } from "@/components";
-import i18n from "@/shared/i18n";
+import { ToastFunction } from '@/components';
+import i18n from '@/shared/i18n';
 
 const isPlainObject = (v: unknown): v is Record<string, unknown> =>
-  Object.prototype.toString.call(v) === "[object Object]";
+  Object.prototype.toString.call(v) === '[object Object]';
 
 export const hasContent = (v: unknown): boolean => {
   if (v == null) return false;
-  if (typeof v === "boolean") return v;
-  if (typeof v === "string") return v.trim().length > 0;
+  if (typeof v === 'boolean') return v;
+  if (typeof v === 'string') return v.trim().length > 0;
   if (Array.isArray(v)) return v.length > 0;
   if (v instanceof Map || v instanceof Set) return v.size > 0;
   if (isPlainObject(v)) return Object.keys(v).length > 0;
@@ -19,7 +19,7 @@ export const hasContent = (v: unknown): boolean => {
 };
 
 export const isEmpty = (v: unknown) =>
-  v === undefined || v === null || v === "";
+  v === undefined || v === null || v === '';
 
 export const removeEmptyFields = <T extends Record<string, unknown>>(
   obj: T,
@@ -38,17 +38,17 @@ export const encodeUrlData = (data: string[] | string): string => {
   const jsonString = JSON.stringify(data);
   return window
     .btoa(jsonString)
-    .replace(/\+/g, "-")
-    .replace(/\//g, "_")
-    .replace(/=/g, "");
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=/g, '');
 };
 
 export const decodeUrlData = (encodedData: string): string[] | string => {
   try {
-    let base64 = encodedData.replace(/-/g, "+").replace(/_/g, "/");
+    let base64 = encodedData.replace(/-/g, '+').replace(/_/g, '/');
 
     while (base64.length % 4) {
-      base64 += "=";
+      base64 += '=';
     }
 
     const jsonString = window.atob(base64);
@@ -60,7 +60,7 @@ export const decodeUrlData = (encodedData: string): string[] | string => {
 
 export const getImageProxyUrl = (
   imagePath: string | undefined | null,
-  type = "imt",
+  type = 'imt',
 ): string | undefined => {
   if (isEmpty(imagePath)) {
     return undefined;
@@ -69,35 +69,35 @@ export const getImageProxyUrl = (
   const baseUrl = `${process.env.PUBLIC_URL}/${type}/api/FileUpload/proxy/image`;
   const encodedPath = encodeURIComponent(imagePath!);
 
-  return `${baseUrl}?filename=${encodedPath}${type === "id" ? "&crop=true" : ""}`;
+  return `${baseUrl}?filename=${encodedPath}${type === 'id' ? '&crop=true' : ''}`;
 };
 
 export const handleDisabledClick = (t: TFunction) => {
   ToastFunction(
-    t("general.soonInformation.title"),
-    t("general.soonInformation.description"),
-    "info",
+    t('general.soonInformation.title'),
+    t('general.soonInformation.description'),
+    'info',
   );
 };
 
 export const returnEmptyStringIfNull = (
   value: string | null | undefined | number,
 ) => {
-  return value ?? "-";
+  return value ?? '-';
 };
 
 export const handleResponseStatus = (code: number) => {
   if (code === 0) {
     ToastFunction(
-      i18n.t("ui.toast.success.title"),
-      i18n.t("ui.toast.success.description"),
-      "success",
+      i18n.t('ui.toast.success.title'),
+      i18n.t('ui.toast.success.description'),
+      'success',
     );
   } else {
     ToastFunction(
-      i18n.t("ui.toast.error.title"),
-      i18n.t("ui.toast.error.description"),
-      "error",
+      i18n.t('ui.toast.error.title'),
+      i18n.t('ui.toast.error.description'),
+      'error',
     );
   }
 };
@@ -116,12 +116,12 @@ const scrollTo = (
 ) => {
   if (!element) return;
 
-  const behavior = options?.behavior ?? "smooth";
+  const behavior = options?.behavior ?? 'smooth';
 
   if (!options?.offset) {
     element.scrollIntoView({
       behavior,
-      block: options?.block ?? "start",
+      block: options?.block ?? 'start',
     });
     return;
   }
@@ -139,7 +139,7 @@ export const scrollToRef = (
   ref: RefObject<HTMLElement | null>,
   options?: ScrollToRefOptions,
 ) => {
-  if (typeof window === "undefined") return;
+  if (typeof window === 'undefined') return;
 
   scrollTo(ref?.current ?? null, options);
 };
@@ -148,12 +148,12 @@ export const scrollToElement = (
   element: HTMLElement | null,
   options?: ScrollToElementOptions,
 ) => {
-  if (typeof window === "undefined") return;
+  if (typeof window === 'undefined') return;
   scrollTo(element, options);
 };
 
-export const scrollToTop = (behavior: ScrollBehavior = "smooth") => {
-  if (typeof window === "undefined") return;
+export const scrollToTop = (behavior: ScrollBehavior = 'smooth') => {
+  if (typeof window === 'undefined') return;
 
   window.scrollTo({
     top: 0,
@@ -169,15 +169,15 @@ export const findOptionLabel = (
   value?: number | string | null,
 ): string => {
   if (value === null || value === undefined) {
-    return "-";
+    return '-';
   }
 
   const stringValue = value.toString();
   const matchedOption = options.find(
-    (option) => option.value.toString() === stringValue,
+    option => option.value.toString() === stringValue,
   );
 
-  return matchedOption?.label ?? "-";
+  return matchedOption?.label ?? '-';
 };
 
 type OptionWithMappings = {
@@ -192,14 +192,14 @@ type OptionWithMappings = {
 export const findLabel = (
   options: OptionWithMappings[],
   value?: number | string | null,
-  type: "name" | "code" | "symbol" = "code",
+  type: 'name' | 'code' | 'symbol' = 'code',
 ): string => {
   if (value === null || value === undefined) {
-    return "-";
+    return '-';
   }
 
   const stringValue = value.toString();
-  const matchedOption = options.find((option) => {
+  const matchedOption = options.find(option => {
     if (!option || option.id === undefined || option.id === null) {
       return false;
     }
@@ -208,20 +208,20 @@ export const findLabel = (
   });
 
   if (!matchedOption) {
-    return "-";
+    return '-';
   }
 
   const { name, shortLabel, symbol } = matchedOption;
 
-  if (type === "name") {
-    return name ?? "-";
-  } else if (type === "code") {
-    return shortLabel ?? "-";
-  } else if (type === "symbol") {
-    return symbol ?? "-";
+  if (type === 'name') {
+    return name ?? '-';
+  } else if (type === 'code') {
+    return shortLabel ?? '-';
+  } else if (type === 'symbol') {
+    return symbol ?? '-';
   }
 
-  return name ?? "-";
+  return name ?? '-';
 };
 
 export const formatPhoneNumber = (
@@ -229,19 +229,19 @@ export const formatPhoneNumber = (
   phoneNumber?: string | number | null,
 ): string => {
   if (!phoneNumber) {
-    return "-";
+    return '-';
   }
 
-  const code = countryCode ? `+${String(countryCode).replace(/^\+/, "")}` : "";
-  const number = String(phoneNumber).replace(/\D/g, "");
+  const code = countryCode ? `+${String(countryCode).replace(/^\+/, '')}` : '';
+  const number = String(phoneNumber).replace(/\D/g, '');
 
   if (!number) {
-    return "-";
+    return '-';
   }
 
   const formatted = number.replace(
     /(\d{3})(\d{3})(\d{2})(\d{2})/,
-    "$1 $2 $3 $4",
+    '$1 $2 $3 $4',
   );
 
   return code ? `${code} ${formatted}` : formatted;

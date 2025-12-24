@@ -1,12 +1,13 @@
-import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import type { CustomersState, CustomerFilters } from "./types";
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+
 import {
-  fetchCustomers,
-  fetchCustomerById,
   createCustomer,
-  updateCustomer,
   deleteCustomer,
-} from "./actions";
+  fetchCustomerById,
+  fetchCustomers,
+  updateCustomer,
+} from './actions';
+import type { CustomerFilters, CustomersState } from './types';
 
 const initialState: CustomersState = {
   customers: [],
@@ -14,9 +15,9 @@ const initialState: CustomersState = {
   filters: {
     page: 1,
     pageSize: 10,
-    search: "",
-    kycStatus: "all",
-    isActive: "all",
+    search: '',
+    kycStatus: 'all',
+    isActive: 'all',
   },
   pagination: {
     page: 1,
@@ -34,7 +35,7 @@ const initialState: CustomersState = {
 };
 
 const customersSlice = createSlice({
-  name: "customers",
+  name: 'customers',
   initialState,
   reducers: {
     setFilters: (state, action: PayloadAction<Partial<CustomerFilters>>) => {
@@ -43,25 +44,25 @@ const customersSlice = createSlice({
         state.pagination.page = action.payload.page;
       }
     },
-    resetFilters: (state) => {
+    resetFilters: state => {
       state.filters = initialState.filters;
       state.pagination.page = 1;
     },
     setCurrentCustomer: (state, action: PayloadAction<string | null>) => {
       if (action.payload) {
         state.currentCustomer =
-          state.customers.find((c) => c.id === action.payload) || null;
+          state.customers.find(c => c.id === action.payload) || null;
       } else {
         state.currentCustomer = null;
       }
     },
-    clearError: (state) => {
+    clearError: state => {
       state.error = null;
     },
   },
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
-      .addCase(fetchCustomers.pending, (state) => {
+      .addCase(fetchCustomers.pending, state => {
         state.loading.list = true;
         state.error = null;
       })
@@ -80,7 +81,7 @@ const customersSlice = createSlice({
       });
 
     builder
-      .addCase(fetchCustomerById.pending, (state) => {
+      .addCase(fetchCustomerById.pending, state => {
         state.loading.detail = true;
         state.error = null;
       })
@@ -94,7 +95,7 @@ const customersSlice = createSlice({
       });
 
     builder
-      .addCase(createCustomer.pending, (state) => {
+      .addCase(createCustomer.pending, state => {
         state.loading.create = true;
         state.error = null;
       })
@@ -109,14 +110,14 @@ const customersSlice = createSlice({
       });
 
     builder
-      .addCase(updateCustomer.pending, (state) => {
+      .addCase(updateCustomer.pending, state => {
         state.loading.update = true;
         state.error = null;
       })
       .addCase(updateCustomer.fulfilled, (state, action) => {
         state.loading.update = false;
         const index = state.customers.findIndex(
-          (c) => c.id === action.payload.id,
+          c => c.id === action.payload.id,
         );
         if (index !== -1) {
           state.customers[index] = action.payload;
@@ -131,15 +132,13 @@ const customersSlice = createSlice({
       });
 
     builder
-      .addCase(deleteCustomer.pending, (state) => {
+      .addCase(deleteCustomer.pending, state => {
         state.loading.delete = true;
         state.error = null;
       })
       .addCase(deleteCustomer.fulfilled, (state, action) => {
         state.loading.delete = false;
-        state.customers = state.customers.filter(
-          (c) => c.id !== action.payload,
-        );
+        state.customers = state.customers.filter(c => c.id !== action.payload);
         if (state.currentCustomer?.id === action.payload) {
           state.currentCustomer = null;
         }

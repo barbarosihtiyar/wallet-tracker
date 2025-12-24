@@ -1,9 +1,9 @@
-import { ToastFunction } from "@/components";
-import { appConfig } from "@/shared/config";
-import { languageVariants } from "@/shared/constants";
-import { buildPaginationQuery } from "@/shared/lib/pagination";
-import i18n from "@/shared/i18n";
-import type { ApiResponse, LangKey } from "@/shared/types/HttpTypes";
+import { ToastFunction } from '@/components';
+import { appConfig } from '@/shared/config';
+import { languageVariants } from '@/shared/constants';
+import i18n from '@/shared/i18n';
+import { buildPaginationQuery } from '@/shared/lib/pagination';
+import type { ApiResponse, LangKey } from '@/shared/types/HttpTypes';
 
 export interface ApiError extends Error {
   status: number;
@@ -18,7 +18,7 @@ export const createApiError = (
   details?: unknown,
 ): ApiError => {
   const error = new Error(message) as ApiError;
-  error.name = "ApiError";
+  error.name = 'ApiError';
   error.status = status;
   error.path = path;
   error.details = details;
@@ -26,10 +26,10 @@ export const createApiError = (
 };
 
 export const isApiError = (error: unknown): error is ApiError => {
-  return error instanceof Error && error.name === "ApiError";
+  return error instanceof Error && error.name === 'ApiError';
 };
 
-type HttpMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
+type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
 
 type RequestConfig<TBody = unknown> = {
   path: string;
@@ -50,20 +50,20 @@ type RequestConfig<TBody = unknown> = {
 const isAbortError = (error: unknown) => {
   return (
     error instanceof DOMException ||
-    (error as Error)?.name === "AbortError" ||
-    (error as Error)?.message === "Aborted"
+    (error as Error)?.name === 'AbortError' ||
+    (error as Error)?.message === 'Aborted'
   );
 };
 
 const mergeSignals = (signals: (AbortSignal | undefined)[]): AbortSignal => {
   const controller = new AbortController();
 
-  signals.forEach((signal) => {
+  signals.forEach(signal => {
     if (!signal) return;
     if (signal.aborted) {
       controller.abort();
     } else {
-      signal.addEventListener("abort", () => controller.abort());
+      signal.addEventListener('abort', () => controller.abort());
     }
   });
 
@@ -72,32 +72,32 @@ const mergeSignals = (signals: (AbortSignal | undefined)[]): AbortSignal => {
 
 const buildUrl = (path: string, params?: Record<string, unknown>) => {
   const base = appConfig.apiBaseUrl;
-  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
-  const query = params ? buildPaginationQuery(params) : "";
+  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+  const query = params ? buildPaginationQuery(params) : '';
   return `${base}${normalizedPath}${query}`;
 };
 
 const defaultHeaders = () => {
-  const selectedLang = localStorage.getItem("i18nextLng") as LangKey | null;
-  const langKey: LangKey = (selectedLang ?? "en") as LangKey;
+  const selectedLang = localStorage.getItem('i18nextLng') as LangKey | null;
+  const langKey: LangKey = (selectedLang ?? 'en') as LangKey;
 
   return {
-    accept: "application/json",
-    "Content-Type": "application/json",
-    "Accept-Language": languageVariants[langKey] || "tr-TR",
+    accept: 'application/json',
+    'Content-Type': 'application/json',
+    'Accept-Language': languageVariants[langKey] || 'tr-TR',
   } as Record<string, string>;
 };
 
 export const apiClient = {
   async request<T = unknown, TBody = unknown>({
     path,
-    method = "GET",
+    method = 'GET',
     data,
     params,
     signal,
     headers,
     fallbackData,
-    fallbackMessageKey = "general.fallback",
+    fallbackMessageKey = 'general.fallback',
     timeout = appConfig.apiTimeout,
   }: RequestConfig<TBody>): Promise<ApiResponse<T>> {
     const controller = new AbortController();
@@ -119,20 +119,20 @@ export const apiClient = {
         signal: mergedSignal,
       };
 
-      if (data && method !== "GET") {
+      if (data && method !== 'GET') {
         requestInit.body = isFormData
           ? (data as BodyInit)
           : JSON.stringify(data);
         if (isFormData) {
           delete (requestInit.headers as Record<string, string>)[
-            "Content-Type"
+            'Content-Type'
           ];
         }
       }
 
       const response = await fetch(url, requestInit);
-      const contentType = response.headers.get("content-type");
-      const payload = contentType?.includes("application/json")
+      const contentType = response.headers.get('content-type');
+      const payload = contentType?.includes('application/json')
         ? await response.json()
         : undefined;
 
@@ -140,13 +140,13 @@ export const apiClient = {
         const message =
           payload?.errorMessage ||
           payload?.message ||
-          i18n.t("general.error.desc");
+          i18n.t('general.error.desc');
 
         if (response.status === 401) {
           const unauthorizedMessage =
             payload?.errorMessage ||
             payload?.message ||
-            i18n.t("general.error.unauthorized");
+            i18n.t('general.error.unauthorized');
           throw createApiError(
             unauthorizedMessage,
             response.status,
@@ -177,15 +177,15 @@ export const apiClient = {
 
       if (fallbackData && !isApiError(error)) {
         ToastFunction(
-          i18n.t("general.error.title"),
+          i18n.t('general.error.title'),
           i18n.t(fallbackMessageKey),
-          "warning",
+          'warning',
         );
         return fallbackData() as ApiResponse<T>;
       }
 
       const message =
-        error instanceof Error ? error.message : i18n.t("general.error.desc");
+        error instanceof Error ? error.message : i18n.t('general.error.desc');
       throw createApiError(message, 0, path, error);
     } finally {
       if (timeoutId) {
@@ -196,41 +196,41 @@ export const apiClient = {
 
   get<T = unknown>(
     path: string,
-    config?: Omit<RequestConfig, "method" | "path">,
+    config?: Omit<RequestConfig, 'method' | 'path'>,
   ) {
-    return this.request<T>({ ...config, path, method: "GET" });
+    return this.request<T>({ ...config, path, method: 'GET' });
   },
 
   post<T = unknown, TBody = unknown>(
     path: string,
     data?: TBody,
-    config?: Omit<RequestConfig, "method" | "data" | "path">,
+    config?: Omit<RequestConfig, 'method' | 'data' | 'path'>,
   ) {
-    return this.request<T, TBody>({ ...config, path, data, method: "POST" });
+    return this.request<T, TBody>({ ...config, path, data, method: 'POST' });
   },
 
   put<T = unknown, TBody = unknown>(
     path: string,
     data?: TBody,
-    config?: Omit<RequestConfig, "method" | "data" | "path">,
+    config?: Omit<RequestConfig, 'method' | 'data' | 'path'>,
   ) {
-    return this.request<T, TBody>({ ...config, path, data, method: "PUT" });
+    return this.request<T, TBody>({ ...config, path, data, method: 'PUT' });
   },
 
   patch<T = unknown, TBody = unknown>(
     path: string,
     data?: TBody,
-    config?: Omit<RequestConfig, "method" | "data" | "path">,
+    config?: Omit<RequestConfig, 'method' | 'data' | 'path'>,
   ) {
-    return this.request<T, TBody>({ ...config, path, data, method: "PATCH" });
+    return this.request<T, TBody>({ ...config, path, data, method: 'PATCH' });
   },
 
   delete<T = unknown, TBody = unknown>(
     path: string,
     data?: TBody,
-    config?: Omit<RequestConfig, "method" | "data" | "path">,
+    config?: Omit<RequestConfig, 'method' | 'data' | 'path'>,
   ) {
-    return this.request<T, TBody>({ ...config, path, data, method: "DELETE" });
+    return this.request<T, TBody>({ ...config, path, data, method: 'DELETE' });
   },
 };
 

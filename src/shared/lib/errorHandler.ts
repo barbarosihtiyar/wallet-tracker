@@ -1,5 +1,5 @@
-import { GeneralModalFunction, ToastFunction } from "@/components";
-import i18n from "@/shared/i18n";
+import { GeneralModalFunction, ToastFunction } from '@/components';
+import i18n from '@/shared/i18n';
 
 export interface ApiError extends Error {
   status: number;
@@ -14,7 +14,7 @@ export const createApiError = (
   details?: unknown,
 ): ApiError => {
   const error = new Error(message) as ApiError;
-  error.name = "ApiError";
+  error.name = 'ApiError';
   error.status = status;
   error.path = path;
   error.details = details;
@@ -22,11 +22,11 @@ export const createApiError = (
 };
 
 export const isApiError = (error: unknown): error is ApiError => {
-  return error instanceof Error && error.name === "ApiError";
+  return error instanceof Error && error.name === 'ApiError';
 };
 export const extractErrorMessage = (
   error: unknown,
-  fallbackKey: string = "general.error.desc",
+  fallbackKey: string = 'general.error.desc',
 ): string => {
   if (isApiError(error)) {
     return error.message;
@@ -41,12 +41,12 @@ export const extractErrorMessage = (
 
 export const notifyError = (
   error: unknown,
-  titleKey: string = "general.error.title",
-  fallbackKey: string = "general.error.desc",
+  titleKey: string = 'general.error.title',
+  fallbackKey: string = 'general.error.desc',
 ) => {
   const message = extractErrorMessage(error, fallbackKey);
   const title = i18n.t(titleKey);
 
-  GeneralModalFunction("warning", message, title);
-  ToastFunction(title, message, "warning");
+  GeneralModalFunction('warning', message, title);
+  ToastFunction(title, message, 'warning');
 };

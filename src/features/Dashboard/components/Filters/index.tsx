@@ -1,10 +1,10 @@
-import React, { useMemo } from "react";
-import { Form } from "antd";
-import { useTranslation } from "react-i18next";
+import { Form } from 'antd';
+import React, { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { Button, Input, SelectV2 } from "@/components";
-import { DashboardFilters } from "@/redux/slices/Dashboard/types";
-import { KycStatus, WalletStatus } from "@/shared/types/api";
+import { Button, Input, SelectV2 } from '@/components';
+import { DashboardFilters } from '@/redux/slices/Dashboard/types';
+import { KycStatus, WalletStatus } from '@/shared/types/api';
 
 type Props = {
   filters: DashboardFilters;
@@ -12,25 +12,25 @@ type Props = {
   onReset: () => void;
 };
 
-const statusOptions: { value: WalletStatus | "all"; label: string }[] = [
-  { value: "all", label: "all" },
-  { value: "active", label: "active" },
-  { value: "restricted", label: "restricted" },
-  { value: "suspended", label: "suspended" },
+const statusOptions: { value: WalletStatus | 'all'; label: string }[] = [
+  { value: 'all', label: 'all' },
+  { value: 'active', label: 'active' },
+  { value: 'restricted', label: 'restricted' },
+  { value: 'suspended', label: 'suspended' },
 ];
 
-const kycStatusOptions: { value: KycStatus | "all"; label: string }[] = [
-  { value: "all", label: "all" },
-  { value: "UNKNOWN", label: "UNKNOWN" },
-  { value: "UNVERIFIED", label: "UNVERIFIED" },
-  { value: "VERIFIED", label: "VERIFIED" },
-  { value: "CONTRACTED", label: "CONTRACTED" },
+const kycStatusOptions: { value: KycStatus | 'all'; label: string }[] = [
+  { value: 'all', label: 'all' },
+  { value: 'UNKNOWN', label: 'UNKNOWN' },
+  { value: 'UNVERIFIED', label: 'UNVERIFIED' },
+  { value: 'VERIFIED', label: 'VERIFIED' },
+  { value: 'CONTRACTED', label: 'CONTRACTED' },
 ];
 
-const isActiveOptions: { value: "all" | "true" | "false"; label: string }[] = [
-  { value: "all", label: "all" },
-  { value: "true", label: "active" },
-  { value: "false", label: "inactive" },
+const isActiveOptions: { value: 'all' | 'true' | 'false'; label: string }[] = [
+  { value: 'all', label: 'all' },
+  { value: 'true', label: 'active' },
+  { value: 'false', label: 'inactive' },
 ];
 
 const Filters: React.FC<Props> = ({ filters, onChange, onReset }) => {
@@ -39,7 +39,7 @@ const Filters: React.FC<Props> = ({ filters, onChange, onReset }) => {
 
   const statusData = useMemo(
     () =>
-      statusOptions.map((item) => ({
+      statusOptions.map(item => ({
         value: item.value,
         label: t(`dashboard.filters.status.${item.label}`),
       })),
@@ -48,7 +48,7 @@ const Filters: React.FC<Props> = ({ filters, onChange, onReset }) => {
 
   const kycStatusData = useMemo(
     () =>
-      kycStatusOptions.map((item) => ({
+      kycStatusOptions.map(item => ({
         value: item.value,
         label: t(`dashboard.filters.kycStatus.${item.label}`),
       })),
@@ -57,7 +57,7 @@ const Filters: React.FC<Props> = ({ filters, onChange, onReset }) => {
 
   const isActiveData = useMemo(
     () =>
-      isActiveOptions.map((item) => ({
+      isActiveOptions.map(item => ({
         value: item.value,
         label: t(`dashboard.filters.isActive.${item.label}`),
       })),
@@ -85,12 +85,12 @@ const Filters: React.FC<Props> = ({ filters, onChange, onReset }) => {
         <div className="dashboard-filters__field">
           <Form.Item
             name="search"
-            label={t("dashboard.filters.search")}
+            label={t('dashboard.filters.search')}
             style={{ marginBottom: 0 }}
           >
             <Input
               allowClear
-              placeholder={t("dashboard.filters.searchPlaceholder")}
+              placeholder={t('dashboard.filters.searchPlaceholder')}
             />
           </Form.Item>
         </div>
@@ -98,7 +98,7 @@ const Filters: React.FC<Props> = ({ filters, onChange, onReset }) => {
         <div className="dashboard-filters__field">
           <Form.Item
             name="status"
-            label={t("dashboard.filters.statusLabel")}
+            label={t('dashboard.filters.statusLabel')}
             style={{ marginBottom: 0 }}
           >
             <SelectV2 data={statusData} />
@@ -108,7 +108,7 @@ const Filters: React.FC<Props> = ({ filters, onChange, onReset }) => {
         <div className="dashboard-filters__field">
           <Form.Item
             name="kycStatus"
-            label={t("dashboard.filters.kycStatusLabel")}
+            label={t('dashboard.filters.kycStatusLabel')}
             style={{ marginBottom: 0 }}
           >
             <SelectV2 data={kycStatusData} />
@@ -118,7 +118,7 @@ const Filters: React.FC<Props> = ({ filters, onChange, onReset }) => {
         <div className="dashboard-filters__field">
           <Form.Item
             name="isActive"
-            label={t("dashboard.filters.isActiveLabel")}
+            label={t('dashboard.filters.isActiveLabel')}
             style={{ marginBottom: 0 }}
           >
             <SelectV2 data={isActiveData} />
@@ -132,10 +132,10 @@ const Filters: React.FC<Props> = ({ filters, onChange, onReset }) => {
           onClick={handleReset}
           aria-label="reset-filters"
         >
-          {t("dashboard.filters.reset")}
+          {t('dashboard.filters.reset')}
         </Button>
         <Button htmlType="submit" aria-label="apply-filters">
-          {t("dashboard.filters.apply")}
+          {t('dashboard.filters.apply')}
         </Button>
       </div>
     </Form>

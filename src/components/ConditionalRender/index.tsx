@@ -1,4 +1,4 @@
-import type { ConditionalRenderProps } from "./types";
+import type { ConditionalRenderProps } from './types';
 
 const ConditionalRender = ({
   value = false,

@@ -1,4 +1,4 @@
-import { DynamicLabelType } from "@/shared/constants";
+import { DynamicLabelType } from '@/shared/constants';
 
 export type DynamicLabelSkeletonProps = {
   width?: number | string;
@@ -6,5 +6,5 @@ export type DynamicLabelSkeletonProps = {
   type?: DynamicLabelType;
   children?: React.ReactNode;
   className?: string;
-  size?: "small" | "default" | "large";
+  size?: 'small' | 'default' | 'large';
 };

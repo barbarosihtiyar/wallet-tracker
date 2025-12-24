@@ -1,15 +1,14 @@
-import { useApiQuery } from "@/shared/hooks";
+import { DashboardFilters } from '@/redux/slices/Dashboard/types';
+import { useApiQuery } from '@/shared/hooks';
 import {
   Customer,
   PaginatedResponse,
   Transaction,
   TransactionFilters,
   Wallet,
-} from "@/shared/types/api";
+} from '@/shared/types/api';
 
-import { DashboardFilters } from "@/redux/slices/Dashboard/types";
-
-import { dashboardApi } from "./service";
+import { dashboardApi } from './service';
 
 type QueryOptions<T> = Parameters<typeof useApiQuery<T>>[2];
 
@@ -18,11 +17,11 @@ export const useCustomersQuery = (
   options?: QueryOptions<PaginatedResponse<Customer>>,
 ) =>
   useApiQuery<PaginatedResponse<Customer>>(
-    ["customers", filters],
+    ['customers', filters],
     ({ signal }) => dashboardApi.fetchCustomers(filters, signal),
     {
-      placeholderData: (prev) => prev,
-      onErrorMessageKey: "dashboard.errors.customers",
+      placeholderData: prev => prev,
+      onErrorMessageKey: 'dashboard.errors.customers',
       ...options,
     },
   );
@@ -32,14 +31,14 @@ export const useCustomerQuery = (
   options?: QueryOptions<Customer>,
 ) =>
   useApiQuery<Customer>(
-    ["customer", customerId],
+    ['customer', customerId],
     ({ signal }) => {
-      if (!customerId) return Promise.reject(new Error("missing customerId"));
+      if (!customerId) return Promise.reject(new Error('missing customerId'));
       return dashboardApi.fetchCustomer(customerId, signal);
     },
     {
       enabled: Boolean(customerId),
-      onErrorMessageKey: "dashboard.errors.customers",
+      onErrorMessageKey: 'dashboard.errors.customers',
       ...options,
     },
   );
@@ -50,12 +49,12 @@ export const useTransactionsQuery = (
   options?: QueryOptions<PaginatedResponse<Transaction>>,
 ) =>
   useApiQuery<PaginatedResponse<Transaction>>(
-    ["transactions", customerId, filters],
+    ['transactions', customerId, filters],
     ({ signal }) => dashboardApi.fetchTransactions(customerId, filters, signal),
     {
       enabled: Boolean(customerId),
-      placeholderData: (prev) => prev,
-      onErrorMessageKey: "dashboard.errors.transactions",
+      placeholderData: prev => prev,
+      onErrorMessageKey: 'dashboard.errors.transactions',
       ...options,
     },
   );
@@ -65,14 +64,14 @@ export const useWalletQuery = (
   options?: QueryOptions<Wallet>,
 ) =>
   useApiQuery<Wallet>(
-    ["wallet", customerId],
+    ['wallet', customerId],
     ({ signal }) => {
-      if (!customerId) return Promise.reject(new Error("missing customerId"));
+      if (!customerId) return Promise.reject(new Error('missing customerId'));
       return dashboardApi.fetchWallet(customerId, signal);
     },
     {
       enabled: Boolean(customerId),
-      onErrorMessageKey: "dashboard.errors.transactions",
+      onErrorMessageKey: 'dashboard.errors.transactions',
       ...options,
     },
   );

@@ -1,9 +1,9 @@
-import "./empty.scss";
+import './empty.scss';
 
-import classNames from "classnames";
-import React from "react";
+import classNames from 'classnames';
+import React from 'react';
 
-import { Props } from "./types";
+import { Props } from './types';
 
 const EmptyComp: React.FC<Props> = ({
   img,
@@ -14,7 +14,7 @@ const EmptyComp: React.FC<Props> = ({
 }) => {
   return (
     <div
-      className={classNames("empty", { "empty--v2": type === "v2" }, className)}
+      className={classNames('empty', { 'empty--v2': type === 'v2' }, className)}
     >
       <div className="empty__table">
         <div className="empty__table__row" />

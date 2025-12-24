@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import type { IconName } from "./registry";
+import type { IconName } from './registry';
 
 /**
  * Icon component props

@@ -1,20 +1,20 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { AntNotificationsState, NotificationType } from "./types";
+import { AntNotificationsState, NotificationType } from './types';
 
 const initialState: AntNotificationsState = {
   antNotificationsList: [],
   generalModal: {
     id: Date.now(),
-    title: "",
-    message: "",
-    type: "",
+    title: '',
+    message: '',
+    type: '',
     display: false,
   },
 };
 
 export const notifications = createSlice({
-  name: "notifications",
+  name: 'notifications',
   initialState,
   reducers: {
     showNotification: (
@@ -29,14 +29,14 @@ export const notifications = createSlice({
     ) => {
       state.antNotificationsList.push({
         id: Date.now(),
-        title: payload.title || "",
+        title: payload.title || '',
         message: payload.message,
         type: payload.type,
       });
     },
     removeNotificationData: (state, { payload }: PayloadAction<number>) => {
       state.antNotificationsList = state.antNotificationsList.filter(
-        (item) => item.id !== payload,
+        item => item.id !== payload,
       );
     },
     showGeneralModal: (
@@ -51,13 +51,13 @@ export const notifications = createSlice({
     ) => {
       state.generalModal = {
         id: Date.now(),
-        title: payload.title ? payload.title : "",
+        title: payload.title ? payload.title : '',
         message: payload.message,
         type: payload.type,
         display: true,
       };
     },
-    clearGeneralModal: (state) => {
+    clearGeneralModal: state => {
       state.generalModal = initialState.generalModal;
     },
   },

@@ -1,10 +1,10 @@
-import React from "react";
-import { useTranslation } from "react-i18next";
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { customerColumns } from "./table";
+import { NewTable } from '@/components';
+import { Customer, PaginatedResponse } from '@/shared/types/api';
 
-import { NewTable } from "@/components";
-import { PaginatedResponse, Customer } from "@/shared/types/api";
+import { customerColumns } from './table';
 
 type Props = {
   data?: PaginatedResponse<Customer>;
@@ -41,7 +41,7 @@ const CustomerTable: React.FC<Props> = ({
         dataSource={rows as any}
         loading={loading}
         changeEmpty={!rows.length}
-        emptyText={t("dashboard.table.empty")}
+        emptyText={t('dashboard.table.empty')}
         emptyImg={undefined}
         filter={false}
         pagination={{ current: currentPage, pageSize }}
@@ -50,7 +50,7 @@ const CustomerTable: React.FC<Props> = ({
         elementNumber={totalPages}
         setPageNumberOut={onPageChange}
         rowKey="id"
-        onRow={(record) => ({
+        onRow={record => ({
           onClick: () => onRowSelect?.(record as unknown as Customer),
         })}
       />

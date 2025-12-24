@@ -1,12 +1,12 @@
-import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-import { DashboardFilters, DashboardState } from "./types";
+import { DashboardFilters, DashboardState } from './types';
 
 const initialFilters: DashboardFilters = {
-  search: "",
-  status: "all",
-  kycStatus: "all",
-  isActive: "all",
+  search: '',
+  status: 'all',
+  kycStatus: 'all',
+  isActive: 'all',
   page: 1,
   pageSize: 10,
 };
@@ -17,7 +17,7 @@ const initialState: DashboardState = {
 };
 
 export const dashboardSlice = createSlice({
-  name: "dashboard",
+  name: 'dashboard',
   initialState,
   reducers: {
     setFilters: (
@@ -30,7 +30,7 @@ export const dashboardSlice = createSlice({
         page: payload.page ?? state.filters.page,
       };
     },
-    resetFilters: (state) => {
+    resetFilters: state => {
       state.filters = initialFilters;
     },
     setSelectedCustomerId: (

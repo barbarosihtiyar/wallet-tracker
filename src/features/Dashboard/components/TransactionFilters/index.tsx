@@ -1,14 +1,14 @@
-import React, { useMemo } from "react";
-import { DatePicker, Form } from "antd";
-import { useTranslation } from "react-i18next";
-import dayjs from "dayjs";
+import { DatePicker, Form } from 'antd';
+import dayjs from 'dayjs';
+import React, { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { Button, Input, SelectV2 } from "@/components";
+import { Button, Input, SelectV2 } from '@/components';
 import {
   TransactionFilters as ITransactionFilters,
   TransactionType,
   TransferDirection,
-} from "@/shared/types/api";
+} from '@/shared/types/api';
 
 type Props = {
   filters: ITransactionFilters;
@@ -17,21 +17,21 @@ type Props = {
 };
 
 const transferDirectionOptions: {
-  value: TransferDirection | "all";
+  value: TransferDirection | 'all';
   label: string;
 }[] = [
-  { value: "all", label: "all" },
-  { value: "INCOMING", label: "INCOMING" },
-  { value: "OUTGOING", label: "OUTGOING" },
+  { value: 'all', label: 'all' },
+  { value: 'INCOMING', label: 'INCOMING' },
+  { value: 'OUTGOING', label: 'OUTGOING' },
 ];
 
 const transactionTypeOptions: {
-  value: TransactionType | "all";
+  value: TransactionType | 'all';
   label: string;
 }[] = [
-  { value: "all", label: "all" },
-  { value: "DEBIT", label: "DEBIT" },
-  { value: "CREDIT", label: "CREDIT" },
+  { value: 'all', label: 'all' },
+  { value: 'DEBIT', label: 'DEBIT' },
+  { value: 'CREDIT', label: 'CREDIT' },
 ];
 
 const TransactionFilters: React.FC<Props> = ({
@@ -44,7 +44,7 @@ const TransactionFilters: React.FC<Props> = ({
 
   const transferDirectionData = useMemo(
     () =>
-      transferDirectionOptions.map((item) => ({
+      transferDirectionOptions.map(item => ({
         value: item.value,
         label: t(
           `dashboard.transactionFilters.transferDirection.${item.label}`,
@@ -55,7 +55,7 @@ const TransactionFilters: React.FC<Props> = ({
 
   const transactionTypeData = useMemo(
     () =>
-      transactionTypeOptions.map((item) => ({
+      transactionTypeOptions.map(item => ({
         value: item.value,
         label: t(`dashboard.transactionFilters.type.${item.label}`),
       })),
@@ -65,8 +65,8 @@ const TransactionFilters: React.FC<Props> = ({
   const handleFinish = (values: any) => {
     const formatted = {
       ...values,
-      from: values.from ? dayjs(values.from).toISOString() : "",
-      to: values.to ? dayjs(values.to).toISOString() : "",
+      from: values.from ? dayjs(values.from).toISOString() : '',
+      to: values.to ? dayjs(values.to).toISOString() : '',
       page: 1,
     };
     onChange(formatted);
@@ -87,8 +87,8 @@ const TransactionFilters: React.FC<Props> = ({
     <div className="dashboard-filters">
       <div className="dashboard-filters__header">
         <div>
-          <h3>{t("dashboard.transactionFilters.title")}</h3>
-          <p>{t("dashboard.transactionFilters.subtitle")}</p>
+          <h3>{t('dashboard.transactionFilters.title')}</h3>
+          <p>{t('dashboard.transactionFilters.subtitle')}</p>
         </div>
       </div>
 
@@ -102,7 +102,7 @@ const TransactionFilters: React.FC<Props> = ({
           <div className="dashboard-filters__field">
             <Form.Item
               name="transferDirection"
-              label={t("dashboard.transactionFilters.transferDirectionLabel")}
+              label={t('dashboard.transactionFilters.transferDirectionLabel')}
             >
               <SelectV2 data={transferDirectionData} />
             </Form.Item>
@@ -111,7 +111,7 @@ const TransactionFilters: React.FC<Props> = ({
           <div className="dashboard-filters__field">
             <Form.Item
               name="type"
-              label={t("dashboard.transactionFilters.typeLabel")}
+              label={t('dashboard.transactionFilters.typeLabel')}
             >
               <SelectV2 data={transactionTypeData} />
             </Form.Item>
@@ -120,12 +120,12 @@ const TransactionFilters: React.FC<Props> = ({
           <div className="dashboard-filters__field">
             <Form.Item
               name="currency"
-              label={t("dashboard.transactionFilters.currencyLabel")}
+              label={t('dashboard.transactionFilters.currencyLabel')}
             >
               <Input
                 allowClear
                 placeholder={t(
-                  "dashboard.transactionFilters.currencyPlaceholder",
+                  'dashboard.transactionFilters.currencyPlaceholder',
                 )}
               />
             </Form.Item>
@@ -134,12 +134,12 @@ const TransactionFilters: React.FC<Props> = ({
           <div className="dashboard-filters__field">
             <Form.Item
               name="from"
-              label={t("dashboard.transactionFilters.fromLabel")}
+              label={t('dashboard.transactionFilters.fromLabel')}
             >
               <DatePicker
-                placeholder={t("dashboard.transactionFilters.fromPlaceholder")}
+                placeholder={t('dashboard.transactionFilters.fromPlaceholder')}
                 showTime
-                style={{ width: "100%" }}
+                style={{ width: '100%' }}
               />
             </Form.Item>
           </div>
@@ -147,12 +147,12 @@ const TransactionFilters: React.FC<Props> = ({
           <div className="dashboard-filters__field">
             <Form.Item
               name="to"
-              label={t("dashboard.transactionFilters.toLabel")}
+              label={t('dashboard.transactionFilters.toLabel')}
             >
               <DatePicker
-                placeholder={t("dashboard.transactionFilters.toPlaceholder")}
+                placeholder={t('dashboard.transactionFilters.toPlaceholder')}
                 showTime
-                style={{ width: "100%" }}
+                style={{ width: '100%' }}
               />
             </Form.Item>
           </div>
@@ -164,10 +164,10 @@ const TransactionFilters: React.FC<Props> = ({
             onClick={handleReset}
             aria-label="reset-transaction-filters"
           >
-            {t("dashboard.transactionFilters.reset")}
+            {t('dashboard.transactionFilters.reset')}
           </Button>
           <Button htmlType="submit" aria-label="apply-transaction-filters">
-            {t("dashboard.transactionFilters.apply")}
+            {t('dashboard.transactionFilters.apply')}
           </Button>
         </div>
       </Form>

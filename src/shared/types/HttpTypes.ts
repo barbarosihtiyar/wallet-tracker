@@ -1,4 +1,4 @@
-import { languageVariants } from "../constants";
+import { languageVariants } from '../constants';
 
 export interface RequestOptions extends RequestInit {
   method: string;

@@ -1,6 +1,7 @@
-import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import type { WalletsState } from "./types";
-import { fetchWalletByCustomerId, updateWalletLimits } from "./actions";
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+
+import { fetchWalletByCustomerId, updateWalletLimits } from './actions';
+import type { WalletsState } from './types';
 
 const initialState: WalletsState = {
   wallets: {},
@@ -13,7 +14,7 @@ const initialState: WalletsState = {
 };
 
 const walletsSlice = createSlice({
-  name: "wallets",
+  name: 'wallets',
   initialState,
   reducers: {
     setCurrentWallet: (state, action: PayloadAction<string | null>) => {
@@ -23,17 +24,17 @@ const walletsSlice = createSlice({
         state.currentWallet = null;
       }
     },
-    clearError: (state) => {
+    clearError: state => {
       state.error = null;
     },
-    clearWallets: (state) => {
+    clearWallets: state => {
       state.wallets = {};
       state.currentWallet = null;
     },
   },
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
-      .addCase(fetchWalletByCustomerId.pending, (state) => {
+      .addCase(fetchWalletByCustomerId.pending, state => {
         state.loading.fetch = true;
         state.error = null;
       })
@@ -49,7 +50,7 @@ const walletsSlice = createSlice({
       });
 
     builder
-      .addCase(updateWalletLimits.pending, (state) => {
+      .addCase(updateWalletLimits.pending, state => {
         state.loading.update = true;
         state.error = null;
       })

@@ -1,7 +1,7 @@
-import type { FormInstance } from "antd";
-import type { NamePath } from "antd/es/form/interface";
-import { useEffect } from "react";
-import { useTranslation } from "react-i18next";
+import type { FormInstance } from 'antd';
+import type { NamePath } from 'antd/es/form/interface';
+import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const useErrorTranslation = (formInstances?: FormInstance | FormInstance[]) => {
   const { i18n } = useTranslation();
@@ -13,10 +13,10 @@ const useErrorTranslation = (formInstances?: FormInstance | FormInstance[]) => {
       ? formInstances
       : [formInstances];
 
-    forms.forEach((form) => {
+    forms.forEach(form => {
       const errorFields: NamePath[] = [];
 
-      form.getFieldsError().forEach((field) => {
+      form.getFieldsError().forEach(field => {
         if (field.errors.length) {
           errorFields.push(field.name);
         }

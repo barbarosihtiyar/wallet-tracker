@@ -3,7 +3,7 @@
  * Useful for case-insensitive searching/filtering
  */
 export const normalizeText = (text: string): string => {
-  return text.toLocaleLowerCase("tr");
+  return text.toLocaleLowerCase('tr');
 };
 
 /**
@@ -18,7 +18,7 @@ export const filterBySearchTerm = <T>(
   if (!searchValue) return items;
 
   const searchTerm = normalizeText(searchValue);
-  return items.filter((item) => {
+  return items.filter(item => {
     const label = normalizeText(labelExtractor(item));
     return label.includes(searchTerm);
   });

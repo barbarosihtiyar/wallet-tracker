@@ -1,5 +1,9 @@
-import { ToastFunction } from "@/components";
-import { apiClient, isApiError } from "@/shared/services/apiClient";
+import { ToastFunction } from '@/components';
+import { DashboardFilters } from '@/redux/slices/Dashboard/types';
+import { mockCustomers, mockTransactions } from '@/shared/dummy/dashboard';
+import i18n from '@/shared/i18n';
+import { normalizePaginated } from '@/shared/lib/pagination';
+import { apiClient, isApiError } from '@/shared/services/apiClient';
 import {
   CreateCustomerPayload,
   Customer,
@@ -8,16 +12,11 @@ import {
   UpdateCustomerPayload,
   UpdateWalletLimitPayload,
   Wallet,
-} from "@/shared/types/api";
-import { ApiResponse } from "@/shared/types/HttpTypes";
-
-import { mockCustomers, mockTransactions } from "@/shared/dummy/dashboard";
-import { DashboardFilters } from "@/redux/slices/Dashboard/types";
-import i18n from "@/shared/i18n";
-import { normalizePaginated } from "@/shared/lib/pagination";
+} from '@/shared/types/api';
+import { ApiResponse } from '@/shared/types/HttpTypes';
 
 const isAbortError = (error: unknown) =>
-  error instanceof DOMException || (error as Error)?.name === "AbortError";
+  error instanceof DOMException || (error as Error)?.name === 'AbortError';
 
 const normalizeFilters = (filters: DashboardFilters) => {
   const params: Record<string, unknown> = {
@@ -26,12 +25,12 @@ const normalizeFilters = (filters: DashboardFilters) => {
   };
 
   if (filters.search) params.search = filters.search;
-  if (filters.status && filters.status !== "all")
+  if (filters.status && filters.status !== 'all')
     params.status = filters.status;
-  if (filters.kycStatus && filters.kycStatus !== "all")
+  if (filters.kycStatus && filters.kycStatus !== 'all')
     params.kycStatus = filters.kycStatus;
-  if (filters.isActive && filters.isActive !== "all")
-    params.isActive = filters.isActive === "true";
+  if (filters.isActive && filters.isActive !== 'all')
+    params.isActive = filters.isActive === 'true';
 
   return params;
 };
@@ -42,25 +41,25 @@ const filterMockCustomers = (
   const page = filters.page ?? 1;
   const pageSize = filters.pageSize ?? 10;
 
-  const filtered = mockCustomers.items.filter((item) => {
+  const filtered = mockCustomers.items.filter(item => {
     const matchesSearch = filters.search
-      ? `${item.name}${item.email}${item.wallet?.id ?? ""}`
+      ? `${item.name}${item.email}${item.wallet?.id ?? ''}`
           .toLowerCase()
           .includes(filters.search.toLowerCase())
       : true;
 
     const matchesKycStatus =
-      filters.kycStatus === "all" || !filters.kycStatus
+      filters.kycStatus === 'all' || !filters.kycStatus
         ? true
         : item.kycStatus === filters.kycStatus;
 
     const matchesIsActive =
-      filters.isActive === "all" || !filters.isActive
+      filters.isActive === 'all' || !filters.isActive
         ? true
-        : item.isActive === (filters.isActive === "true");
+        : item.isActive === (filters.isActive === 'true');
 
     const matchesStatus =
-      filters.status === "all" || !filters.status
+      filters.status === 'all' || !filters.status
         ? true
         : item.wallet?.status === filters.status;
 
@@ -97,7 +96,7 @@ const filterMockTransactions = (
   }
 
   const items = mockTransactions.items.filter(
-    (item) => item.customerId === customerId,
+    item => item.customerId === customerId,
   );
 
   return {
@@ -118,9 +117,9 @@ const handleFallback = <T>(
   if (isApiError(error)) throw error;
 
   ToastFunction(
-    i18n.t("general.error.title"),
-    i18n.t("general.fallback"),
-    "warning",
+    i18n.t('general.error.title'),
+    i18n.t('general.fallback'),
+    'warning',
   );
 
   return fallback();
@@ -144,9 +143,9 @@ export const dashboardApi = {
       return handleFallback(error, () => ({
         data:
           (mockCustomers.items.find(
-            (item) => item.id === customerId,
+            item => item.id === customerId,
           ) as Customer) || ({} as Customer),
-        message: i18n.t("general.fallback"),
+        message: i18n.t('general.fallback'),
         status: 200,
         success: true,
       }));
@@ -160,7 +159,7 @@ export const dashboardApi = {
     try {
       const response = await apiClient.get<
         PaginatedResponse<Customer> | Customer[]
-      >("/customers", {
+      >('/customers', {
         params: normalizeFilters(filters),
         signal,
       });
@@ -174,7 +173,7 @@ export const dashboardApi = {
     } catch (error) {
       return handleFallback(error, () => ({
         data: filterMockCustomers(filters),
-        message: i18n.t("general.fallback"),
+        message: i18n.t('general.fallback'),
         status: 200,
         success: true,
       }));
@@ -183,7 +182,7 @@ export const dashboardApi = {
 
   async fetchTransactions(
     customerId: string | undefined,
-    filters: import("@/shared/types/api").TransactionFilters,
+    filters: import('@/shared/types/api').TransactionFilters,
     signal?: AbortSignal,
   ): Promise<ApiResponse<PaginatedResponse<Transaction>>> {
     const params: Record<string, unknown> = {
@@ -191,9 +190,9 @@ export const dashboardApi = {
       pageSize: filters.pageSize ?? 10,
     };
 
-    if (filters.transferDirection && filters.transferDirection !== "all")
+    if (filters.transferDirection && filters.transferDirection !== 'all')
       params.transferDirection = filters.transferDirection;
-    if (filters.type && filters.type !== "all") params.type = filters.type;
+    if (filters.type && filters.type !== 'all') params.type = filters.type;
     if (filters.currency) params.currency = filters.currency;
     if (filters.from) params.from = filters.from;
     if (filters.to) params.to = filters.to;
@@ -215,7 +214,7 @@ export const dashboardApi = {
     } catch (error) {
       return handleFallback(error, () => ({
         data: filterMockTransactions(customerId),
-        message: i18n.t("general.fallback"),
+        message: i18n.t('general.fallback'),
         status: 200,
         success: true,
       }));
@@ -227,7 +226,7 @@ export const dashboardApi = {
   ): Promise<ApiResponse<Customer>> {
     try {
       return await apiClient.post<Customer, CreateCustomerPayload>(
-        "/customers",
+        '/customers',
         payload,
       );
     } catch (error) {
@@ -240,9 +239,9 @@ export const dashboardApi = {
           dateOfBirth: payload.dateOfBirth,
           nationalId: payload.nationalId,
           address: payload.address,
-          kycStatus: "UNKNOWN",
+          kycStatus: 'UNKNOWN',
           isActive: true,
-          riskLevel: "low",
+          riskLevel: 'low',
           createdAt: new Date().toISOString(),
           wallet: {
             id: `mock-wallet-${Date.now()}`,
@@ -250,13 +249,13 @@ export const dashboardApi = {
             currency: payload.currency,
             availableLimit: payload.availableLimit,
             dailyLimit: payload.dailyLimit,
-            status: "active",
+            status: 'active',
             lastUpdated: new Date().toISOString(),
           },
         },
         status: 201,
         success: true,
-        message: i18n.t("general.fallback"),
+        message: i18n.t('general.fallback'),
       }));
     }
   },
@@ -267,7 +266,7 @@ export const dashboardApi = {
     try {
       return await apiClient.patch<
         Customer,
-        Omit<UpdateWalletLimitPayload, "customerId">
+        Omit<UpdateWalletLimitPayload, 'customerId'>
       >(`/wallets/${payload.customerId}`, {
         availableLimit: payload.availableLimit,
         dailyLimit: payload.dailyLimit,
@@ -276,21 +275,21 @@ export const dashboardApi = {
       return handleFallback(error, () => ({
         data: {
           id: payload.customerId,
-          name: "",
-          email: "",
+          name: '',
+          email: '',
           wallet: {
             id: payload.customerId,
             balance: 0,
-            currency: "TRY",
+            currency: 'TRY',
             availableLimit: payload.availableLimit,
             dailyLimit: payload.dailyLimit,
-            status: "active",
+            status: 'active',
             lastUpdated: new Date().toISOString(),
           },
         } as Customer,
         status: 200,
         success: true,
-        message: i18n.t("general.fallback"),
+        message: i18n.t('general.fallback'),
       }));
     }
   },
@@ -312,7 +311,7 @@ export const dashboardApi = {
         } as Customer,
         status: 200,
         success: true,
-        message: i18n.t("general.fallback"),
+        message: i18n.t('general.fallback'),
       }));
     }
   },
@@ -325,7 +324,7 @@ export const dashboardApi = {
         data: null,
         status: 200,
         success: true,
-        message: i18n.t("general.fallback"),
+        message: i18n.t('general.fallback'),
       }));
     }
   },
@@ -347,14 +346,14 @@ export const dashboardApi = {
         data: {
           id: customerId,
           customerId,
-          currency: "USD",
+          currency: 'USD',
           balance: 0,
           dailyLimit: 0,
           monthlyLimit: 0,
         } as unknown as Wallet,
         status: 200,
         success: true,
-        message: i18n.t("general.fallback"),
+        message: i18n.t('general.fallback'),
       }));
     }
   },

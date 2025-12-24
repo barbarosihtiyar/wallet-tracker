@@ -1,11 +1,11 @@
-import i18n from "@/shared/i18n";
+import i18n from '@/shared/i18n';
 
 export type TabValidationMessageKey =
-  | "mustQueryTransaction"
-  | "mustQuerySender"
-  | "mustFillForm"
-  | "mustSelectPaymentOption"
-  | "mustSelectCancelReason";
+  | 'mustQueryTransaction'
+  | 'mustQuerySender'
+  | 'mustFillForm'
+  | 'mustSelectPaymentOption'
+  | 'mustSelectCancelReason';
 
 export const getTabValidationMessage = (
   key: TabValidationMessageKey,

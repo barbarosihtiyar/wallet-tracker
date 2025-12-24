@@ -1,17 +1,17 @@
-import i18n from "@/shared/i18n";
+import i18n from '@/shared/i18n';
 
 const resolveLocale = (lang?: string) => {
   if (!lang) return undefined;
-  if (lang === "tr") return "tr-TR";
-  if (lang === "ar") return "ar-SA";
-  return "en-US";
+  if (lang === 'tr') return 'tr-TR';
+  if (lang === 'ar') return 'ar-SA';
+  return 'en-US';
 };
 
 export const formatLocalNumber = (
   value?: number | null,
   opts?: Intl.NumberFormatOptions,
 ): string => {
-  if (value === null || value === undefined) return "-";
+  if (value === null || value === undefined) return '-';
   return new Intl.NumberFormat(resolveLocale(i18n.language), {
     minimumFractionDigits: 2,
     maximumFractionDigits: 20,
@@ -24,7 +24,7 @@ export const getFormattedAmountProps = (
   isFocused: boolean,
 ): { value: string } => {
   if (value === undefined || value === null) {
-    return { value: "" };
+    return { value: '' };
   }
 
   return {
@@ -32,4 +32,4 @@ export const getFormattedAmountProps = (
   };
 };
 
-export { parseNumber } from "./parse";
+export { parseNumber } from './parse';

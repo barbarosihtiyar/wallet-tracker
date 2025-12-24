@@ -1,3 +1,3 @@
-export * from "./service";
-export * from "./queries";
-export * from "./mutations";
+export * from './mutations';
+export * from './queries';
+export * from './service';

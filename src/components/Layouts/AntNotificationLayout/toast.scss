@@ -1,4 +1,4 @@
-@use "@/app/styles/Settings" as settings;
+@use '@/app/styles/Settings' as settings;
 
 .toast {
   width: 350px !important;
@@ -51,7 +51,7 @@
 
 .main {
   position: absolute;
-  content: "";
+  content: '';
   @include settings.widthHeight(4px, 32px);
   inset-inline-start: 0;
   top: 16px;

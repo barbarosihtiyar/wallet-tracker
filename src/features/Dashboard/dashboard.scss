@@ -1,4 +1,4 @@
-@use "@/app/styles/Settings" as settings;
+@use '@/app/styles/Settings' as settings;
 
 .dashboard {
   @include settings.flex(flex-start, stretch, column);
@@ -18,7 +18,7 @@
   isolation: isolate;
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     inset: 0;
     background: linear-gradient(
@@ -61,7 +61,7 @@
 
     &::before,
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       border-radius: 50%;
       filter: blur(50px);
@@ -239,7 +239,7 @@
     &--purple::after,
     &--green::after,
     &--yellow::after {
-      content: "";
+      content: '';
       position: absolute;
       inset: 0;
       opacity: 0.08;

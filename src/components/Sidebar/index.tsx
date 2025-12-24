@@ -1,34 +1,34 @@
-import "./sidebar.scss";
+import './sidebar.scss';
 
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
-import { Icon, SidebarItem } from "@/components";
-import { Icons } from "@/shared/constants";
-import { sidebarList } from "@/shared/dummy";
+import { Icon, SidebarItem } from '@/components';
+import { Icons } from '@/shared/constants';
+import { sidebarList } from '@/shared/dummy';
 
-import type { Props } from "./types";
+import type { Props } from './types';
 
 const Sidebar: React.FC<Props> = ({ collapsed, setCollapsed }) => {
   const location = useLocation();
-  const [activeItem, setActiveItem] = useState("");
+  const [activeItem, setActiveItem] = useState('');
 
   useEffect(() => {
     setActiveItem(location.pathname);
   }, [location.pathname]);
 
   return (
-    <aside className={`sidebar ${collapsed ? "sidebar--collapsed" : ""}`}>
+    <aside className={`sidebar ${collapsed ? 'sidebar--collapsed' : ''}`}>
       <div className="sidebar__header">
         <Icon
-          onClick={() => setCollapsed((v) => !v)}
+          onClick={() => setCollapsed(v => !v)}
           className="sidebar__toggle"
           name={Icons.SIDE_SIGN}
         />
       </div>
 
       <nav className="sidebar__nav">
-        {sidebarList.map((item) => (
+        {sidebarList.map(item => (
           <SidebarItem
             key={item.name}
             name={item.name}

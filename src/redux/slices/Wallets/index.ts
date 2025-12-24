@@ -1,4 +1,4 @@
-export * from "./types";
-export * from "./actions";
-export { default as walletsReducer } from "./slice";
-export { setCurrentWallet, clearError, clearWallets } from "./slice";
+export * from './actions';
+export { default as walletsReducer } from './slice';
+export { clearError, clearWallets, setCurrentWallet } from './slice';
+export * from './types';

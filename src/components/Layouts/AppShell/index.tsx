@@ -1,10 +1,10 @@
-import "./app-shell.scss";
+import './app-shell.scss';
 
-import classNames from "classnames";
-import React, { useState } from "react";
+import classNames from 'classnames';
+import React, { useState } from 'react';
 
-import { Header, Sidebar } from "@/components";
-import { useScrollToTop } from "@/shared/hooks";
+import { Header, Sidebar } from '@/components';
+import { useScrollToTop } from '@/shared/hooks';
 
 type AppShellProps = {
   children: React.ReactNode;
@@ -15,7 +15,7 @@ const AppShell: React.FC<AppShellProps> = ({ children }) => {
   useScrollToTop();
 
   return (
-    <div className={classNames("layout", { "layout--collapsed": collapsed })}>
+    <div className={classNames('layout', { 'layout--collapsed': collapsed })}>
       <div className="layout__rail">
         <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} />
       </div>

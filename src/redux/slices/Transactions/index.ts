@@ -1,10 +1,10 @@
-export * from "./types";
-export * from "./actions";
-export { default as transactionsReducer } from "./slice";
+export * from './actions';
+export { default as transactionsReducer } from './slice';
 export {
-  setFilters,
-  resetFilters,
-  setCurrentTransaction,
   clearError,
   clearTransactions,
-} from "./slice";
+  resetFilters,
+  setCurrentTransaction,
+  setFilters,
+} from './slice';
+export * from './types';

@@ -5,23 +5,23 @@ import {
   useQuery as useTanStackQuery,
   useQueryClient,
   type UseQueryOptions,
-} from "@tanstack/react-query";
+} from '@tanstack/react-query';
 
-import type { HttpResponse } from "@/shared/types";
+import type { HttpResponse } from '@/shared/types';
 
 export const useQuery = <TData = unknown, TError = Error>(
   queryKey: QueryKey,
   queryFn: () => Promise<HttpResponse<TData>>,
   options?: Omit<
     UseQueryOptions<HttpResponse<TData>, TError, TData>,
-    "queryKey" | "queryFn"
+    'queryKey' | 'queryFn'
   >,
 ) => {
   return useTanStackQuery({
     queryKey,
     queryFn,
     select: (data: HttpResponse<TData>) => {
-      return data && "data" in data ? data.data : null;
+      return data && 'data' in data ? data.data : null;
     },
     ...options,
   });
@@ -35,7 +35,7 @@ export const useMutation = <
   mutationFn: (variables: TVariables) => Promise<HttpResponse<TData>>,
   options?: Omit<
     UseMutationOptions<HttpResponse<TData>, TError, TVariables>,
-    "mutationFn"
+    'mutationFn'
   >,
 ) => {
   return useTanStackMutation({

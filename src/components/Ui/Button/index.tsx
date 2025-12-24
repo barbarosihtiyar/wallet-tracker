@@ -1,24 +1,24 @@
-import "./button.scss";
+import './button.scss';
 
-import classNames from "classnames";
-import React from "react";
+import classNames from 'classnames';
+import React from 'react';
 
-import Loader from "@/components/Loader";
+import Loader from '@/components/Loader';
 
-import { Props } from "./types";
+import { Props } from './types';
 
 const Button: React.FC<Props> = ({
-  htmlType = "button",
+  htmlType = 'button',
   className,
   iconLeft,
   iconOnly,
   iconRight,
-  type = "basic",
+  type = 'basic',
   disabled,
-  compType = "button",
+  compType = 'button',
   children,
   isLoading = false,
-  loaderTheme = "light",
+  loaderTheme = 'light',
   ...props
 }) => {
   return (
@@ -27,24 +27,24 @@ const Button: React.FC<Props> = ({
       type={htmlType}
       disabled={disabled || isLoading}
       className={classNames(
-        "button",
+        'button',
         className,
-        disabled && "button--disabled",
+        disabled && 'button--disabled',
         type && `button--${type}`,
-        isLoading && "button--loading",
+        isLoading && 'button--loading',
         {
-          "button--left-icon": !!iconLeft && !iconRight && compType !== "nav",
-          "button--right-icon": !!iconRight && !iconLeft,
-          "button--only-icon": !!iconOnly,
-          "button--nav": compType === "nav",
-          "button--like-disabled": compType === "disabled",
+          'button--left-icon': !!iconLeft && !iconRight && compType !== 'nav',
+          'button--right-icon': !!iconRight && !iconLeft,
+          'button--only-icon': !!iconOnly,
+          'button--nav': compType === 'nav',
+          'button--like-disabled': compType === 'disabled',
         },
       )}
       {...props}
     >
       {iconLeft && !isLoading ? <span className="icon">{iconLeft}</span> : null}
       {children && (
-        <span className={classNames("text", { "text--hidden": isLoading })}>
+        <span className={classNames('text', { 'text--hidden': isLoading })}>
           {children}
         </span>
       )}

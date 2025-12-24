@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import { formatLocalNumber } from "@/shared/lib";
+import { formatLocalNumber } from '@/shared/lib';
 
-type FormatLocalNumberProps = React.ComponentProps<"span"> & {
+type FormatLocalNumberProps = React.ComponentProps<'span'> & {
   value: number | string;
   currency?: string;
 };

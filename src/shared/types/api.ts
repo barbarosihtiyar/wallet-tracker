@@ -1,15 +1,15 @@
-export type WalletStatus = "active" | "restricted" | "suspended";
-export type RiskLevel = "low" | "medium" | "high";
-export type KycStatus = "UNKNOWN" | "UNVERIFIED" | "VERIFIED" | "CONTRACTED";
-export type TransactionSide = "credit" | "debit";
-export type TransactionType = "DEBIT" | "CREDIT";
-export type TransferDirection = "INCOMING" | "OUTGOING";
+export type WalletStatus = 'active' | 'restricted' | 'suspended';
+export type RiskLevel = 'low' | 'medium' | 'high';
+export type KycStatus = 'UNKNOWN' | 'UNVERIFIED' | 'VERIFIED' | 'CONTRACTED';
+export type TransactionSide = 'credit' | 'debit';
+export type TransactionType = 'DEBIT' | 'CREDIT';
+export type TransferDirection = 'INCOMING' | 'OUTGOING';
 export type TransactionStatus =
-  | "pending"
-  | "completed"
-  | "failed"
-  | "reversed"
-  | "unknown";
+  | 'pending'
+  | 'completed'
+  | 'failed'
+  | 'reversed'
+  | 'unknown';
 
 export interface Customer {
   id: string;
@@ -81,16 +81,16 @@ export interface PaginatedResponse<T> {
 
 export interface CustomerFilters {
   search?: string;
-  status?: WalletStatus | "all";
-  kycStatus?: KycStatus | "all";
-  isActive?: "all" | "true" | "false";
+  status?: WalletStatus | 'all';
+  kycStatus?: KycStatus | 'all';
+  isActive?: 'all' | 'true' | 'false';
   page?: number;
   pageSize?: number;
 }
 
 export interface TransactionFilters {
-  transferDirection?: TransferDirection | "all";
-  type?: TransactionType | "all";
+  transferDirection?: TransferDirection | 'all';
+  type?: TransactionType | 'all';
   currency?: string;
   from?: string;
   to?: string;
