@@ -52,7 +52,7 @@ const Dashboard: React.FC = () => {
     if (!selectedCustomer && customersQuery.data?.items?.length) {
       dispatch(setSelectedCustomerId(customersQuery.data.items[0].id));
     }
-  }, [customersQuery.data?.items, selectedCustomer, dispatch]);
+  }, [customersQuery.data?.items, selectedCustomer]);
 
   const createCustomerMutation = useCreateCustomerMutation({
     onSuccess: () => {

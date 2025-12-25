@@ -6,19 +6,15 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Backlink, ToastFunction } from '@/components';
 import {
   useCustomerQuery,
-  useDeleteCustomerMutation,
   useTransactionsQuery,
-  useUpdateCustomerMutation,
   useUpdateLimitsMutation,
   useWalletQuery,
 } from '@/features/Dashboard/api';
-import CustomerForm from '@/features/Dashboard/components/CustomerForm';
 import LimitForm from '@/features/Dashboard/components/LimitForm';
 import TransactionFilters from '@/features/Dashboard/components/TransactionFilters';
 import TransactionsTable from '@/features/Dashboard/components/TransactionsTable';
 import { notifyError } from '@/shared/lib';
 import {
-  CreateCustomerPayload,
   TransactionFilters as ITransactionFilters,
   UpdateWalletLimitPayload,
 } from '@/shared/types/api';
@@ -45,28 +41,6 @@ const CustomerDetail: React.FC = () => {
   );
   const walletQuery = useWalletQuery(customerId);
 
-  const updateCustomerMutation = useUpdateCustomerMutation({
-    onSuccess: () => {
-      ToastFunction(
-        t('dashboard.toasts.customerCreated.title'),
-        t('dashboard.toasts.customerCreated.message'),
-        'success',
-      );
-      customerQuery.refetch();
-    },
-  });
-
-  const deleteCustomerMutation = useDeleteCustomerMutation({
-    onSuccess: () => {
-      ToastFunction(
-        t('dashboard.toasts.limitsUpdated.title'),
-        t('dashboard.toasts.limitsUpdated.message'),
-        'success',
-      );
-      window.history.back();
-    },
-  });
-
   const updateLimitsMutation = useUpdateLimitsMutation({
     onSuccess: () => {
       ToastFunction(
@@ -81,40 +55,6 @@ const CustomerDetail: React.FC = () => {
 
   const selectedCustomer = customerQuery.data;
   const wallet = walletQuery.data;
-
-  const handleUpdateCustomer = async (values: CreateCustomerPayload) => {
-    if (!customerId) return;
-    try {
-      await updateCustomerMutation.mutateAsync({
-        id: customerId,
-        payload: {
-          ...values,
-          kycStatus: selectedCustomer?.kycStatus ?? 'UNKNOWN',
-          isActive: selectedCustomer?.isActive ?? true,
-        },
-      });
-    } catch (error) {
-      notifyError(
-        error,
-        'general.error.title',
-        'dashboard.errors.createCustomer',
-      );
-    }
-  };
-
-  const handleDelete = async (id?: string) => {
-    const targetId = id || customerId;
-    if (!targetId) return;
-    try {
-      await deleteCustomerMutation.mutateAsync(targetId);
-    } catch (error) {
-      notifyError(
-        error,
-        'general.error.title',
-        'dashboard.errors.createCustomer',
-      );
-    }
-  };
 
   const handleLimitSubmit = async (values: UpdateWalletLimitPayload) => {
     if (!customerId) return;
